@@ -9,10 +9,12 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
-  Transition,
 } from '@mantine/core';
 import Lottie from 'lottie-react';
 import headerAnimation from '../assets/header-books.json';
+import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
+import { MainLinks } from '../components/MainLinks';
+import { User } from '../components/User';
 
 export default function Frontpage() {
   const [opened, setOpened] = useState(false);
@@ -37,7 +39,12 @@ export default function Frontpage() {
           hidden={!opened}
           width={{ sm: 200, lg: 300 }}
         >
-          <Text>Application navbar</Text>
+          <Navbar.Section grow mt='md'>
+            <MainLinks />
+          </Navbar.Section>
+          <Navbar.Section>
+            <User />
+          </Navbar.Section>
         </Navbar>
       }
       aside={
@@ -71,9 +78,24 @@ export default function Frontpage() {
               loop={false}
               style={{ width: '64px' }}
             />
-            <Text size='xl' color='gray' weight={700}>
-              Biblio
+            <Text
+              size='xl'
+              color='dimmed'
+              variant='gradient'
+              gradient={{ from: 'cyan', to: 'pink', deg: 45 }}
+              weight={700}
+              style={{
+                fontFamily: 'Greycliff CF, sans-serif',
+                marginTop: '5px',
+              }}
+            >
+              BIBLIO
             </Text>
+            {theme.colorScheme === 'dark' ? (
+              <SunIcon style={{ marginLeft: 'auto', marginRight: '0px' }} />
+            ) : (
+              <MoonIcon style={{ marginLeft: 'auto', marginRight: '0px' }} />
+            )}
           </div>
         </Header>
       }
