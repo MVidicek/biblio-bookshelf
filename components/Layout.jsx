@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import {
   AppShell,
   Navbar,
@@ -16,12 +15,11 @@ import {
 import Lottie from 'lottie-react';
 import headerAnimation from '../assets/header-books.json';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
-import { MainLinks } from '../components/MainLinks';
-import { User } from '../components/User';
+import { MainLinks } from './MainLinks';
+import { User } from './User';
 
-export default function Frontpage({ children }) {
+export default function Layout({ children }) {
   const [opened, setOpened] = useState(false);
-  const [activeComponent, setActiveComponent] = useState('profile');
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
@@ -114,7 +112,6 @@ export default function Frontpage({ children }) {
       }
     >
       <main>{children}</main>
-      {activeComponent === 'profile' && <Profile />}
     </AppShell>
   );
 }

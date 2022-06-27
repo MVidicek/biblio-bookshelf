@@ -1,11 +1,14 @@
 import '../styles/globals.css';
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useState('light');
+  const getLayout = Component.getLayout || ((page) => page);
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -25,7 +28,7 @@ function MyApp({ Component, pageProps }) {
         withGlobalStyles
         withNormalizeCSS
       >
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </MantineProvider>
     </ColorSchemeProvider>
   );

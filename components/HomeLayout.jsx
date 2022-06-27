@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import {
   AppShell,
   Navbar,
@@ -16,12 +15,11 @@ import {
 import Lottie from 'lottie-react';
 import headerAnimation from '../assets/header-books.json';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
-import { MainLinks } from '../components/MainLinks';
-import { User } from '../components/User';
+import { MainLinks } from './MainLinks';
+import { User } from './User';
 
-export default function Frontpage({ children }) {
+export default function HomeLayout({ children }) {
   const [opened, setOpened] = useState(false);
-  const [activeComponent, setActiveComponent] = useState('profile');
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
@@ -38,33 +36,6 @@ export default function Frontpage({ children }) {
       navbarOffsetBreakpoint='sm'
       asideOffsetBreakpoint='sm'
       fixed
-      navbar={
-        <Navbar
-          p='md'
-          hiddenBreakpoint='sm'
-          hidden={!opened}
-          width={{ sm: 200, lg: 300 }}
-        >
-          <Navbar.Section grow mt='md'>
-            <MainLinks />
-          </Navbar.Section>
-          <Navbar.Section>
-            <User />
-          </Navbar.Section>
-        </Navbar>
-      }
-      aside={
-        <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
-          <Aside p='md' hiddenBreakpoint='sm' width={{ sm: 200, lg: 300 }}>
-            <Text>Application sidebar</Text>
-          </Aside>
-        </MediaQuery>
-      }
-      footer={
-        <Footer height={60} p='md'>
-          Application footer
-        </Footer>
-      }
       header={
         <Header height={70} p='md'>
           <div
@@ -114,7 +85,6 @@ export default function Frontpage({ children }) {
       }
     >
       <main>{children}</main>
-      {activeComponent === 'profile' && <Profile />}
     </AppShell>
   );
 }
