@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Lottie from 'lottie-react';
 import bookAnimation from '../assets/frontpage-books.json';
-import { Button } from '@mantine/core';
+import {
+  Button,
+  Modal,
+  Group,
+  createStyles,
+  useMantineTheme,
+} from '@mantine/core';
 import styles from '../styles/Home.module.css';
-import { createStyles } from '@mantine/core';
+import LogIn from '../components/LogIn';
+import SignUp from '../components/SignUp';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -44,7 +53,11 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Home() {
+  const [opened, setOpened] = useState(false);
+  const [modalType, setModalType] = useState('login');
+
   const { classes } = useStyles();
+  const theme = useMantineTheme();
 
   return (
     <div className={classes.container}>
@@ -60,11 +73,48 @@ export default function Home() {
           loop={false}
           className={styles.lottie}
         />
+
         <p className={styles.title}> Biblio</p>
-        <div>
-          <Button className={classes.button}>Log In</Button>
-          <Button className={classes.button}>Register</Button>
-        </div>
+
+        <Modal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          title={'Welcome to Biblio'}
+          centered
+          overlayColor={
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[9]
+              : theme.colors.gray[2]
+          }
+          overlayOpacity={0.55}
+          overlayBlur={3}
+          transition='slide-up'
+          transitionDuration={400}
+          transitionTimingFunction='ease'
+        >
+          {modalType === 'login' ? <LogIn /> : <SignUp />}
+        </Modal>
+
+        <Group position='center'>
+          <Button
+            onClick={() => {
+              setOpened(true);
+              setModalType('login');
+            }}
+            className={classes.button}
+          >
+            Log In
+          </Button>
+          <Button
+            onClick={() => {
+              setOpened(true);
+              setModalType('signup');
+            }}
+            className={classes.button}
+          >
+            Sign Up
+          </Button>
+        </Group>
       </main>
 
       <footer className={styles.footer}>
