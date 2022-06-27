@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import Lottie from 'lottie-react';
 import bookAnimation from '../assets/frontpage-books.json';
 import {

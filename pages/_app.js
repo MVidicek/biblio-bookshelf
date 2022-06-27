@@ -1,6 +1,5 @@
 import '../styles/globals.css';
 import { MantineProvider } from '@mantine/core';
-import Navbar from '../components/Navbar';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,7 +17,6 @@ function MyApp({ Component, pageProps }) {
       withGlobalStyles
       withNormalizeCSS
     >
-      <Navbar />
       <Component {...pageProps} />
     </MantineProvider>
   );

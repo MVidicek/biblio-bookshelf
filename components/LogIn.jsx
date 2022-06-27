@@ -1,32 +1,27 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import {
   Button,
   createStyles,
   useMantineTheme,
   TextInput,
+  Box,
+  Group,
 } from '@mantine/core';
 import { PasswordStrength } from '../utils/password-strength';
 
 const useStyles = createStyles((theme) => ({
   button: {
-    color: theme.white,
-    backgroundColor: theme.colors.indigo[6],
+    color: theme.black,
+    backgroundColor: theme.colors.gray[1],
     border: 0,
-    borderRadius: 0,
+    borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
     margin: '1rem 0',
 
     '&:hover': {
-      backgroundColor: theme.colors.indigo[9],
-    },
-
-    '&:not(:first-of-type)': {
-      backgroundColor: theme.colors.orange[6],
-
-      '&:hover': {
-        backgroundColor: theme.colors.orange[9],
-      },
+      backgroundColor: theme.colors.gray[4],
     },
   },
 }));
@@ -36,14 +31,16 @@ function LogIn() {
   const theme = useMantineTheme();
 
   return (
-    <>
+    <Box sx={{ maxWidth: 300 }} mx='auto'>
       <TextInput placeholder='Email' label='Email' required />
 
       <PasswordStrength />
-      <Link href='/discover'>
-        <Button className={classes.button}>Log In</Button>
-      </Link>
-    </>
+      <Group position='center'>
+        <Link href='/profile'>
+          <Button className={classes.button}>Log In</Button>
+        </Link>
+      </Group>
+    </Box>
   );
 }
 
