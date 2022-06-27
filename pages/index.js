@@ -8,6 +8,7 @@ import {
   Group,
   createStyles,
   useMantineTheme,
+  Text,
 } from '@mantine/core';
 import styles from '../styles/Home.module.css';
 import LogIn from '../components/LogIn';
@@ -32,7 +33,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.white,
     backgroundColor: theme.colors.indigo[6],
     border: 0,
-    borderRadius: 0,
+    borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
     margin: '1rem 0',
@@ -73,7 +74,16 @@ export default function Home() {
           className={styles.lottie}
         />
 
-        <p className={styles.title}> Biblio</p>
+        <Text
+          align='center'
+          variant='gradient'
+          gradient={{ from: 'indigo', to: 'orange', deg: 45 }}
+          weight={700}
+          style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: '4rem' }}
+        >
+          Biblio
+        </Text>
+        <p className={styles.title}> </p>
 
         <Modal
           opened={opened}

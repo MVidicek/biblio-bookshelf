@@ -39,7 +39,7 @@ function SignUp() {
         required
       />
       <Group position='center'>
-        <Link href='/profile'>
+        <Link href='/frontpage'>
           <Button className={classes.button}>Sign Up</Button>
         </Link>
       </Group>

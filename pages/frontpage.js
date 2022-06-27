@@ -9,9 +9,12 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
+  Transition,
 } from '@mantine/core';
+import Lottie from 'lottie-react';
+import headerAnimation from '../assets/header-books.json';
 
-export default function Profile() {
+export default function Frontpage() {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   return (
@@ -63,8 +66,14 @@ export default function Profile() {
                 mr='xl'
               />
             </MediaQuery>
-
-            <Text>Application header</Text>
+            <Lottie
+              animationData={headerAnimation}
+              loop={false}
+              style={{ width: '64px' }}
+            />
+            <Text size='xl' color='gray' weight={700}>
+              Biblio
+            </Text>
           </div>
         </Header>
       }

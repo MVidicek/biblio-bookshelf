@@ -36,7 +36,7 @@ function LogIn() {
 
       <PasswordStrength />
       <Group position='center'>
-        <Link href='/profile'>
+        <Link href='/frontpage'>
           <Button className={classes.button}>Log In</Button>
         </Link>
       </Group>
