@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Lottie from 'lottie-react';
-import bookAnimation from '../assets/frontpage-books.json';
+import bookAnimation from '../assets/header-books.json';
 import {
   Button,
   Modal,
@@ -10,11 +10,11 @@ import {
   useMantineTheme,
   Text,
 } from '@mantine/core';
-import styles from '../styles/Home.module.css';
+
 import LogIn from '../components/LogIn';
 import SignUp from '../components/SignUp';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, _params, getRef) => ({
   container: {
     padding: '0 2rem',
   },
@@ -27,11 +27,26 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+
+    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+      [`& .${getRef('child')}`]: {
+        fontSize: theme.fontSizes.xs,
+      },
+    },
+  },
+
+  footer: {
+    display: 'flex',
+    flex: 1,
+    padding: '1rem 0',
+    borderTop: '1px solid #eaeaea',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   button: {
     color: theme.white,
-    backgroundColor: theme.colors.indigo[6],
+    backgroundColor: theme.colors.cyan[4],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
@@ -39,14 +54,14 @@ const useStyles = createStyles((theme) => ({
     margin: '1rem 0',
 
     '&:hover': {
-      backgroundColor: theme.colors.indigo[9],
+      backgroundColor: theme.colors.cyan[5],
     },
 
     '&:not(:first-of-type)': {
-      backgroundColor: theme.colors.orange[6],
+      backgroundColor: theme.colors.pink[5],
 
       '&:hover': {
-        backgroundColor: theme.colors.orange[9],
+        backgroundColor: theme.colors.pink[6],
       },
     },
   },
@@ -71,20 +86,22 @@ export default function Home() {
         <Lottie
           animationData={bookAnimation}
           loop={false}
-          className={styles.lottie}
+          initialSegment={[0, 110]}
+          style={{ maxWidth: '1024px' }}
         />
-
         <Text
           align='center'
           variant='gradient'
-          gradient={{ from: 'indigo', to: 'orange', deg: 45 }}
+          gradient={{
+            from: theme.colors.cyan[4],
+            to: theme.colors.pink[2],
+            deg: 45,
+          }}
           weight={700}
           style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: '4rem' }}
         >
           Biblio
         </Text>
-        <p className={styles.title}> </p>
-
         <Modal
           opened={opened}
           onClose={() => setOpened(false)}
@@ -126,7 +143,7 @@ export default function Home() {
         </Group>
       </main>
 
-      <footer className={styles.footer}>
+      <footer className={classes.footer}>
         <p>Created by Marko Vidiček</p>
       </footer>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   AppShell,
   Navbar,
@@ -9,16 +10,23 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
+  ActionIcon,
+  useMantineColorScheme,
 } from '@mantine/core';
 import Lottie from 'lottie-react';
 import headerAnimation from '../assets/header-books.json';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 import { MainLinks } from '../components/MainLinks';
 import { User } from '../components/User';
+import Profile from '../components/Profile';
+import Discover from '../components/Discover';
 
 export default function Frontpage() {
   const [opened, setOpened] = useState(false);
+  const [activeComponent, setActiveComponent] = useState('profile');
   const theme = useMantineTheme();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
   return (
     <AppShell
       styles={{
@@ -77,12 +85,16 @@ export default function Frontpage() {
               animationData={headerAnimation}
               loop={false}
               style={{ width: '64px' }}
+              initialSegment={[0, 110]}
             />
             <Text
               size='xl'
-              color='dimmed'
               variant='gradient'
-              gradient={{ from: 'cyan', to: 'pink', deg: 45 }}
+              gradient={{
+                from: theme.colors.cyan[4],
+                to: theme.colors.pink[3],
+                deg: 45,
+              }}
               weight={700}
               style={{
                 fontFamily: 'Greycliff CF, sans-serif',
@@ -91,16 +103,19 @@ export default function Frontpage() {
             >
               BIBLIO
             </Text>
-            {theme.colorScheme === 'dark' ? (
-              <SunIcon style={{ marginLeft: 'auto', marginRight: '0px' }} />
-            ) : (
-              <MoonIcon style={{ marginLeft: 'auto', marginRight: '0px' }} />
-            )}
+            <ActionIcon
+              variant='default'
+              onClick={() => toggleColorScheme()}
+              size={30}
+              style={{ marginLeft: 'auto', marginRight: '0px' }}
+            >
+              {colorScheme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </ActionIcon>
           </div>
         </Header>
       }
     >
-      <Text>Resize app to see responsive navbar in action</Text>
+      {activeComponent === 'profile' && <Profile />}
     </AppShell>
   );
 }
