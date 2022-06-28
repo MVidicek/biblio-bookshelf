@@ -6,6 +6,7 @@ import { PasswordStrength } from '../utils/password-strength';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase.config';
+import { toast } from 'react-toastify';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -52,10 +53,10 @@ function SignUp() {
       formData.timestamp = serverTimestamp();
 
       await setDoc(doc(db, 'users', user.uid), formData);
-
+      toast.success('Signed up successfully 🎉');
       router.push('/profile');
     } catch (error) {
-      console.error(error);
+      toast.error('Something went wrong ⚠️');
     }
   };
 

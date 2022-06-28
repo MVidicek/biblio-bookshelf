@@ -1,6 +1,9 @@
 import '../styles/globals.css';
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useState('light');
@@ -29,6 +32,7 @@ function MyApp({ Component, pageProps }) {
         withNormalizeCSS
       >
         {getLayout(<Component {...pageProps} />)}
+        <ToastContainer position='top-center' />
       </MantineProvider>
     </ColorSchemeProvider>
   );

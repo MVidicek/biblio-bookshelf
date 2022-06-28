@@ -49,10 +49,11 @@ function LogIn() {
       );
 
       if (userCredential.user) {
+        toast.success('Logged in successfully 🎉');
         router.push('/profile');
       }
     } catch (error) {
-      console.error(error);
+      toast.error('Invalid email or password ⚠️');
     }
   };
 
