@@ -80,7 +80,7 @@ export default function Layout({ children }) {
       footer={
         <Footer height={60} p='sm'>
           <Link href='/'>
-            <Button className={classes.button}>Log Out</Button>
+            <Button className={classes.button}>Go Back</Button>
           </Link>
         </Footer>
       }

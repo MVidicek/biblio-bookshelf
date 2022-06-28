@@ -1,24 +1,46 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-import { Skeleton } from '@mantine/core';
+import { Button, createStyles } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { auth } from '../firebase.config';
 
+const useStyles = createStyles((theme, _params, getRef) => ({
+  button: {
+    color: theme.white,
+    backgroundColor: theme.colors.cyan[4],
+    border: 0,
+    borderRadius: 5,
+    padding: `10px 10px`,
+    cursor: 'pointer',
+
+    '&:hover': {
+      backgroundColor: theme.colors.pink[4],
+    },
+  },
+}));
 export default function Profile() {
-  const [user, setUser] = useState(null);
+  const { classes } = useStyles();
+  const router = useRouter();
 
-  useEffect(() => {
-    setUser(auth.currentUser);
-  }, []);
+  const form = useForm({
+    initialValues: {
+      name: auth.currentUser.displayName,
+      email: auth.currentUser.email,
+    },
+  });
 
-  return user ? (
+  const onLogout = () => {
+    auth.signOut();
+    router.push('/');
+  };
+
+  return (
     <>
-      <Skeleton height={50} circle mb='xl' />
-      <Skeleton height={8} radius='xl' />
-      <Skeleton height={8} mt={6} radius='xl' />
-      <Skeleton height={8} mt={6} width='70%' radius='xl' />
+      <Button onClick={onLogout} className={classes.button} mt='md'>
+        Log Out
+      </Button>
     </>
-  ) : (
-    <h1>Not Logged In</h1>
   );
 }
 
