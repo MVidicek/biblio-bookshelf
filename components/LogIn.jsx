@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useForm } from '@mantine/form';
 import {
   Button,
   createStyles,
@@ -7,6 +8,8 @@ import {
   Group,
   PasswordInput,
 } from '@mantine/core';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -25,21 +28,57 @@ const useStyles = createStyles((theme) => ({
 
 function LogIn() {
   const { classes } = useStyles();
+  const router = useRouter();
+
+  const form = useForm({
+    initialValues: { email: '', password: '' },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    },
+  });
+
+  const handleSubmit = async (values) => {
+    const { email, password } = values;
+    try {
+      const auth = getAuth();
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        router.push('/profile');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Box sx={{ maxWidth: 300 }} mx='auto'>
-      <TextInput mb='1rem' placeholder='Email' label='Email' required />
+      <form onSubmit={form.onSubmit(handleSubmit)}>
+        <TextInput
+          mb='1rem'
+          placeholder='Email'
+          label='Email'
+          required
+          {...form.getInputProps('email')}
+        />
 
-      <PasswordInput
-        placeholder='Password'
-        label='Password'
-        description='Password must include at least one letter, number and special character'
-        required
-      />
+        <PasswordInput
+          placeholder='Password'
+          label='Password'
+          description='Password must include at least one letter, number and special character'
+          required
+          {...form.getInputProps('password')}
+        />
+      </form>
       <Group position='center' m='1rem'>
-        <Link href='/profile'>
-          <Button className={classes.button}>Log In</Button>
-        </Link>
+        <Button type='submit' className={classes.button}>
+          Log In
+        </Button>
       </Group>
     </Box>
   );

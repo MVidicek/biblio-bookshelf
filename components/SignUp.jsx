@@ -1,16 +1,11 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from '@mantine/form';
 import { Button, createStyles, TextInput, Box, Group } from '@mantine/core';
 import { PasswordStrength } from '../utils/password-strength';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase.config';
+import { auth, db } from '../firebase.config';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -45,8 +40,6 @@ function SignUp() {
   const handleSubmit = async (values) => {
     const { name, email } = values;
     try {
-      const auth = getAuth();
-
       const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
