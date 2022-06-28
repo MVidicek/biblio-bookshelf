@@ -34,18 +34,18 @@ function getStrength(password) {
   return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
 }
 
-export function PasswordStrength() {
+export function PasswordStrength({ password, setPassword }) {
   const [popoverOpened, setPopoverOpened] = useState(false);
   const [value, setValue] = useState('');
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement
       key={index}
       label={requirement.label}
-      meets={requirement.re.test(value)}
+      meets={requirement.re.test(password)}
     />
   ));
 
-  const strength = getStrength(value);
+  const strength = getStrength(password);
   const color = strength === 100 ? 'teal' : strength > 50 ? 'yellow' : 'red';
 
   return (
@@ -65,8 +65,8 @@ export function PasswordStrength() {
           label='Your password'
           placeholder='Your password'
           description='Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol'
-          value={value}
-          onChange={(event) => setValue(event.currentTarget.value)}
+          value={password}
+          onChange={(event) => setPassword(event.currentTarget.value)}
         />
       }
     >
@@ -78,7 +78,7 @@ export function PasswordStrength() {
       />
       <PasswordRequirement
         label='Includes at least 6 characters'
-        meets={value.length > 5}
+        meets={password.length > 5}
       />
       {checks}
     </Popover>

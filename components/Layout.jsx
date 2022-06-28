@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   AppShell,
   Navbar,
@@ -11,6 +12,8 @@ import {
   useMantineTheme,
   ActionIcon,
   useMantineColorScheme,
+  Button,
+  createStyles,
 } from '@mantine/core';
 import Lottie from 'lottie-react';
 import headerAnimation from '../assets/header-books.json';
@@ -18,10 +21,26 @@ import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 import { MainLinks } from './MainLinks';
 import { User } from './User';
 
+const useStyles = createStyles((theme, _params, getRef) => ({
+  button: {
+    color: theme.white,
+    backgroundColor: theme.colors.cyan[4],
+    border: 0,
+    borderRadius: 5,
+    padding: `10px 10px`,
+    cursor: 'pointer',
+
+    '&:hover': {
+      backgroundColor: theme.colors.pink[4],
+    },
+  },
+}));
+
 export default function Layout({ children }) {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { classes } = useStyles();
 
   return (
     <AppShell
@@ -59,8 +78,10 @@ export default function Layout({ children }) {
         </MediaQuery>
       }
       footer={
-        <Footer height={60} p='md'>
-          Application footer
+        <Footer height={60} p='sm'>
+          <Link href='/'>
+            <Button className={classes.button}>Log Out</Button>
+          </Link>
         </Footer>
       }
       header={

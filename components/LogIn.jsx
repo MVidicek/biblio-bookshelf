@@ -2,12 +2,11 @@ import Link from 'next/link';
 import {
   Button,
   createStyles,
-  useMantineTheme,
   TextInput,
   Box,
   Group,
+  PasswordInput,
 } from '@mantine/core';
-import { PasswordStrength } from '../utils/password-strength';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -17,7 +16,6 @@ const useStyles = createStyles((theme) => ({
     borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
-    margin: '1rem 0',
 
     '&:hover': {
       backgroundColor: theme.colors.gray[4],
@@ -27,14 +25,18 @@ const useStyles = createStyles((theme) => ({
 
 function LogIn() {
   const { classes } = useStyles();
-  const theme = useMantineTheme();
 
   return (
     <Box sx={{ maxWidth: 300 }} mx='auto'>
-      <TextInput placeholder='Email' label='Email' required />
+      <TextInput mb='1rem' placeholder='Email' label='Email' required />
 
-      <PasswordStrength />
-      <Group position='center'>
+      <PasswordInput
+        placeholder='Password'
+        label='Password'
+        description='Password must include at least one letter, number and special character'
+        required
+      />
+      <Group position='center' m='1rem'>
         <Link href='/profile'>
           <Button className={classes.button}>Log In</Button>
         </Link>

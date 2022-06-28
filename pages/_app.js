@@ -1,7 +1,6 @@
 import '../styles/globals.css';
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
-import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useState('light');
@@ -24,6 +23,7 @@ function MyApp({ Component, pageProps }) {
             lg: 1200,
             xl: 1400,
           },
+          loader: 'dots',
         }}
         withGlobalStyles
         withNormalizeCSS
