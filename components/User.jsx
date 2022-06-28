@@ -12,6 +12,7 @@ import {
   Box,
   useMantineTheme,
 } from '@mantine/core';
+import { auth } from '../firebase.config';
 
 export function User() {
   const theme = useMantineTheme();
@@ -47,15 +48,15 @@ export function User() {
         >
           <Group>
             <Avatar
-              src='https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
+              src='https://cdn-icons-png.flaticon.com/512/560/560216.png'
               radius='xl'
             />
             <Box sx={{ flex: 1 }}>
               <Text size='sm' weight={500}>
-                Marko Vidiček
+                {auth.currentUser.displayName}
               </Text>
               <Text color='dimmed' size='xs'>
-                mvidicek@gmail.com
+                {auth.currentUser.email}
               </Text>
             </Box>
 

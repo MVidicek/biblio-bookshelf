@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import {
   AppShell,
   Navbar,
@@ -12,7 +11,6 @@ import {
   useMantineTheme,
   ActionIcon,
   useMantineColorScheme,
-  Button,
   createStyles,
 } from '@mantine/core';
 import Lottie from 'lottie-react';
@@ -77,13 +75,7 @@ export default function Layout({ children }) {
           </Aside>
         </MediaQuery>
       }
-      footer={
-        <Footer height={60} p='sm'>
-          <Link href='/'>
-            <Button className={classes.button}>Go Back</Button>
-          </Link>
-        </Footer>
-      }
+      footer={<Footer height={60} p='sm'></Footer>}
       header={
         <Header height={70} p='md'>
           <div

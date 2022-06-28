@@ -6,7 +6,8 @@ import { PasswordStrength } from '../utils/password-strength';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase.config';
-import { toast } from 'react-toastify';
+import { showNotification } from '@mantine/notifications';
+import { CheckIcon, Cross1Icon } from '@radix-ui/react-icons';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -53,10 +54,20 @@ function SignUp() {
       formData.timestamp = serverTimestamp();
 
       await setDoc(doc(db, 'users', user.uid), formData);
-      toast.success('Signed up successfully 🎉');
       router.push('/profile');
+      showNotification({
+        title: 'Welcome',
+        message: 'You have successfully signed up',
+        color: 'teal',
+        icon: <CheckIcon />,
+      });
     } catch (error) {
-      toast.error('Something went wrong ⚠️');
+      showNotification({
+        title: 'Error',
+        message: 'Something went wrong',
+        color: 'pink',
+        icon: <Cross1Icon />,
+      });
     }
   };
 

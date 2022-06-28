@@ -8,8 +8,10 @@ import {
   Group,
   PasswordInput,
 } from '@mantine/core';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { toast } from 'react-toastify';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase.config';
+import { showNotification } from '@mantine/notifications';
+import { CheckIcon, Cross1Icon } from '@radix-ui/react-icons';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -40,8 +42,6 @@ function LogIn() {
   const handleSubmit = async (values) => {
     const { email, password } = values;
     try {
-      const auth = getAuth();
-
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -49,11 +49,21 @@ function LogIn() {
       );
 
       if (userCredential.user) {
-        toast.success('Logged in successfully 🎉');
         router.push('/profile');
+        showNotification({
+          title: 'Welcome',
+          message: 'You have successfully signed in',
+          color: 'teal',
+          icon: <CheckIcon />,
+        });
       }
     } catch (error) {
-      toast.error('Invalid email or password ⚠️');
+      showNotification({
+        title: 'Error',
+        message: 'Invalid email or password',
+        color: 'pink',
+        icon: <Cross1Icon />,
+      });
     }
   };
 
@@ -75,12 +85,13 @@ function LogIn() {
           required
           {...form.getInputProps('password')}
         />
+
+        <Group position='center' m='1rem'>
+          <Button type='submit' className={classes.button}>
+            Log In
+          </Button>
+        </Group>
       </form>
-      <Group position='center' m='1rem'>
-        <Button type='submit' className={classes.button}>
-          Log In
-        </Button>
-      </Group>
     </Box>
   );
 }

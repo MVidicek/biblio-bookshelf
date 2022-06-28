@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { Button, createStyles } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { auth } from '../firebase.config';
+import { updateDoc } from 'firebase/firestore';
+import { updateProfile } from 'firebase/auth';
+import { auth, db } from '../firebase.config';
+import { showNotification } from '@mantine/notifications';
+import { InfoCircledIcon } from '@radix-ui/react-icons';
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   button: {
@@ -20,6 +24,8 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 }));
 export default function Profile() {
+  const [changeDetails, setChangeDetails] = useState(false);
+
   const { classes } = useStyles();
   const router = useRouter();
 
@@ -32,7 +38,14 @@ export default function Profile() {
 
   const onLogout = () => {
     auth.signOut();
+
     router.push('/');
+    showNotification({
+      title: 'Logged out',
+      message: 'You have been logged out',
+      color: 'yellow',
+      icon: <InfoCircledIcon />,
+    });
   };
 
   return (
