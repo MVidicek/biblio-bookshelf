@@ -20,8 +20,8 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 
   main: {
-    minHeight: '100vh',
-    padding: '4rem 0',
+    minHeight: '87vh',
+    padding: '2rem 0',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -105,7 +105,6 @@ export default function Home() {
         <Modal
           opened={opened}
           onClose={() => setOpened(false)}
-          title={'Welcome to Biblio'}
           centered
           overlayColor={
             theme.colorScheme === 'dark'
@@ -144,7 +143,7 @@ export default function Home() {
       </main>
 
       <footer className={classes.footer}>
-        <p>Created by Marko Vidiček</p>
+        <p id='bottom'>Created by Marko Vidiček</p>
       </footer>
     </div>
   );

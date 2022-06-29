@@ -52,7 +52,7 @@ function LogIn() {
         router.push('/profile');
         showNotification({
           title: 'Welcome',
-          message: 'You have successfully signed in',
+          message: 'You have successfully logged in',
           color: 'teal',
           icon: <CheckIcon />,
         });
