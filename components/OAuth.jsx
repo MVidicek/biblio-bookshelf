@@ -3,9 +3,8 @@ import { auth, db } from '../firebase.config';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { showNotification } from '@mantine/notifications';
-import googleIcon from '../assets/googleIcon.svg';
 import { Button } from '@mantine/core';
-import { Cross1Icon, CheckIcon } from '@radix-ui/react-icons';
+import { Cross1Icon, CheckIcon, PersonIcon } from '@radix-ui/react-icons';
 
 export default function OAuth() {
   const router = useRouter();
@@ -44,7 +43,9 @@ export default function OAuth() {
 
   return (
     <div>
-      <Button onClick={onGoogleClick}>With Google</Button>
+      <Button leftIcon={<PersonIcon />} onClick={onGoogleClick}>
+        Google
+      </Button>
     </div>
   );
 }

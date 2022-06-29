@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   AppShell,
   Navbar,
@@ -19,26 +20,11 @@ import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 import { MainLinks } from './MainLinks';
 import { User } from './User';
 
-const useStyles = createStyles((theme, _params, getRef) => ({
-  button: {
-    color: theme.white,
-    backgroundColor: theme.colors.cyan[4],
-    border: 0,
-    borderRadius: 5,
-    padding: `10px 10px`,
-    cursor: 'pointer',
-
-    '&:hover': {
-      backgroundColor: theme.colors.pink[4],
-    },
-  },
-}));
-
 export default function Layout({ children }) {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { classes } = useStyles();
+  const router = useRouter();
 
   return (
     <AppShell
@@ -64,7 +50,7 @@ export default function Layout({ children }) {
             <MainLinks />
           </Navbar.Section>
           <Navbar.Section>
-            <User />
+            {router.pathname !== '/profile' ? <User /> : null}
           </Navbar.Section>
         </Navbar>
       }

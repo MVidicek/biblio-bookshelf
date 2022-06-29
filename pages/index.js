@@ -20,7 +20,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
 
   main: {
-    minHeight: '87vh',
+    minHeight: '85vh',
     padding: '2rem 0',
     flex: 1,
     display: 'flex',

@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { RouteGuard } from '../components/RouteGuard';
 
 function MyApp({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useState('light');
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }) {
         withNormalizeCSS
       >
         <NotificationsProvider position='top-center' limit={5}>
-          {getLayout(<Component {...pageProps} />)}
+          <RouteGuard>{getLayout(<Component {...pageProps} />)}</RouteGuard>
         </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
