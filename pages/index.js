@@ -46,7 +46,10 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
   button: {
     color: theme.white,
-    backgroundColor: theme.colors.cyan[4],
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[6]
+        : theme.colors.teal[3],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
@@ -54,14 +57,18 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     margin: '1rem 0',
 
     '&:hover': {
-      backgroundColor: theme.colors.cyan[5],
+      backgroundColor: theme.colors.teal[4],
     },
 
     '&:not(:first-of-type)': {
-      backgroundColor: theme.colors.pink[5],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.gray[6]
+          : theme.colors.blue[3],
 
+      // pseudo-classes can be nested
       '&:hover': {
-        backgroundColor: theme.colors.pink[6],
+        backgroundColor: theme.colors.blue[4],
       },
     },
   },
@@ -92,15 +99,23 @@ export default function Home() {
         <Text
           align='center'
           variant='gradient'
-          gradient={{
-            from: theme.colors.cyan[4],
-            to: theme.colors.pink[2],
-            deg: 45,
-          }}
+          gradient={
+            theme.colorScheme === 'dark'
+              ? {
+                  from: theme.colors.gray[6],
+                  to: theme.colors.gray[3],
+                  deg: 45,
+                }
+              : {
+                  from: theme.colors.teal[4],
+                  to: theme.colors.blue[3],
+                  deg: 45,
+                }
+          }
           weight={700}
           style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: '4rem' }}
         >
-          Biblio
+          BIBLIO
         </Text>
         <Modal
           opened={opened}

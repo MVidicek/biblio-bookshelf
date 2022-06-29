@@ -20,14 +20,14 @@ import { PersonIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
 const useStyles = createStyles((theme, _params, getRef) => ({
   button: {
     color: theme.white,
-    backgroundColor: theme.colors.teal[6],
+    backgroundColor: theme.colors.teal[5],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: theme.colors.teal[7],
+      backgroundColor: theme.colors.teal[6],
     },
   },
 }));

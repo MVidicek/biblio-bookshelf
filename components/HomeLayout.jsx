@@ -60,8 +60,8 @@ export default function HomeLayout({ children }) {
               size='xl'
               variant='gradient'
               gradient={{
-                from: theme.colors.cyan[4],
-                to: theme.colors.pink[3],
+                from: theme.colors.gray[5],
+                to: theme.colors.gray[6],
                 deg: 45,
               }}
               weight={700}
