@@ -8,6 +8,7 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase.config';
 import { showNotification } from '@mantine/notifications';
 import { CheckIcon, Cross1Icon } from '@radix-ui/react-icons';
+import OAuth from './OAuth';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -95,6 +96,7 @@ function SignUp() {
           <Button type='submit' className={classes.button}>
             Sign Up
           </Button>
+          <OAuth></OAuth>
         </Group>
       </form>
     </Box>

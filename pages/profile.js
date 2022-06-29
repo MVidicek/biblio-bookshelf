@@ -1,26 +1,33 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-import { Button, createStyles, Input, Badge, Stack } from '@mantine/core';
+import {
+  Button,
+  createStyles,
+  TextInput,
+  Badge,
+  Stack,
+  Avatar,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { updateDoc } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
 import { auth, db } from '../firebase.config';
 import { showNotification } from '@mantine/notifications';
 import { InfoCircledIcon } from '@radix-ui/react-icons';
-import { PersonIcon } from '@radix-ui/react-icons';
+import { PersonIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   button: {
     color: theme.white,
-    backgroundColor: theme.colors.cyan[4],
+    backgroundColor: theme.colors.teal[6],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: theme.colors.pink[4],
+      backgroundColor: theme.colors.teal[7],
     },
   },
 }));
@@ -37,6 +44,15 @@ export default function Profile() {
     },
   });
 
+  const avatar = (
+    <Avatar
+      alt='Avatar for badge'
+      size={24}
+      mr={5}
+      src='https://cdn-icons-png.flaticon.com/512/560/560216.png'
+    />
+  );
+
   const onLogout = () => {
     auth.signOut();
 
@@ -52,7 +68,9 @@ export default function Profile() {
   return (
     <>
       <Stack
-        spacing='lg'
+        spacing='md'
+        align='center'
+        justify='center'
         sx={(theme) => ({
           backgroundColor:
             theme.colorScheme === 'dark'
@@ -61,30 +79,42 @@ export default function Profile() {
           height: 300,
         })}
       >
-        <Input
+        <Badge
+          sx={{ paddingLeft: 0 }}
+          size='lg'
+          radius='sm'
+          leftSection={avatar}
+          variant='gradient'
+          gradient={{ from: 'teal', to: 'cyan', deg: 60 }}
+        >
+          {form.values.name}
+        </Badge>
+        <TextInput
           icon={<PersonIcon />}
-          placeholder='Full Name'
+          placeholder={form.values.name}
+          label='Name'
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge color='pink' variant='filled'>
+            <Badge variant='outline' color='teal'>
               Name
             </Badge>
           }
         />
-        <Input
-          icon={<PersonIcon />}
-          placeholder='Email'
+        <TextInput
+          icon={<EnvelopeClosedIcon />}
+          placeholder={form.values.email}
+          label='Email'
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge color='pink' variant='filled'>
+            <Badge variant='outline' color='teal'>
               Email
             </Badge>
           }
         />
 
-        <Button onClick={onLogout} className={classes.button}>
+        <Button mt='1rem' onClick={onLogout} className={classes.button}>
           Log Out
         </Button>
       </Stack>

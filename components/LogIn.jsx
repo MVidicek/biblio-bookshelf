@@ -12,6 +12,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase.config';
 import { showNotification } from '@mantine/notifications';
 import { CheckIcon, Cross1Icon } from '@radix-ui/react-icons';
+import OAuth from './OAuth';
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -89,7 +90,8 @@ function LogIn() {
         <Group position='center' m='1rem'>
           <Button type='submit' className={classes.button}>
             Log In
-          </Button>
+          </Button>{' '}
+          <OAuth></OAuth>
         </Group>
       </form>
     </Box>
