@@ -6,7 +6,9 @@ import {
   useMantineTheme,
   Badge,
   Button,
+  MediaQuery,
 } from '@mantine/core';
+import { PersonIcon, CalendarIcon } from '@radix-ui/react-icons';
 
 export default function BookItem({ book }) {
   const theme = useMantineTheme();
@@ -16,18 +18,26 @@ export default function BookItem({ book }) {
 
   return (
     <div style={{ width: 340, margin: 'auto' }}>
-      <Card shadow='sm' p='lg'>
+      <Card shadow='sm' p='md' withBorder>
         <Card.Section>
-          <Image
-            src={book.volumeInfo.imageLinks.smallThumbnail}
-            height={160}
-            alt='Book Thumbnail'
-          />
+          <a
+            href={book.volumeInfo.previewLink}
+            rel='noreferrer'
+            target='_blank'
+          >
+            <Image
+              p='md'
+              fit='contain'
+              src={book.volumeInfo.imageLinks.smallThumbnail}
+              height={300}
+              alt={book.volumeInfo.title}
+              withPlaceholder
+            />
+          </a>
         </Card.Section>
         <Text
           style={{
             marginBottom: 5,
-            marginTop: theme.spacing.sm,
             textAlign: 'center',
           }}
           weight={500}
@@ -38,15 +48,29 @@ export default function BookItem({ book }) {
           position='center'
           style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
         >
-          <Badge color='tael' variant='light'>
+          <Badge
+            color='tael'
+            sx={{ paddingLeft: 3 }}
+            variant={theme.colorScheme === 'dark' ? 'outline' : 'light'}
+            leftSection={<PersonIcon style={{ paddingTop: 4 }} />}
+          >
             {book.volumeInfo.authors[0]}
           </Badge>
-          <Badge color='cyan' variant='light'>
+          <Badge
+            color='cyan'
+            sx={{ paddingLeft: 3 }}
+            variant={theme.colorScheme === 'dark' ? 'outline' : 'light'}
+            leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
+          >
             {book.volumeInfo.publishedDate}
           </Badge>
         </Group>
 
-        <Text size='sm' style={{ color: secondaryColor, lineHeight: 1.5 }}>
+        <Text
+          size='xs'
+          lineClamp={3}
+          style={{ color: secondaryColor, lineHeight: 1.5 }}
+        >
           {book.searchInfo.textSnippet}
         </Text>
 
