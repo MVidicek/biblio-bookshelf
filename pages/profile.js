@@ -8,6 +8,7 @@ import {
   Badge,
   Stack,
   Avatar,
+  useMantineTheme,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { updateDoc } from 'firebase/firestore';
@@ -20,14 +21,17 @@ import { PersonIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
 const useStyles = createStyles((theme, _params, getRef) => ({
   button: {
     color: theme.white,
-    backgroundColor: theme.colors.teal[5],
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[7]
+        : theme.colors.teal[4],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: theme.colors.teal[6],
+      backgroundColor: theme.colors.teal[5],
     },
   },
 }));
@@ -35,6 +39,7 @@ export default function Profile() {
   const [changeDetails, setChangeDetails] = useState(false);
 
   const { classes } = useStyles();
+  const theme = useMantineTheme();
   const router = useRouter();
 
   const form = useForm({
@@ -84,8 +89,8 @@ export default function Profile() {
           size='lg'
           radius='sm'
           leftSection={avatar}
-          variant='gradient'
-          gradient={{ from: 'teal', to: 'cyan', deg: 60 }}
+          variant='outline'
+          color='teal'
         >
           {form.values.name}
         </Badge>
@@ -96,7 +101,10 @@ export default function Profile() {
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge variant='outline' color='teal'>
+            <Badge
+              variant='outline'
+              color={theme.colorScheme === 'dark' ? 'teal' : 'gray'}
+            >
               Name
             </Badge>
           }
@@ -108,7 +116,10 @@ export default function Profile() {
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge variant='outline' color='teal'>
+            <Badge
+              variant='outline'
+              color={theme.colorScheme === 'dark' ? 'teal' : 'gray'}
+            >
               Email
             </Badge>
           }

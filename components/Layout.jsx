@@ -84,16 +84,21 @@ export default function Layout({ children }) {
             />
             <Text
               size='xl'
-              variant='gradient'
-              gradient={{
-                from: theme.colors.teal[3],
-                to: theme.colors.blue[3],
-                deg: 45,
-              }}
+              color={
+                theme.colorScheme === 'dark'
+                  ? theme.colors.dark[0]
+                  : theme.colors.teal[4]
+              }
               weight={700}
               style={{
                 fontFamily: 'Greycliff CF, sans-serif',
                 marginTop: '5px',
+                border: '1px solid',
+                borderColor: theme.colors.teal[4],
+                borderRadius: '5px',
+                padding: '5px',
+                paddingBottom: '0px',
+                paddingTop: '0px',
               }}
             >
               BIBLIO

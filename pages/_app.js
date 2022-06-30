@@ -1,12 +1,20 @@
 import '../styles/globals.css';
-import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
+import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import { RouteGuard } from '../components/RouteGuard';
 
 function MyApp({ Component, pageProps }) {
-  const [colorScheme, setColorScheme] = useState('light');
+  const [colorScheme, setColorScheme] = useLocalStorage({
+    key: 'mantine-color-scheme',
+    defaultValue: 'light',
+    getInitialValueInEffect: true,
+  });
+
   const getLayout = Component.getLayout || ((page) => page);
+
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
+
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 

@@ -48,7 +48,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     color: theme.white,
     backgroundColor:
       theme.colorScheme === 'dark'
-        ? theme.colors.gray[6]
+        ? theme.colors.gray[7]
         : theme.colors.teal[3],
     border: 0,
     borderRadius: 5,
@@ -63,12 +63,12 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     '&:not(:first-of-type)': {
       backgroundColor:
         theme.colorScheme === 'dark'
-          ? theme.colors.gray[6]
-          : theme.colors.blue[3],
+          ? theme.colors.gray[7]
+          : theme.colors.cyan[3],
 
       // pseudo-classes can be nested
       '&:hover': {
-        backgroundColor: theme.colors.blue[4],
+        backgroundColor: theme.colors.teal[4],
       },
     },
   },
@@ -94,7 +94,16 @@ export default function Home() {
           animationData={bookAnimation}
           loop={false}
           initialSegment={[0, 110]}
-          style={{ maxWidth: '1024px' }}
+          style={{
+            maxWidth: '1024px',
+            backgroundColor:
+              theme.colorScheme === 'dark'
+                ? theme.colors.dark[7]
+                : theme.colors.gray[1],
+            border: '5px solid',
+            borderColor: theme.colors.teal[4],
+            borderRadius: '50px',
+          }}
         />
         <Text
           align='center'
@@ -102,8 +111,8 @@ export default function Home() {
           gradient={
             theme.colorScheme === 'dark'
               ? {
-                  from: theme.colors.gray[6],
-                  to: theme.colors.gray[3],
+                  from: theme.colors.gray[2],
+                  to: theme.colors.gray[2],
                   deg: 45,
                 }
               : {
