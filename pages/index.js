@@ -54,7 +54,6 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
-    margin: '1rem 0',
 
     '&:hover': {
       backgroundColor: theme.colors.teal[4],
@@ -68,7 +67,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
       // pseudo-classes can be nested
       '&:hover': {
-        backgroundColor: theme.colors.teal[4],
+        backgroundColor: theme.colors.cyan[4],
       },
     },
   },
@@ -100,7 +99,7 @@ export default function Home() {
               theme.colorScheme === 'dark'
                 ? theme.colors.dark[7]
                 : theme.colors.gray[1],
-            border: '5px solid',
+            border: '2px solid',
             borderColor: theme.colors.teal[4],
             borderRadius: '50px',
           }}
@@ -123,6 +122,7 @@ export default function Home() {
           }
           weight={700}
           style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: '4rem' }}
+          mt='4rem'
         >
           BIBLIO
         </Text>

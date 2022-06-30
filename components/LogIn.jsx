@@ -16,15 +16,15 @@ import OAuth from './OAuth';
 
 const useStyles = createStyles((theme) => ({
   button: {
-    color: theme.black,
-    backgroundColor: theme.colors.gray[1],
+    color: theme.white,
+    backgroundColor: theme.colors.gray[5],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: theme.colors.gray[4],
+      backgroundColor: theme.colors.teal[4],
     },
   },
 }));

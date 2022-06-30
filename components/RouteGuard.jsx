@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { auth } from '../firebase.config';
 
-export { RouteGuard };
-
 function RouteGuard({ children }) {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
@@ -44,3 +42,5 @@ function RouteGuard({ children }) {
 
   return authorized && children;
 }
+
+export { RouteGuard };

@@ -12,11 +12,9 @@ import {
   useMantineTheme,
   ActionIcon,
   useMantineColorScheme,
-  createStyles,
+  ThemeIcon,
 } from '@mantine/core';
-import Lottie from 'lottie-react';
-import headerAnimation from '../assets/header-books.json';
-import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
+import { SunIcon, MoonIcon, BookmarkIcon } from '@radix-ui/react-icons';
 import { MainLinks } from './MainLinks';
 import { User } from './User';
 
@@ -76,23 +74,24 @@ export default function Layout({ children }) {
                 mr='xl'
               />
             </MediaQuery>
-            <Lottie
-              animationData={headerAnimation}
-              loop={false}
-              style={{ width: '64px' }}
-              initialSegment={[0, 110]}
-            />
+            <ThemeIcon
+              mr='xs'
+              size={29}
+              color='teal'
+              variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
+            >
+              <BookmarkIcon />
+            </ThemeIcon>
             <Text
-              size='xl'
+              size='lg'
               color={
                 theme.colorScheme === 'dark'
                   ? theme.colors.dark[0]
                   : theme.colors.teal[4]
               }
-              weight={700}
+              weight={400}
               style={{
                 fontFamily: 'Greycliff CF, sans-serif',
-                marginTop: '5px',
                 border: '1px solid',
                 borderColor: theme.colors.teal[4],
                 borderRadius: '5px',
@@ -119,3 +118,5 @@ export default function Layout({ children }) {
     </AppShell>
   );
 }
+
+export const getLayout = (page) => <Layout>{page}</Layout>;

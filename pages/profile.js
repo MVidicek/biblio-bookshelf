@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
+import { getLayout } from '../components/Layout';
 import {
   Button,
   createStyles,
@@ -9,6 +9,7 @@ import {
   Stack,
   Avatar,
   useMantineTheme,
+  Container,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { updateDoc } from 'firebase/firestore';
@@ -18,12 +19,12 @@ import { showNotification } from '@mantine/notifications';
 import { InfoCircledIcon } from '@radix-ui/react-icons';
 import { PersonIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
 
-const useStyles = createStyles((theme, _params, getRef) => ({
+const useStyles = createStyles((theme, _params) => ({
   button: {
     color: theme.white,
     backgroundColor:
       theme.colorScheme === 'dark'
-        ? theme.colors.gray[7]
+        ? theme.colors.teal[7]
         : theme.colors.teal[4],
     border: 0,
     borderRadius: 5,
@@ -31,7 +32,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: theme.colors.teal[5],
+      backgroundColor: theme.colors.teal[8],
     },
   },
 }));
@@ -71,40 +72,35 @@ export default function Profile() {
   };
 
   return (
-    <>
+    <Container size={500} pt='md'>
+      <Badge
+        sx={{ paddingLeft: 0 }}
+        size='lg'
+        radius='sm'
+        leftSection={avatar}
+        variant='outline'
+        color='teal'
+        mb='1rem'
+      >
+        {form.values.name}
+      </Badge>
       <Stack
         spacing='md'
-        align='center'
-        justify='center'
         sx={(theme) => ({
           backgroundColor:
             theme.colorScheme === 'dark'
               ? theme.colors.dark[8]
               : theme.colors.gray[0],
-          height: 300,
         })}
+        mb='1rem'
       >
-        <Badge
-          sx={{ paddingLeft: 0 }}
-          size='lg'
-          radius='sm'
-          leftSection={avatar}
-          variant='outline'
-          color='teal'
-        >
-          {form.values.name}
-        </Badge>
         <TextInput
           icon={<PersonIcon />}
           placeholder={form.values.name}
-          label='Name'
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge
-              variant='outline'
-              color={theme.colorScheme === 'dark' ? 'teal' : 'gray'}
-            >
+            <Badge variant='outline' color='teal'>
               Name
             </Badge>
           }
@@ -112,27 +108,20 @@ export default function Profile() {
         <TextInput
           icon={<EnvelopeClosedIcon />}
           placeholder={form.values.email}
-          label='Email'
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge
-              variant='outline'
-              color={theme.colorScheme === 'dark' ? 'teal' : 'gray'}
-            >
+            <Badge variant='outline' color='teal'>
               Email
             </Badge>
           }
         />
-
-        <Button mt='1rem' onClick={onLogout} className={classes.button}>
-          Log Out
-        </Button>
       </Stack>
-    </>
+      <Button onClick={onLogout} className={classes.button}>
+        Log Out
+      </Button>
+    </Container>
   );
 }
 
-Profile.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
+Profile.getLayout = getLayout;
