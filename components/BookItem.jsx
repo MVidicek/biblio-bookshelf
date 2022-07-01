@@ -6,7 +6,6 @@ import {
   useMantineTheme,
   Badge,
   Button,
-  MediaQuery,
 } from '@mantine/core';
 import { PersonIcon, CalendarIcon } from '@radix-ui/react-icons';
 

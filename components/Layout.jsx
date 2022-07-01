@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import PageContext from '../contexts/PageContext';
 import {
   AppShell,
   Navbar,
@@ -45,7 +46,9 @@ export default function Layout({ children }) {
           width={{ sm: 200, lg: 300 }}
         >
           <Navbar.Section grow mt='md'>
-            <MainLinks />
+            <PageContext.Provider>
+              <MainLinks />
+            </PageContext.Provider>
           </Navbar.Section>
           <Navbar.Section>
             {router.pathname !== '/profile' ? <User /> : null}
