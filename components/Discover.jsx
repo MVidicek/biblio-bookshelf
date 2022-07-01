@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getLayout } from '../components/Layout';
 import { SimpleGrid, Pagination } from '@mantine/core';
 import BookItem from '../components/BookItem';
 import { loadBooks } from '../lib/fetch-books';
@@ -34,15 +33,4 @@ export default function Discover({ books }) {
       />
     </div>
   );
-}
-
-Discover.getLayout = getLayout;
-
-export async function getServerSideProps() {
-  // loadBooks gets paramters (startIndex, maxResults)
-  const data = await loadBooks();
-
-  return {
-    props: { books: data.items },
-  };
 }

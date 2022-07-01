@@ -55,7 +55,7 @@ function SignUp() {
       formData.timestamp = serverTimestamp();
 
       await setDoc(doc(db, 'users', user.uid), formData);
-      router.push('/profile');
+      router.push('/home');
       showNotification({
         title: 'Welcome',
         message: 'You have successfully signed up',

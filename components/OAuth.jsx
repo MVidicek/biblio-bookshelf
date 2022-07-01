@@ -24,7 +24,7 @@ export default function OAuth() {
           timestamp: serverTimestamp(),
         });
       }
-      router.push('/profile');
+      router.push('/home');
       showNotification({
         title: 'Welcome',
         message: 'You have successfully logged in',

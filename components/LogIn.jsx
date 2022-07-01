@@ -50,7 +50,7 @@ function LogIn() {
       );
 
       if (userCredential.user) {
-        router.push('/profile');
+        router.push('/home');
         showNotification({
           title: 'Welcome',
           message: 'You have successfully logged in',

@@ -49,7 +49,7 @@ export default function Layout({ children }) {
             <MainLinks setPage={setPage} />
           </Navbar.Section>
           <Navbar.Section>
-            {router.pathname !== '/profile' ? <User /> : null}
+            {router.pathname !== '/profile' ? <User setPage={setPage} /> : null}
           </Navbar.Section>
         </Navbar>
       }

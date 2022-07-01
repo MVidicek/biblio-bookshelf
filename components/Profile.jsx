@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { getLayout } from '../components/Layout';
 import {
   Button,
   createStyles,
@@ -45,8 +44,8 @@ export default function Profile() {
 
   const form = useForm({
     initialValues: {
-      name: auth.currentUser.displayName,
-      email: auth.currentUser.email,
+      name: auth?.currentUser.displayName,
+      email: auth?.currentUser.email,
     },
   });
 
@@ -123,5 +122,3 @@ export default function Profile() {
     </Container>
   );
 }
-
-Profile.getLayout = getLayout;
