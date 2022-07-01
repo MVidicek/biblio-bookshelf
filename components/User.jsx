@@ -53,10 +53,10 @@ export function User() {
             />
             <Box sx={{ flex: 1 }}>
               <Text size='sm' weight={500}>
-                {auth.currentUser.displayName}
+                {auth?.currentUser?.displayName}
               </Text>
               <Text color='dimmed' size='xs'>
-                {auth.currentUser.email}
+                {auth?.currentUser?.email}
               </Text>
             </Box>
 

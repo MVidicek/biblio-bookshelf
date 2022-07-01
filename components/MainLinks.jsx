@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import {
   MagnifyingGlassIcon,
   ReaderIcon,
@@ -8,36 +7,34 @@ import {
 } from '@radix-ui/react-icons';
 import { ThemeIcon, UnstyledButton, Group, Text } from '@mantine/core';
 
-function MainLink({ icon, color, label }) {
-  const navigate = `/${label.toLowerCase()}`;
+function MainLink({ icon, color, label, setPage }) {
   return (
-    <Link href={navigate}>
-      <UnstyledButton
-        sx={(theme) => ({
-          display: 'block',
-          width: '100%',
-          padding: theme.spacing.xs,
-          borderRadius: theme.radius.sm,
-          color:
-            theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    <UnstyledButton
+      sx={(theme) => ({
+        display: 'block',
+        width: '100%',
+        padding: theme.spacing.xs,
+        borderRadius: theme.radius.sm,
+        color:
+          theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
 
-          '&:hover': {
-            backgroundColor:
-              theme.colorScheme === 'dark'
-                ? theme.colors.dark[6]
-                : theme.colors.gray[0],
-          },
-        })}
-      >
-        <Group>
-          <ThemeIcon color={color} variant='light'>
-            {icon}
-          </ThemeIcon>
+        '&:hover': {
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[6]
+              : theme.colors.gray[0],
+        },
+      })}
+      onClick={() => setPage(label.toLowerCase())}
+    >
+      <Group>
+        <ThemeIcon color={color} variant='light'>
+          {icon}
+        </ThemeIcon>
 
-          <Text size='sm'>{label}</Text>
-        </Group>
-      </UnstyledButton>
-    </Link>
+        <Text size='sm'>{label}</Text>
+      </Group>
+    </UnstyledButton>
   );
 }
 
@@ -48,7 +45,9 @@ const data = [
   { icon: <BookmarkIcon />, color: 'grape', label: 'Bookmarked' },
 ];
 
-export function MainLinks() {
-  const links = data.map((link) => <MainLink {...link} key={link.label} />);
+export function MainLinks({ setPage }) {
+  const links = data.map((link) => (
+    <MainLink setPage={setPage} {...link} key={link.label} />
+  ));
   return <div>{links}</div>;
 }

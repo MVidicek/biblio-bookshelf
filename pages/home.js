@@ -1,9 +1,7 @@
 import { getLayout } from '../components/Layout';
-import PageContext from '../contexts/PageContext';
 
-export default function Home() {
-  const { page } = useContext(PageContext);
-  return <div>Home</div>;
+export default function Home({ page }) {
+  return <div>{page}</div>;
 }
 
 Home.getLayout = getLayout;

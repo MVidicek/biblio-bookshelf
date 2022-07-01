@@ -3,6 +3,7 @@ import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import { RouteGuard } from '../components/RouteGuard';
+import { Layout } from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useLocalStorage({
@@ -39,7 +40,9 @@ function MyApp({ Component, pageProps }) {
         withNormalizeCSS
       >
         <NotificationsProvider position='top-center' limit={5}>
-          <RouteGuard>{getLayout(<Component {...pageProps} />)}</RouteGuard>
+          {/* Add Route Guard */}
+
+          {getLayout(<Component {...pageProps} />)}
         </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>

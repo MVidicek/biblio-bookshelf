@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import PageContext from '../contexts/PageContext';
 import {
   AppShell,
   Navbar,
@@ -20,6 +19,7 @@ import { MainLinks } from './MainLinks';
 import { User } from './User';
 
 export default function Layout({ children }) {
+  const [page, setPage] = useState('home');
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -46,9 +46,7 @@ export default function Layout({ children }) {
           width={{ sm: 200, lg: 300 }}
         >
           <Navbar.Section grow mt='md'>
-            <PageContext.Provider>
-              <MainLinks />
-            </PageContext.Provider>
+            <MainLinks setPage={setPage} />
           </Navbar.Section>
           <Navbar.Section>
             {router.pathname !== '/profile' ? <User /> : null}
@@ -117,7 +115,7 @@ export default function Layout({ children }) {
         </Header>
       }
     >
-      <main>{children}</main>
+      <main>{React.cloneElement(children, { page })}</main>
     </AppShell>
   );
 }
