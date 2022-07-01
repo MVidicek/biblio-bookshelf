@@ -21,17 +21,17 @@ export default function BookItem({ book }) {
       <Card shadow='sm' p='md' withBorder>
         <Card.Section>
           <a
-            href={book.volumeInfo.previewLink}
+            href={book.volumeInfo?.previewLink}
             rel='noreferrer'
             target='_blank'
           >
             <Image
               p='md'
               fit='contain'
-              src={book.volumeInfo.imageLinks.smallThumbnail}
-              height={300}
-              alt={book.volumeInfo.title}
               withPlaceholder
+              src={book.volumeInfo?.imageLinks?.smallThumbnail}
+              height={300}
+              alt={book.volumeInfo?.title}
             />
           </a>
         </Card.Section>
@@ -71,7 +71,7 @@ export default function BookItem({ book }) {
           lineClamp={3}
           style={{ color: secondaryColor, lineHeight: 1.5 }}
         >
-          {book.searchInfo.textSnippet}
+          {book.searchInfo?.textSnippet}
         </Text>
 
         <Button
