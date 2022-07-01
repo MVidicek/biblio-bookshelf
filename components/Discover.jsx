@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { SimpleGrid, Pagination } from '@mantine/core';
 import BookItem from '../components/BookItem';
-import { loadBooks } from '../lib/fetch-books';
 
 export default function Discover({ books }) {
   const [pageIndex, setPageIndex] = useState(1);

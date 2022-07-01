@@ -10,7 +10,7 @@ import {
   useMantineTheme,
   Text,
 } from '@mantine/core';
-import HomeLayout from '../components/HomeLayout';
+import LogInLayout from '../components/LogInLayout';
 import LogIn from '../components/LogIn';
 import SignUp from '../components/SignUp';
 
@@ -174,5 +174,5 @@ export default function Home() {
 }
 
 Home.getLayout = function getLayout(page) {
-  return <HomeLayout>{page}</HomeLayout>;
+  return <LogInLayout>{page}</LogInLayout>;
 };
