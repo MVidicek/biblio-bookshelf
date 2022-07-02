@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  HomeIcon,
   MagnifyingGlassIcon,
   ReaderIcon,
   CheckCircledIcon,
@@ -21,8 +22,8 @@ function MainLink({ icon, color, label, setPage }) {
         '&:hover': {
           backgroundColor:
             theme.colorScheme === 'dark'
-              ? theme.colors.dark[6]
-              : theme.colors.gray[0],
+              ? theme.colors.gray[8]
+              : theme.colors.teal[0],
         },
       })}
       onClick={() => setPage(label.toLowerCase())}
@@ -39,6 +40,7 @@ function MainLink({ icon, color, label, setPage }) {
 }
 
 const data = [
+  { icon: <HomeIcon />, color: 'gray', label: 'Home' },
   { icon: <MagnifyingGlassIcon />, color: 'blue', label: 'Discover' },
   { icon: <ReaderIcon />, color: 'teal', label: 'Reading' },
   { icon: <CheckCircledIcon />, color: 'violet', label: 'Finished' },

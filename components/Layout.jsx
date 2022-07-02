@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
   AppShell,
@@ -13,17 +13,31 @@ import {
   ActionIcon,
   useMantineColorScheme,
   ThemeIcon,
+  TextInput,
+  Loader,
+  Transition,
 } from '@mantine/core';
-import { SunIcon, MoonIcon, BookmarkIcon } from '@radix-ui/react-icons';
+import {
+  SunIcon,
+  MoonIcon,
+  BookmarkIcon,
+  MagnifyingGlassIcon,
+} from '@radix-ui/react-icons';
 import { MainLinks } from './MainLinks';
 import { User } from './User';
 
 export default function Layout({ children }) {
   const [page, setPage] = useState('home');
   const [opened, setOpened] = useState(false);
+  const [searchOpened, setSearchOpened] = useState(false);
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const router = useRouter();
+
+  useEffect(() => {
+    if (page === 'discover') setSearchOpened(true);
+    else setSearchOpened(false);
+  }, [page]);
 
   return (
     <AppShell
@@ -103,6 +117,25 @@ export default function Layout({ children }) {
             >
               BIBLIO
             </Text>
+            {page === 'discover' ? (
+              <Transition
+                mounted={searchOpened}
+                transition='slide-up'
+                duration={400}
+                timingFunction='ease'
+              >
+                {(styles) => (
+                  <div style={styles}>
+                    <TextInput
+                      icon={<MagnifyingGlassIcon />}
+                      placeholder='Search...'
+                      type='search'
+                      rightSection={<Loader color='teal' size='xs' />}
+                    />
+                  </div>
+                )}
+              </Transition>
+            ) : null}
             <ActionIcon
               variant='default'
               onClick={() => toggleColorScheme()}

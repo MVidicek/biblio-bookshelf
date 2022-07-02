@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
             lg: 1200,
             xl: 1400,
           },
-          loader: 'dots',
+          loader: 'oval',
         }}
         withGlobalStyles
         withNormalizeCSS

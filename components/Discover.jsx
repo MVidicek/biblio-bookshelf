@@ -9,7 +9,7 @@ export default function Discover({ books }) {
   return (
     <div>
       <SimpleGrid
-        spacing='xs'
+        spacing='md'
         breakpoints={[
           { minWidth: 1200, cols: 1 },
           { minWidth: 1400, cols: 2 },

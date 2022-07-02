@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Button,
-  createStyles,
   TextInput,
   Badge,
   Stack,
@@ -18,27 +17,9 @@ import { showNotification } from '@mantine/notifications';
 import { InfoCircledIcon } from '@radix-ui/react-icons';
 import { PersonIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
 
-const useStyles = createStyles((theme, _params) => ({
-  button: {
-    color: theme.white,
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.teal[7]
-        : theme.colors.teal[4],
-    border: 0,
-    borderRadius: 5,
-    padding: `10px 10px`,
-    cursor: 'pointer',
-
-    '&:hover': {
-      backgroundColor: theme.colors.teal[8],
-    },
-  },
-}));
 export default function Profile() {
   const [changeDetails, setChangeDetails] = useState(false);
 
-  const { classes } = useStyles();
   const theme = useMantineTheme();
   const router = useRouter();
 
@@ -116,7 +97,11 @@ export default function Profile() {
           }
         />
       </Stack>
-      <Button onClick={onLogout} className={classes.button}>
+      <Button
+        onClick={onLogout}
+        variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
+        color='teal'
+      >
         Log Out
       </Button>
     </Container>
