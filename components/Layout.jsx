@@ -78,7 +78,11 @@ export default function Layout({ children }) {
       header={
         <Header height={70} p='md'>
           <div
-            style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
+            }}
           >
             <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
               <Burger
@@ -148,7 +152,7 @@ export default function Layout({ children }) {
         </Header>
       }
     >
-      <main>{React.cloneElement(children, { page })}</main>
+      <main>{React.cloneElement(children, { page, setOpened })}</main>
     </AppShell>
   );
 }

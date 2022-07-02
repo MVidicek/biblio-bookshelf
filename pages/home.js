@@ -5,18 +5,28 @@ import Profile from '../components/Profile';
 import Discover from '../components/Discover';
 import { Transition } from '@mantine/core';
 
-export default function Home({ page, booksDiscover }) {
+const scaleY = {
+  in: { opacity: 1, transform: 'scaleX(1)' },
+  out: { opacity: 0, transform: 'scaleX(0)' },
+  common: { transformOrigin: 'top' },
+  transitionProperty: 'transform, opacity',
+};
+
+export default function Home({ page, setOpened, booksDiscover }) {
   const [transitionPage, setTransitionPage] = useState('home');
 
   useEffect(() => {
-    if (page === 'profile') {
-      setTransitionPage('profile');
-    } else if (page === 'discover') {
-      setTransitionPage('discover');
-    } else {
-      setTransitionPage('home');
-    }
-  }, [page]);
+    setOpened(false);
+    setTimeout(() => {
+      if (page === 'profile') {
+        setTransitionPage('profile');
+      } else if (page === 'discover') {
+        setTransitionPage('discover');
+      } else {
+        setTransitionPage('home');
+      }
+    }, 400);
+  }, [page, setOpened]);
 
   if (page === 'profile')
     return (
@@ -33,9 +43,23 @@ export default function Home({ page, booksDiscover }) {
         )}
       </Transition>
     );
-  if (page === 'discover') return <Discover books={booksDiscover} />;
+  if (page === 'discover')
+    return (
+      <Transition
+        mounted={transitionPage === 'discover'}
+        transition='slide-right'
+        duration={200}
+        timingFunction='ease'
+      >
+        {(styles) => (
+          <div style={styles}>
+            <Discover books={booksDiscover} />
+          </div>
+        )}
+      </Transition>
+    );
 
-  return <div>{page}</div>;
+  return <div></div>;
 }
 
 Home.getLayout = getLayout;
