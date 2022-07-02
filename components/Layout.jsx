@@ -30,8 +30,9 @@ export default function Layout({ children }) {
   const [page, setPage] = useState('home');
   const [opened, setOpened] = useState(false);
   const [searchOpened, setSearchOpened] = useState(false);
-  const theme = useMantineTheme();
+
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const theme = useMantineTheme();
   const router = useRouter();
 
   useEffect(() => {
