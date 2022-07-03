@@ -61,6 +61,7 @@ export default function Profile() {
         variant='outline'
         color='teal'
         mb='1rem'
+        style={{ fontWeight: 600 }}
       >
         {form.values.name}
       </Badge>
@@ -80,7 +81,7 @@ export default function Profile() {
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge variant='outline' color='teal'>
+            <Badge variant='outline' color='teal' style={{ fontWeight: 600 }}>
               Name
             </Badge>
           }
@@ -91,7 +92,7 @@ export default function Profile() {
           rightSectionWidth={70}
           styles={{ rightSection: { pointerEvents: 'none' } }}
           rightSection={
-            <Badge variant='outline' color='teal'>
+            <Badge variant='outline' color='teal' style={{ fontWeight: 600 }}>
               Email
             </Badge>
           }
@@ -101,6 +102,7 @@ export default function Profile() {
         onClick={onLogout}
         variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
         color='teal'
+        style={{ fontWeight: 400 }}
       >
         Log Out
       </Button>

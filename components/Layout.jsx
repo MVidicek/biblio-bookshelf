@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import {
   AppShell,
   Navbar,
@@ -18,6 +17,7 @@ import {
   Transition,
   Center,
 } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
 import {
   SunIcon,
@@ -35,7 +35,6 @@ export default function Layout({ children }) {
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
-  const router = useRouter();
 
   const isMobile = useMediaQuery('(max-width: 768px)');
 
@@ -68,7 +67,7 @@ export default function Layout({ children }) {
             <MainLinks setPage={setPage} />
           </Navbar.Section>
           <Navbar.Section>
-            {router.pathname !== '/profile' ? <User setPage={setPage} /> : null}
+            {page !== 'profile' ? <User setPage={setPage} /> : null}
           </Navbar.Section>
         </Navbar>
       }
@@ -151,7 +150,7 @@ export default function Layout({ children }) {
                         rightSection={<Loader color='teal' size='xs' />}
                         size='sm'
                         style={
-                          isMobile ? { width: '239px' } : { width: '339px' }
+                          isMobile ? { width: '241px' } : { width: '341px' }
                         }
                       />
                     </div>

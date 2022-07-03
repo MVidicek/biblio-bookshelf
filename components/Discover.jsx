@@ -9,6 +9,7 @@ import BookItem from '../components/BookItem';
 export default function Discover() {
   const [pageIndex, setPageIndex] = useState(1);
   const { books, isLoading, isError } = useFetchBooks();
+
   console.log(books);
 
   if (isLoading)

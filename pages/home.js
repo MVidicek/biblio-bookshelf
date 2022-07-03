@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getLayout } from '../components/Layout';
 import Profile from '../components/Profile';
 import Discover from '../components/Discover';

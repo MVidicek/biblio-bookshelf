@@ -28,10 +28,10 @@ export default function BookItem({ book }) {
           >
             <Image
               p='md'
-              fit='contain'
+              fit='cover'
               withPlaceholder
               src={book.volumeInfo?.imageLinks?.thumbnail}
-              height={300}
+              height={318}
               alt={book.volumeInfo?.title}
             />
           </a>
@@ -63,7 +63,7 @@ export default function BookItem({ book }) {
             variant={theme.colorScheme === 'dark' ? 'outline' : 'light'}
             leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
           >
-            {book.volumeInfo?.publishedDate}
+            {book.volumeInfo?.publishedDate.slice(0, 4)}
           </Badge>
         </Group>
 
