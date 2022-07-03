@@ -6,8 +6,10 @@ import {
   useMantineTheme,
   Badge,
   Button,
+  ActionIcon,
+  Grid,
 } from '@mantine/core';
-import { PersonIcon, CalendarIcon } from '@radix-ui/react-icons';
+import { PersonIcon, CalendarIcon, BookmarkIcon } from '@radix-ui/react-icons';
 
 export default function BookItem({ book }) {
   const theme = useMantineTheme();
@@ -28,7 +30,7 @@ export default function BookItem({ book }) {
               p='md'
               fit='contain'
               withPlaceholder
-              src={book.volumeInfo?.imageLinks?.smallThumbnail}
+              src={book.volumeInfo?.imageLinks?.thumbnail}
               height={300}
               alt={book.volumeInfo?.title}
             />
@@ -41,46 +43,67 @@ export default function BookItem({ book }) {
           }}
           weight={500}
         >
-          {book.volumeInfo.title}
+          {book.volumeInfo?.title}
         </Text>
         <Group
           position='center'
           style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
         >
           <Badge
-            color='tael'
+            color='blue'
             sx={{ paddingLeft: 3 }}
             variant={theme.colorScheme === 'dark' ? 'outline' : 'light'}
             leftSection={<PersonIcon style={{ paddingTop: 4 }} />}
           >
-            {book.volumeInfo.authors[0]}
+            {book.volumeInfo?.authors[0]}
           </Badge>
           <Badge
-            color='cyan'
+            color='gray'
             sx={{ paddingLeft: 3 }}
             variant={theme.colorScheme === 'dark' ? 'outline' : 'light'}
             leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
           >
-            {book.volumeInfo.publishedDate}
+            {book.volumeInfo?.publishedDate}
           </Badge>
         </Group>
 
         <Text
           size='xs'
           lineClamp={3}
-          style={{ color: secondaryColor, lineHeight: 1.5 }}
+          style={{ color: secondaryColor, lineHeight: 1.5, marginTop: 10 }}
         >
           {book.searchInfo?.textSnippet}
         </Text>
-
-        <Button
-          variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
-          color='teal'
-          fullWidth
-          style={{ marginTop: 14 }}
-        >
-          Details
-        </Button>
+        <Grid columns={12}>
+          <Grid.Col span={3}>
+            <Button
+              variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
+              color='teal'
+              style={{ marginTop: 14 }}
+            >
+              Info
+            </Button>
+          </Grid.Col>
+          <Grid.Col span={7}>
+            <Button
+              variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
+              color='teal'
+              style={{ marginTop: 14 }}
+            >
+              Summary
+            </Button>
+          </Grid.Col>
+          <Grid.Col span={2}>
+            <ActionIcon
+              color='gray'
+              variant={theme.colorScheme === 'dark' ? 'outline' : 'default'}
+              size={36}
+              style={{ marginTop: 14 }}
+            >
+              <BookmarkIcon />
+            </ActionIcon>
+          </Grid.Col>
+        </Grid>
       </Card>
     </div>
   );

@@ -16,7 +16,9 @@ import {
   TextInput,
   Loader,
   Transition,
+  Center,
 } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import {
   SunIcon,
   MoonIcon,
@@ -29,15 +31,17 @@ import { User } from './User';
 export default function Layout({ children }) {
   const [page, setPage] = useState('home');
   const [opened, setOpened] = useState(false);
-  const [searchOpened, setSearchOpened] = useState(false);
+  const [discoverOpened, setDiscoverOpened] = useState(false);
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
   const router = useRouter();
 
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   useEffect(() => {
-    if (page === 'discover') setSearchOpened(true);
-    else setSearchOpened(false);
+    if (page === 'discover') setDiscoverOpened(true);
+    else setDiscoverOpened(false);
   }, [page]);
 
   return (
@@ -102,41 +106,55 @@ export default function Layout({ children }) {
             >
               <BookmarkIcon />
             </ThemeIcon>
-            <Text
-              size='lg'
-              color={
-                theme.colorScheme === 'dark'
-                  ? theme.colors.dark[0]
-                  : theme.colors.teal[4]
-              }
-              weight={400}
-              style={{
-                fontFamily: 'Greycliff CF, sans-serif',
-                border: '1px solid',
-                borderColor: theme.colors.teal[4],
-                borderRadius: '5px',
-                padding: '5px',
-                paddingBottom: '0px',
-                paddingTop: '0px',
-              }}
-            >
-              BIBLIO
-            </Text>
+            <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+              <Text
+                size='lg'
+                color={
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.dark[0]
+                    : theme.colors.teal[4]
+                }
+                weight={400}
+                style={{
+                  fontFamily: 'Greycliff CF, sans-serif',
+                  border: '1px solid',
+                  borderColor: theme.colors.teal[4],
+                  borderRadius: '5px',
+                  padding: '5px',
+                  paddingBottom: '0px',
+                  paddingTop: '0px',
+                }}
+              >
+                BIBLIO
+              </Text>
+            </MediaQuery>
             {page === 'discover' ? (
               <Transition
-                mounted={searchOpened}
+                mounted={discoverOpened}
                 transition='slide-up'
                 duration={400}
                 timingFunction='ease'
               >
                 {(styles) => (
-                  <div style={styles}>
-                    <TextInput
-                      icon={<MagnifyingGlassIcon />}
-                      placeholder='Search...'
-                      type='search'
-                      rightSection={<Loader color='teal' size='xs' />}
-                    />
+                  <div
+                    style={
+                      isMobile
+                        ? { marginLeft: 'auto', marginRight: '60px' }
+                        : { marginLeft: 'auto', marginRight: '80px' }
+                    }
+                  >
+                    <div style={styles}>
+                      <TextInput
+                        icon={<MagnifyingGlassIcon />}
+                        placeholder='Search...'
+                        type='search'
+                        rightSection={<Loader color='teal' size='xs' />}
+                        size='sm'
+                        style={
+                          isMobile ? { width: '239px' } : { width: '339px' }
+                        }
+                      />
+                    </div>
                   </div>
                 )}
               </Transition>
@@ -153,7 +171,7 @@ export default function Layout({ children }) {
         </Header>
       }
     >
-      <main>{React.cloneElement(children, { page, setOpened })}</main>
+      <Center>{React.cloneElement(children, { page, setOpened })}</Center>
     </AppShell>
   );
 }

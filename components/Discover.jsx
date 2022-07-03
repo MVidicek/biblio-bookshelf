@@ -1,10 +1,32 @@
 import { useState } from 'react';
-import { SimpleGrid, Pagination } from '@mantine/core';
+import useFetchBooks from '../hooks/useFetchBooks';
+import { SimpleGrid, Pagination, Loader } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { Cross1Icon } from '@radix-ui/react-icons';
+
 import BookItem from '../components/BookItem';
 
-export default function Discover({ books }) {
+export default function Discover() {
   const [pageIndex, setPageIndex] = useState(1);
+  const { books, isLoading, isError } = useFetchBooks();
   console.log(books);
+
+  if (isLoading)
+    return (
+      <Loader
+        size='xl'
+        color='teal'
+        variant='bars'
+        style={{ marginTop: '50%' }}
+      />
+    );
+  if (isError)
+    return showNotification({
+      title: 'Error',
+      message: 'Could not fetch books data',
+      color: 'pink',
+      icon: <Cross1Icon />,
+    });
 
   return (
     <div>
@@ -17,9 +39,14 @@ export default function Discover({ books }) {
           { minWidth: 2200, cols: 4 },
         ]}
       >
-        {books.map((book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
+        {books.map((book) => {
+          if (
+            Object.hasOwn(book.volumeInfo, 'authors') &&
+            Object.hasOwn(book, 'searchInfo')
+          ) {
+            return <BookItem key={book.id} book={book} />;
+          }
+        })}
       </SimpleGrid>
       <Pagination
         page={pageIndex}
