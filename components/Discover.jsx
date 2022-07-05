@@ -18,7 +18,7 @@ export default function Discover() {
         size='xl'
         color='teal'
         variant='bars'
-        style={{ marginTop: '50%' }}
+        style={{ marginTop: '25%' }}
       />
     );
   if (isError)

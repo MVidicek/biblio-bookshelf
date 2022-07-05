@@ -15,10 +15,6 @@ import LogIn from '../components/LogIn';
 import SignUp from '../components/SignUp';
 
 const useStyles = createStyles((theme, _params, getRef) => ({
-  container: {
-    padding: '0 2rem',
-  },
-
   main: {
     minHeight: '85vh',
     padding: '2rem 0',
@@ -27,7 +23,6 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
       [`& .${getRef('child')}`]: {
         fontSize: theme.fontSizes.xs,
@@ -81,7 +76,7 @@ export default function Home() {
   const theme = useMantineTheme();
 
   return (
-    <div className={classes.container}>
+    <div style={{ padding: '0 2rem' }}>
       <Head>
         <title>Biblio</title>
         <meta name='description' content='Online Bookshelf' />
@@ -97,7 +92,7 @@ export default function Home() {
             maxWidth: '1024px',
             backgroundColor:
               theme.colorScheme === 'dark'
-                ? theme.colors.dark[7]
+                ? theme.colors.dark[8]
                 : theme.colors.gray[1],
             border: '2px solid',
             borderColor: theme.colors.teal[4],
