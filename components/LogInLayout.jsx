@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   AppShell,
   Header,
   Text,
-  MediaQuery,
-  Burger,
   useMantineTheme,
   ActionIcon,
   useMantineColorScheme,
@@ -13,7 +11,6 @@ import {
 import { SunIcon, MoonIcon, BookmarkIcon } from '@radix-ui/react-icons';
 
 export default function HomeLayout({ children }) {
-  const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
@@ -35,15 +32,6 @@ export default function HomeLayout({ children }) {
           <div
             style={{ display: 'flex', alignItems: 'center', height: '100%' }}
           >
-            <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
-              <Burger
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
-                size='sm'
-                color={theme.colors.gray[6]}
-                mr='xl'
-              />
-            </MediaQuery>
             <ThemeIcon
               mr='xs'
               size={29}

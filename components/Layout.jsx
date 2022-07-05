@@ -78,7 +78,6 @@ export default function Layout({ children }) {
           </Aside>
         </MediaQuery>
       }
-      footer={<Footer height={60} p='sm'></Footer>}
       header={
         <Header height={70} p='md'>
           <div
@@ -97,14 +96,16 @@ export default function Layout({ children }) {
                 mr='xl'
               />
             </MediaQuery>
-            <ThemeIcon
-              mr='xs'
-              size={29}
-              color='teal'
-              variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
-            >
-              <BookmarkIcon />
-            </ThemeIcon>
+            <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+              <ThemeIcon
+                mr='xs'
+                size={29}
+                color='teal'
+                variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
+              >
+                <BookmarkIcon />
+              </ThemeIcon>
+            </MediaQuery>
             <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
               <Text
                 size='lg'
@@ -138,7 +139,7 @@ export default function Layout({ children }) {
                   <div
                     style={
                       isMobile
-                        ? { marginLeft: 'auto', marginRight: '60px' }
+                        ? { marginLeft: 'auto', marginRight: '30px' }
                         : { marginLeft: 'auto', marginRight: '80px' }
                     }
                   >
