@@ -1,67 +1,67 @@
-import { useState } from 'react';
-import Head from 'next/head';
-import Lottie from 'lottie-react';
-import bookAnimation from '../assets/header-books.json';
+import { useState } from "react";
+import Head from "next/head";
+import Lottie from "lottie-react";
+import bookAnimation from "../assets/Lottie/header-books.json";
 import {
   Button,
-  Modal,
-  Group,
   createStyles,
-  useMantineTheme,
+  Group,
+  Modal,
   Text,
-} from '@mantine/core';
-import LogInLayout from '../components/LogInLayout';
-import LogIn from '../components/LogIn';
-import SignUp from '../components/SignUp';
+  useMantineTheme,
+} from "@mantine/core";
+import LogInLayout from "../components/Layouts/LogInLayout";
+import LogIn from "../components/Util/LogIn";
+import SignUp from "../components/Util/SignUp";
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   main: {
-    minHeight: '85vh',
-    padding: '2rem 0',
+    minHeight: "85vh",
+    padding: "2rem 0",
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      [`& .${getRef('child')}`]: {
+      [`& .${getRef("child")}`]: {
         fontSize: theme.fontSizes.xs,
       },
     },
   },
 
   footer: {
-    display: 'flex',
+    display: "flex",
     flex: 1,
-    padding: '1rem 0',
-    borderTop: '1px solid #eaeaea',
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: "1rem 0",
+    borderTop: "1px solid #eaeaea",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   button: {
     color: theme.white,
     backgroundColor:
-      theme.colorScheme === 'dark'
+      theme.colorScheme === "dark"
         ? theme.colors.gray[7]
         : theme.colors.teal[3],
     border: 0,
     borderRadius: 5,
     padding: `10px 10px`,
-    cursor: 'pointer',
+    cursor: "pointer",
 
-    '&:hover': {
+    "&:hover": {
       backgroundColor: theme.colors.teal[4],
     },
 
-    '&:not(:first-of-type)': {
+    "&:not(:first-of-type)": {
       backgroundColor:
-        theme.colorScheme === 'dark'
+        theme.colorScheme === "dark"
           ? theme.colors.gray[7]
           : theme.colors.cyan[3],
 
       // pseudo-classes can be nested
-      '&:hover': {
+      "&:hover": {
         backgroundColor: theme.colors.cyan[4],
       },
     },
@@ -70,17 +70,17 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
 export default function Home() {
   const [opened, setOpened] = useState(false);
-  const [modalType, setModalType] = useState('login');
+  const [modalType, setModalType] = useState("login");
 
   const { classes } = useStyles();
   const theme = useMantineTheme();
 
   return (
-    <div style={{ padding: '0 2rem' }}>
+    <div style={{ padding: "0 2rem" }}>
       <Head>
         <title>Biblio</title>
-        <meta name='description' content='Online Bookshelf' />
-        <link rel='icon' href='images/favicon.ico' />
+        <meta name="description" content="Online Bookshelf" />
+        <link rel="icon" href="images/favicon.ico" />
       </Head>
 
       <main className={classes.main}>
@@ -89,21 +89,21 @@ export default function Home() {
           loop={false}
           initialSegment={[0, 110]}
           style={{
-            maxWidth: '1024px',
+            maxWidth: "1024px",
             backgroundColor:
-              theme.colorScheme === 'dark'
+              theme.colorScheme === "dark"
                 ? theme.colors.dark[8]
                 : theme.colors.gray[1],
-            border: '2px solid',
+            border: "2px solid",
             borderColor: theme.colors.teal[4],
-            borderRadius: '50px',
+            borderRadius: "50px",
           }}
         />
         <Text
-          align='center'
-          variant='gradient'
+          align="center"
+          variant="gradient"
           gradient={
-            theme.colorScheme === 'dark'
+            theme.colorScheme === "dark"
               ? {
                   from: theme.colors.gray[2],
                   to: theme.colors.gray[2],
@@ -116,8 +116,8 @@ export default function Home() {
                 }
           }
           weight={700}
-          style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: '4rem' }}
-          mt='4rem'
+          style={{ fontFamily: "Greycliff CF, sans-serif", fontSize: "4rem" }}
+          mt="4rem"
         >
           BIBLIO
         </Text>
@@ -126,24 +126,24 @@ export default function Home() {
           onClose={() => setOpened(false)}
           centered
           overlayColor={
-            theme.colorScheme === 'dark'
+            theme.colorScheme === "dark"
               ? theme.colors.dark[9]
               : theme.colors.gray[2]
           }
           overlayOpacity={0.55}
           overlayBlur={3}
-          transition='slide-up'
+          transition="slide-up"
           transitionDuration={400}
-          transitionTimingFunction='ease'
+          transitionTimingFunction="ease"
         >
-          {modalType === 'login' ? <LogIn /> : <SignUp />}
+          {modalType === "login" ? <LogIn /> : <SignUp />}
         </Modal>
 
-        <Group position='center'>
+        <Group position="center">
           <Button
             onClick={() => {
               setOpened(true);
-              setModalType('login');
+              setModalType("login");
             }}
             className={classes.button}
           >
@@ -152,7 +152,7 @@ export default function Home() {
           <Button
             onClick={() => {
               setOpened(true);
-              setModalType('signup');
+              setModalType("signup");
             }}
             className={classes.button}
           >
@@ -162,7 +162,7 @@ export default function Home() {
       </main>
 
       <footer className={classes.footer}>
-        <p id='bottom'>Created by Marko Vidiček</p>
+        <p id="bottom">Created by Marko Vidiček</p>
       </footer>
     </div>
   );

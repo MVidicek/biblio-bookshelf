@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
-} from '@radix-ui/react-icons';
+} from "@radix-ui/react-icons";
 import {
   UnstyledButton,
   Group,
@@ -10,8 +10,8 @@ import {
   Text,
   Box,
   useMantineTheme,
-} from '@mantine/core';
-import { auth } from '../firebase.config';
+} from "@mantine/core";
+import { auth } from "../../firebase.config";
 
 export function User({ setPage }) {
   const theme = useMantineTheme();
@@ -21,7 +21,7 @@ export function User({ setPage }) {
       sx={{
         paddingTop: theme.spacing.sm,
         borderTop: `1px solid ${
-          theme.colorScheme === 'dark'
+          theme.colorScheme === "dark"
             ? theme.colors.dark[4]
             : theme.colors.gray[2]
         }`,
@@ -29,37 +29,37 @@ export function User({ setPage }) {
     >
       <UnstyledButton
         sx={{
-          display: 'block',
-          width: '100%',
+          display: "block",
+          width: "100%",
           padding: theme.spacing.xs,
           borderRadius: theme.radius.sm,
           color:
-            theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+            theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
 
-          '&:hover': {
+          "&:hover": {
             backgroundColor:
-              theme.colorScheme === 'dark'
+              theme.colorScheme === "dark"
                 ? theme.colors.dark[6]
                 : theme.colors.gray[0],
           },
         }}
-        onClick={() => setPage('profile')}
+        onClick={() => setPage("profile")}
       >
         <Group>
           <Avatar
-            src='https://cdn-icons-png.flaticon.com/512/560/560216.png'
-            radius='xl'
+            src="https://cdn-icons-png.flaticon.com/512/560/560216.png"
+            radius="xl"
           />
           <Box sx={{ flex: 1 }}>
-            <Text size='sm' weight={500}>
+            <Text size="sm" weight={500}>
               {auth?.currentUser?.displayName}
             </Text>
-            <Text color='dimmed' size='xs'>
+            <Text color="dimmed" size="xs">
               {auth?.currentUser?.email}
             </Text>
           </Box>
 
-          {theme.dir === 'ltr' ? (
+          {theme.dir === "ltr" ? (
             <DoubleArrowRightIcon />
           ) : (
             <DoubleArrowLeftIcon />

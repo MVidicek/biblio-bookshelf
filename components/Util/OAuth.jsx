@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router';
-import { auth, db } from '../firebase.config';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { showNotification } from '@mantine/notifications';
-import { Button } from '@mantine/core';
-import { Cross1Icon, CheckIcon, PersonIcon } from '@radix-ui/react-icons';
+import { useRouter } from "next/router";
+import { auth, db } from "../../firebase.config";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { showNotification } from "@mantine/notifications";
+import { Button } from "@mantine/core";
+import { Cross1Icon, CheckIcon, PersonIcon } from "@radix-ui/react-icons";
 
 export default function OAuth() {
   const router = useRouter();
@@ -14,28 +14,28 @@ export default function OAuth() {
       const provider = new GoogleAuthProvider();
       const { user } = await signInWithPopup(auth, provider);
 
-      const docRef = doc(db, 'users', user.uid);
+      const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists) {
-        await setDoc(doc(db, 'users', user.uid), {
+        await setDoc(doc(db, "users", user.uid), {
           name: user.displayName,
           email: user.email,
           timestamp: serverTimestamp(),
         });
       }
-      router.push('/home');
+      router.push("/home");
       showNotification({
-        title: 'Welcome',
-        message: 'You have successfully logged in',
-        color: 'teal',
+        title: "Welcome",
+        message: "You have successfully logged in",
+        color: "teal",
         icon: <CheckIcon />,
       });
     } catch (error) {
       showNotification({
-        title: 'Error',
-        message: 'Could not authorize with Google',
-        color: 'red',
+        title: "Error",
+        message: "Could not authorize with Google",
+        color: "red",
         icon: <Cross1Icon />,
       });
     }
