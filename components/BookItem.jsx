@@ -18,7 +18,7 @@ export default function BookItem({ book }) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <div style={{ width: 340, margin: "auto" }}>
+    <div style={{ width: 300, margin: "auto" }}>
       <Card shadow="sm" p="md" withBorder>
         <Card.Section>
           <a
@@ -40,6 +40,9 @@ export default function BookItem({ book }) {
           style={{
             marginBottom: 5,
             textAlign: "center",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
           weight={500}
         >
@@ -51,7 +54,7 @@ export default function BookItem({ book }) {
         >
           <Badge
             color="blue"
-            sx={{ paddingLeft: 3 }}
+            sx={{ paddingLeft: 3, maxWidth: "50%" }}
             variant={theme.colorScheme === "dark" ? "outline" : "light"}
             leftSection={<PersonIcon style={{ paddingTop: 4 }} />}
           >
@@ -74,26 +77,17 @@ export default function BookItem({ book }) {
         >
           {book.searchInfo?.textSnippet}
         </Text>
-        <Grid columns={12}>
-          <Grid.Col span={3}>
+        <Grid columns={5}>
+          <Grid.Col span={4}>
             <Button
               variant={theme.colorScheme === "dark" ? "outline" : "filled"}
               color="teal"
               style={{ marginTop: 14 }}
             >
-              Info
+              Details
             </Button>
           </Grid.Col>
-          <Grid.Col span={7}>
-            <Button
-              variant={theme.colorScheme === "dark" ? "outline" : "filled"}
-              color="teal"
-              style={{ marginTop: 14 }}
-            >
-              Summary
-            </Button>
-          </Grid.Col>
-          <Grid.Col span={2}>
+          <Grid.Col span={1}>
             <ActionIcon
               color="gray"
               variant={theme.colorScheme === "dark" ? "outline" : "default"}
