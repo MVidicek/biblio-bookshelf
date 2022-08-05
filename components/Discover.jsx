@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetchBooks from "../hooks/useFetchBooks";
+import useGlobalState from "../hooks/useGlobalState";
 import { SimpleGrid, Pagination, Loader } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { Cross1Icon } from "@radix-ui/react-icons";
@@ -8,11 +9,19 @@ import BookItem from "../components/BookItem";
 
 export default function Discover() {
   const [pageIndex, setPageIndex] = useState(1);
-  const { books, isLoading, isError } = useFetchBooks((pageIndex - 1) * 8, 8);
+  const [loading, setLoading] = useState(true);
+  const [searchText] = useGlobalState("search", "");
 
+  const { books, isError } = useFetchBooks((pageIndex - 1) * 8, 8, searchText);
+
+  useEffect(() => {
+    if (books) {
+      setLoading(false);
+    }
+  }, [books]);
   console.log(books);
 
-  if (isLoading)
+  if (loading)
     return (
       <Loader
         size="xl"
@@ -28,6 +37,15 @@ export default function Discover() {
       color: "pink",
       icon: <Cross1Icon />,
     });
+  if (books === null || books === undefined)
+    return (
+      <Loader
+        size="xl"
+        color="teal"
+        variant="bars"
+        style={{ marginTop: "25%" }}
+      />
+    );
 
   return (
     <div>

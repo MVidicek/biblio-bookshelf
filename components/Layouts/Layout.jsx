@@ -12,7 +12,6 @@ import {
   useMantineColorScheme,
   ThemeIcon,
   TextInput,
-  Loader,
   Transition,
   Center,
 } from "@mantine/core";
@@ -26,11 +25,18 @@ import {
 } from "@radix-ui/react-icons";
 import { MainLinks } from "../MainLinks";
 import { User } from "../Util/User";
+import useGlobalState from "../../hooks/useGlobalState";
 
 function Layout({ children }) {
   const [page, setPage] = useState("home");
   const [opened, setOpened] = useState(false);
   const [discoverOpened, setDiscoverOpened] = useState(false);
+
+  const form = useForm({
+    initialValues: { searchText: "" },
+  });
+
+  const [search, setSearch] = useGlobalState("search", "");
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
@@ -41,6 +47,11 @@ function Layout({ children }) {
     if (page === "discover") setDiscoverOpened(true);
     else setDiscoverOpened(false);
   }, [page]);
+
+  const handleSearch = async (values) => {
+    const { searchText } = values;
+    setSearch(searchText);
+  };
 
   return (
     <AppShell
@@ -143,16 +154,18 @@ function Layout({ children }) {
                     }
                   >
                     <div style={styles}>
-                      <TextInput
-                        icon={<MagnifyingGlassIcon />}
-                        placeholder="Search..."
-                        type="search"
-                        rightSection={<Loader color="teal" size="xs" />}
-                        size="sm"
-                        style={
-                          isMobile ? { width: "241px" } : { width: "341px" }
-                        }
-                      />
+                      <form onSubmit={form.onSubmit(handleSearch)}>
+                        <TextInput
+                          icon={<MagnifyingGlassIcon />}
+                          placeholder="Search..."
+                          type="search"
+                          {...form.getInputProps("searchText")}
+                          size="sm"
+                          style={
+                            isMobile ? { width: "241px" } : { width: "341px" }
+                          }
+                        />
+                      </form>
                     </div>
                   </div>
                 )}

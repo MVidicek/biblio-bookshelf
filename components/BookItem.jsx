@@ -70,7 +70,7 @@ export default function BookItem({ book }) {
             variant={theme.colorScheme === "dark" ? "outline" : "light"}
             leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
           >
-            {book.volumeInfo?.publishedDate.slice(0, 4)}
+            {book.volumeInfo?.publishedDate?.slice(0, 4)}
           </Badge>
         </Group>
 
