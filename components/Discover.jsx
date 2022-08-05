@@ -1,38 +1,38 @@
-import { useState } from 'react';
-import useFetchBooks from '../hooks/useFetchBooks';
-import { SimpleGrid, Pagination, Loader } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
-import { Cross1Icon } from '@radix-ui/react-icons';
+import { useState } from "react";
+import useFetchBooks from "../hooks/useFetchBooks";
+import { SimpleGrid, Pagination, Loader } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import { Cross1Icon } from "@radix-ui/react-icons";
 
-import BookItem from '../components/BookItem';
+import BookItem from "../components/BookItem";
 
 export default function Discover() {
   const [pageIndex, setPageIndex] = useState(1);
-  const { books, isLoading, isError } = useFetchBooks();
+  const { books, isLoading, isError } = useFetchBooks((pageIndex - 1) * 8, 8);
 
   console.log(books);
 
   if (isLoading)
     return (
       <Loader
-        size='xl'
-        color='teal'
-        variant='bars'
-        style={{ marginTop: '25%' }}
+        size="xl"
+        color="teal"
+        variant="bars"
+        style={{ marginTop: "25%" }}
       />
     );
   if (isError)
     return showNotification({
-      title: 'Error',
-      message: 'Could not fetch books data',
-      color: 'pink',
+      title: "Error",
+      message: "Could not fetch books data",
+      color: "pink",
       icon: <Cross1Icon />,
     });
 
   return (
     <div>
       <SimpleGrid
-        spacing='md'
+        spacing="md"
         breakpoints={[
           { minWidth: 1200, cols: 1 },
           { minWidth: 1400, cols: 2 },
@@ -42,8 +42,8 @@ export default function Discover() {
       >
         {books.map((book) => {
           if (
-            Object.hasOwn(book.volumeInfo, 'authors') &&
-            Object.hasOwn(book, 'searchInfo')
+            Object.hasOwn(book.volumeInfo, "authors") &&
+            Object.hasOwn(book, "searchInfo")
           ) {
             return <BookItem key={book.id} book={book} />;
           }
@@ -52,11 +52,11 @@ export default function Discover() {
       <Pagination
         page={pageIndex}
         onChange={setPageIndex}
-        mt='1rem'
+        mt="1rem"
         total={5}
-        color='teal'
-        position='center'
-        radius='sm'
+        color="teal"
+        position="center"
+        radius="sm"
       />
     </div>
   );
