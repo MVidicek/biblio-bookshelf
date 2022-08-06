@@ -11,6 +11,7 @@ import {
   Grid,
   Modal,
 } from "@mantine/core";
+import BookDetailsModal from "../components/BookDetailsModal";
 import { PersonIcon, CalendarIcon, BookmarkIcon } from "@radix-ui/react-icons";
 
 export default function BookItem({ book }) {
@@ -84,14 +85,14 @@ export default function BookItem({ book }) {
 
         <Modal
           opened={opened}
+          size="xl"
           onClose={() => setOpened(false)}
-          title="Book Details"
           centered
           transition="scale"
           overlayOpacity={0.55}
           overlayBlur={3}
         >
-          {/*TODO Modal content */}
+          <BookDetailsModal book={book} />
         </Modal>
 
         <Grid columns={5}>
