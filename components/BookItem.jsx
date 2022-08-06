@@ -7,9 +7,8 @@ import {
   useMantineTheme,
   Badge,
   Button,
-  ActionIcon,
-  Grid,
   Modal,
+  SimpleGrid,
 } from "@mantine/core";
 import BookDetailsModal from "../components/BookDetailsModal";
 import { PersonIcon, CalendarIcon, BookmarkIcon } from "@radix-ui/react-icons";
@@ -23,7 +22,7 @@ export default function BookItem({ book }) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <div style={{ width: 300, margin: "auto" }}>
+    <div style={{ height: 528.8, width: 300, margin: "auto" }}>
       <Card shadow="sm" p="md" withBorder>
         <Card.Section>
           <a
@@ -34,6 +33,7 @@ export default function BookItem({ book }) {
             <Image
               p="md"
               fit="contain"
+              radius="md"
               withPlaceholder
               src={book.volumeInfo?.imageLinks?.thumbnail}
               height={318}
@@ -95,28 +95,25 @@ export default function BookItem({ book }) {
           <BookDetailsModal book={book} />
         </Modal>
 
-        <Grid columns={5}>
-          <Grid.Col span={4}>
-            <Button
-              variant={theme.colorScheme === "dark" ? "outline" : "filled"}
-              color="teal"
-              style={{ marginTop: 14 }}
-              onClick={() => setOpened(true)}
-            >
-              Details
-            </Button>
-          </Grid.Col>
-          <Grid.Col span={1}>
-            <ActionIcon
-              color="gray"
-              variant={theme.colorScheme === "dark" ? "outline" : "default"}
-              size={36}
-              style={{ marginTop: 14 }}
-            >
-              <BookmarkIcon />
-            </ActionIcon>
-          </Grid.Col>
-        </Grid>
+        <SimpleGrid cols={2}>
+          <Button
+            compact
+            variant={theme.colorScheme === "dark" ? "outline" : "filled"}
+            color="blue"
+            style={{ marginTop: 14 }}
+            onClick={() => setOpened(true)}
+          >
+            Details
+          </Button>
+
+          <Button
+            color="gray"
+            style={{ width: 50, marginTop: 14, marginLeft: 100 }}
+            variant={theme.colorScheme === "dark" ? "outline" : "filled"}
+            compact
+            leftIcon={<BookmarkIcon size={14} />}
+          ></Button>
+        </SimpleGrid>
       </Card>
     </div>
   );

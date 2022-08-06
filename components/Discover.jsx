@@ -70,7 +70,7 @@ export default function Discover() {
       <Pagination
         page={pageIndex}
         onChange={setPageIndex}
-        mt="1rem"
+        mt="5rem"
         total={5}
         color="teal"
         position="center"
