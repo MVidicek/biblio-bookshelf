@@ -20,22 +20,26 @@ export default function BookDetailsModal({ book }) {
 
   let categories = ["No Categories"];
   if (book.volumeInfo?.categories) {
-    categories = book.volumeInfo?.categories[0].split(" ");
+    categories = book.volumeInfo?.categories[0]
+      .split(" ")
+      .filter((c) => c.length > 2);
   }
 
   return (
     <Container p={0}>
       <SimpleGrid
+        spacing="xl"
         cols={2}
-        spacing="md"
         breakpoints={[{ maxWidth: "sm", cols: 1 }]}
       >
         <Image
-          fit="contain"
+          fit="cover"
           withPlaceholder
-          radius="md"
+          height={520}
+          radius="sm"
           sx={{
             "@media (max-width: 768px)": {
+              display: "none",
               width: 250,
               justifySelf: "center",
             },
@@ -43,7 +47,22 @@ export default function BookDetailsModal({ book }) {
           src={book.volumeInfo?.imageLinks?.thumbnail}
           alt={book.volumeInfo?.title}
         />
-        <Stack>
+        <Image
+          fit="cover"
+          withPlaceholder
+          radius="sm"
+          sx={{
+            display: "none",
+            "@media (max-width: 768px)": {
+              display: "block",
+              width: 200,
+              justifySelf: "center",
+            },
+          }}
+          src={book.volumeInfo?.imageLinks?.thumbnail}
+          alt={book.volumeInfo?.title}
+        />
+        <Stack spacing="md">
           <Text transform="uppercase" size="xl" weight={700} color="teal">
             {book.volumeInfo?.title}
           </Text>
@@ -55,38 +74,38 @@ export default function BookDetailsModal({ book }) {
           <Text size="md" weight={200} color="gray">
             {book.volumeInfo?.publisher}
             {book.volumeInfo?.publishedDate ? " | " : ""}
-            {book.volumeInfo?.publishedDate}
+            {book.volumeInfo?.publishedDate.slice(0, 4)}
           </Text>
-          <Text size="sm" weight={200} color="blue">
+          <Text size="sm" weight={200} color="gray">
             Pages: {book.volumeInfo?.pageCount}
           </Text>
-          <ScrollArea
-            style={{
-              height: 150,
-              border: "1px solid rgba(0, 200, 255, .1)",
-              borderRadius: "5px",
-              padding: "10px",
-              backgroundColor: "rgba(0, 200, 255, .02)",
-            }}
-            type="always"
-          >
-            <Text size="sm">{book.volumeInfo?.description}</Text>
-          </ScrollArea>
           <SimpleGrid cols={categories.length}>
             {categories &&
               categories.map((category) => {
                 return (
                   <Badge
                     key={category}
-                    color="blue"
-                    variant={theme.colorScheme === "dark" ? "outline" : "light"}
+                    radius="sm"
+                    color="gray"
+                    variant={theme.colorScheme === "dark" ? "light" : "light"}
                   >
                     {category.replace(",", "")}
                   </Badge>
                 );
               })}
           </SimpleGrid>
-          <Container>
+          <ScrollArea
+            style={{
+              height: 150,
+              border: "1px solid rgba(255, 255, 255, .1)",
+              borderRadius: "5px",
+              padding: "10px",
+            }}
+            type="always"
+          >
+            <Text size="sm">{book.volumeInfo?.description}</Text>
+          </ScrollArea>
+          <Container p={0}>
             <Stack mt="lg">
               <Button
                 color="blue"

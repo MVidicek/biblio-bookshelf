@@ -22,7 +22,13 @@ export default function BookItem({ book }) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <div style={{ height: 528.8, width: 300, margin: "auto" }}>
+    <div
+      style={{
+        height: 528.8,
+        width: 300,
+        margin: "auto",
+      }}
+    >
       <Card shadow="sm" p="md" withBorder>
         <Card.Section>
           <a
@@ -32,8 +38,8 @@ export default function BookItem({ book }) {
           >
             <Image
               p="md"
-              fit="contain"
-              radius="md"
+              fit="cover"
+              radius="sm"
               withPlaceholder
               src={book.volumeInfo?.imageLinks?.thumbnail}
               height={318}
@@ -42,6 +48,7 @@ export default function BookItem({ book }) {
           </a>
         </Card.Section>
         <Text
+          color="teal"
           style={{
             marginBottom: 5,
             textAlign: "center",
@@ -60,15 +67,15 @@ export default function BookItem({ book }) {
           <Badge
             color="blue"
             sx={{ paddingLeft: 3, maxWidth: "50%" }}
-            variant={theme.colorScheme === "dark" ? "outline" : "light"}
+            variant=""
             leftSection={<PersonIcon style={{ paddingTop: 4 }} />}
           >
             {book.volumeInfo?.authors[0]}
           </Badge>
           <Badge
-            color="gray"
+            color="blue"
             sx={{ paddingLeft: 3 }}
-            variant={theme.colorScheme === "dark" ? "outline" : "light"}
+            variant=""
             leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
           >
             {book.volumeInfo?.publishedDate?.slice(0, 4)}
@@ -78,9 +85,14 @@ export default function BookItem({ book }) {
         <Text
           size="xs"
           lineClamp={3}
-          style={{ color: secondaryColor, lineHeight: 1.5, marginTop: 10 }}
+          style={{
+            color: secondaryColor,
+            lineHeight: 1.5,
+            marginTop: 10,
+            height: 54,
+          }}
         >
-          {book.searchInfo?.textSnippet}
+          {book.volumeInfo?.description}
         </Text>
 
         <Modal
@@ -91,6 +103,8 @@ export default function BookItem({ book }) {
           transition="scale"
           overlayOpacity={0.55}
           overlayBlur={3}
+          ml="md"
+          withCloseButton={false}
         >
           <BookDetailsModal book={book} />
         </Modal>
@@ -98,9 +112,9 @@ export default function BookItem({ book }) {
         <SimpleGrid cols={2}>
           <Button
             compact
-            variant={theme.colorScheme === "dark" ? "outline" : "filled"}
-            color="blue"
-            style={{ marginTop: 14 }}
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+            color="teal"
+            style={{ marginTop: 15 }}
             onClick={() => setOpened(true)}
           >
             Details
@@ -108,10 +122,10 @@ export default function BookItem({ book }) {
 
           <Button
             color="gray"
-            style={{ width: 50, marginTop: 14, marginLeft: 100 }}
-            variant={theme.colorScheme === "dark" ? "outline" : "filled"}
+            style={{ width: 50, marginTop: 14, marginLeft: 105 }}
+            variant={theme.colorScheme === "dark" ? "outline" : "light"}
             compact
-            leftIcon={<BookmarkIcon size={14} />}
+            leftIcon={<BookmarkIcon size={15} />}
           ></Button>
         </SimpleGrid>
       </Card>

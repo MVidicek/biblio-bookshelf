@@ -59,10 +59,7 @@ export default function Discover() {
         ]}
       >
         {books.map((book) => {
-          if (
-            Object.hasOwn(book.volumeInfo, "authors") &&
-            Object.hasOwn(book, "searchInfo")
-          ) {
+          if (Object.hasOwn(book.volumeInfo, "authors")) {
             return <BookItem key={book.id} book={book} />;
           }
         })}
