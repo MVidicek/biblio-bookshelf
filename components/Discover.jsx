@@ -17,8 +17,8 @@ export default function Discover() {
     if (books) {
       setLoading(false);
     }
+    console.log(books);
   }, [books]);
-  console.log(books);
 
   if (loading)
     return (

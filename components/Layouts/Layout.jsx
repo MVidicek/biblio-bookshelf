@@ -157,7 +157,7 @@ function Layout({ children }) {
                       <form onSubmit={form.onSubmit(handleSearch)}>
                         <TextInput
                           icon={<MagnifyingGlassIcon />}
-                          placeholder="Search..."
+                          placeholder={search ? search : "Search..."}
                           type="search"
                           {...form.getInputProps("searchText")}
                           size="sm"

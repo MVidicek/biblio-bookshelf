@@ -13,10 +13,15 @@ import {
   ReaderIcon,
   CheckCircledIcon,
   BookmarkIcon,
-  StarIcon,
+  BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
+import setBookmark from "../utils/set-bookmark";
 
-export default function BookDetailsModal({ book, isBookmarked }) {
+export default function BookDetailsModal({
+  book,
+  isBookmarked,
+  setIsBookmarked,
+}) {
   const theme = useMantineTheme();
 
   let categories = ["No Categories"];
@@ -25,6 +30,10 @@ export default function BookDetailsModal({ book, isBookmarked }) {
       .split(" ")
       .filter((c) => c.length > 2);
   }
+
+  const handleBookmark = () => {
+    setBookmark(book, isBookmarked, setIsBookmarked);
+  };
 
   return (
     <Container p={0}>
@@ -74,7 +83,9 @@ export default function BookDetailsModal({ book, isBookmarked }) {
           </Text>
           <Text size="md" weight={200} color="gray">
             {book.volumeInfo?.publisher}
-            {book.volumeInfo?.publishedDate ? " | " : ""}
+            {book.volumeInfo?.publishedDate && book.volumeInfo?.publisher
+              ? " | "
+              : ""}
             {book.volumeInfo?.publishedDate?.slice(0, 4)}
           </Text>
           <Text size="sm" weight={200} color="gray">
@@ -82,12 +93,8 @@ export default function BookDetailsModal({ book, isBookmarked }) {
             {book.volumeInfo?.ratingsCount ? " | Ratings: " : ""}
             {book.volumeInfo?.ratingsCount}
           </Text>
-          <Badge
-            rightSection={<StarIcon style={{ marginTop: 5 }} />}
-            variant="dot"
-            radius="sm"
-          >
-            Average Rating | {book.volumeInfo?.averageRating ?? "Unknown"}
+          <Badge variant="dot" radius="sm">
+            Average Rating : {book.volumeInfo?.averageRating ?? "Unknown"}
           </Badge>
           <SimpleGrid cols={categories.length}>
             {categories &&
@@ -138,9 +145,12 @@ export default function BookDetailsModal({ book, isBookmarked }) {
               <Button
                 color={isBookmarked ? "grape" : "gray"}
                 style={{ width: 150 }}
-                variant={isBookmarked ? "filled" : "outline"}
+                variant={isBookmarked ? "light" : "outline"}
                 compact
-                leftIcon={<BookmarkIcon size={14} />}
+                leftIcon={
+                  isBookmarked ? <BookmarkFilledIcon /> : <BookmarkIcon />
+                }
+                onClick={handleBookmark}
               >
                 {isBookmarked ? "Bookmarked" : "Bookmark"}
               </Button>
