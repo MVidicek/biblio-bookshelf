@@ -13,9 +13,10 @@ import {
   ReaderIcon,
   CheckCircledIcon,
   BookmarkIcon,
+  StarIcon,
 } from "@radix-ui/react-icons";
 
-export default function BookDetailsModal({ book }) {
+export default function BookDetailsModal({ book, isBookmarked }) {
   const theme = useMantineTheme();
 
   let categories = ["No Categories"];
@@ -62,7 +63,7 @@ export default function BookDetailsModal({ book }) {
           src={book.volumeInfo?.imageLinks?.thumbnail}
           alt={book.volumeInfo?.title}
         />
-        <Stack spacing="md">
+        <Stack spacing="md" height={520}>
           <Text transform="uppercase" size="xl" weight={700} color="teal">
             {book.volumeInfo?.title}
           </Text>
@@ -74,11 +75,20 @@ export default function BookDetailsModal({ book }) {
           <Text size="md" weight={200} color="gray">
             {book.volumeInfo?.publisher}
             {book.volumeInfo?.publishedDate ? " | " : ""}
-            {book.volumeInfo?.publishedDate.slice(0, 4)}
+            {book.volumeInfo?.publishedDate?.slice(0, 4)}
           </Text>
           <Text size="sm" weight={200} color="gray">
             Pages: {book.volumeInfo?.pageCount}
+            {book.volumeInfo?.ratingsCount ? " | Ratings: " : ""}
+            {book.volumeInfo?.ratingsCount}
           </Text>
+          <Badge
+            rightSection={<StarIcon style={{ marginTop: 5 }} />}
+            variant="dot"
+            radius="sm"
+          >
+            Average Rating | {book.volumeInfo?.averageRating ?? "Unknown"}
+          </Badge>
           <SimpleGrid cols={categories.length}>
             {categories &&
               categories.map((category) => {
@@ -89,7 +99,7 @@ export default function BookDetailsModal({ book }) {
                     color="gray"
                     variant={theme.colorScheme === "dark" ? "light" : "light"}
                   >
-                    {category.replace(",", "")}
+                    {category.replace(",", "").replace("(", "")}
                   </Badge>
                 );
               })}
@@ -106,11 +116,11 @@ export default function BookDetailsModal({ book }) {
             <Text size="sm">{book.volumeInfo?.description}</Text>
           </ScrollArea>
           <Container p={0}>
-            <Stack mt="lg">
+            <Stack>
               <Button
                 color="blue"
                 style={{ width: 150 }}
-                variant={theme.colorScheme === "dark" ? "outline" : "filled"}
+                variant="outline"
                 compact
                 leftIcon={<ReaderIcon size={14} />}
               >
@@ -119,20 +129,20 @@ export default function BookDetailsModal({ book }) {
               <Button
                 color="teal"
                 style={{ width: 150 }}
-                variant={theme.colorScheme === "dark" ? "outline" : "filled"}
+                variant="outline"
                 compact
                 leftIcon={<CheckCircledIcon size={14} />}
               >
                 Add to Finished
               </Button>
               <Button
-                color="gray"
+                color={isBookmarked ? "grape" : "gray"}
                 style={{ width: 150 }}
-                variant={theme.colorScheme === "dark" ? "outline" : "filled"}
+                variant={isBookmarked ? "filled" : "outline"}
                 compact
                 leftIcon={<BookmarkIcon size={14} />}
               >
-                Bookmark
+                {isBookmarked ? "Bookmarked" : "Bookmark"}
               </Button>
             </Stack>
           </Container>

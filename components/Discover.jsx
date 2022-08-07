@@ -4,7 +4,6 @@ import useGlobalState from "../hooks/useGlobalState";
 import { SimpleGrid, Pagination, Loader } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { Cross1Icon } from "@radix-ui/react-icons";
-
 import BookItem from "../components/BookItem";
 
 export default function Discover() {
@@ -50,7 +49,7 @@ export default function Discover() {
   return (
     <div>
       <SimpleGrid
-        spacing="md"
+        spacing="xl"
         breakpoints={[
           { minWidth: 1200, cols: 1 },
           { minWidth: 1400, cols: 2 },

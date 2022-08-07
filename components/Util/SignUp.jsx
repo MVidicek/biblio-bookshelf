@@ -49,7 +49,7 @@ function SignUp() {
         password
       );
 
-      updateProfile(auth.currentUser, { displayName: name });
+      await updateProfile(auth.currentUser, { displayName: name });
 
       const formData = { ...values };
       formData.timestamp = serverTimestamp();

@@ -41,7 +41,7 @@ export default function App(props) {
           withGlobalStyles
           withNormalizeCSS
         >
-          <NotificationsProvider position="top-center" limit={5}>
+          <NotificationsProvider position="bottom-right" limit={5}>
             {/* Add Route Guard */}
 
             {getLayout(<Component {...pageProps} />)}
