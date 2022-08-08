@@ -15,7 +15,7 @@ const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
       });
       showNotification({
         title: "Bookmarked",
-        message: `Bookmarked ${book.volumeInfo?.title}`,
+        message: `${book.volumeInfo?.title}`,
         color: "green",
         icon: <BookmarkIcon />,
       });
@@ -25,7 +25,7 @@ const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
       setIsBookmarked(false);
       showNotification({
         title: "Unbookmarked",
-        message: `Unbookmarked ${book.volumeInfo?.title}`,
+        message: `${book.volumeInfo?.title}`,
         color: "pink",
         icon: <BookmarkIcon />,
       });

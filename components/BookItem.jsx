@@ -55,10 +55,14 @@ export default function BookItem({ book }) {
           >
             <Image
               p="md"
-              fit="cover"
+              fit="contain"
               radius="sm"
               withPlaceholder
-              src={book.volumeInfo?.imageLinks?.thumbnail}
+              src={
+                book.volumeInfo?.imageLinks?.thumbnail
+                  ? book.volumeInfo?.imageLinks?.thumbnail
+                  : `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-M.jpg`
+              }
               height={318}
               alt={book.volumeInfo?.title}
             />

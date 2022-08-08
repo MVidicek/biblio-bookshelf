@@ -54,7 +54,11 @@ export default function BookDetailsModal({
               justifySelf: "center",
             },
           }}
-          src={book.volumeInfo?.imageLinks?.thumbnail}
+          src={
+            book.volumeInfo?.imageLinks?.thumbnail
+              ? book.volumeInfo?.imageLinks?.thumbnail
+              : `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}.jpg`
+          }
           alt={book.volumeInfo?.title}
         />
         <Image
