@@ -3,10 +3,9 @@ import { doc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { showNotification } from "@mantine/notifications";
 import { BookmarkIcon } from "@radix-ui/react-icons";
 
-const user = auth.currentUser;
-
 const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
   try {
+    const user = auth.currentUser;
     if (!isBookmarked) {
       setIsBookmarked(true);
       const docRef = doc(db, "users", user.uid, "bookmarked", book.id);

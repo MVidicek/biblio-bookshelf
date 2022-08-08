@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "@mantine/form";
-import { Button, createStyles, TextInput, Box, Group } from "@mantine/core";
+import { Button, TextInput, Box, Group, useMantineTheme } from "@mantine/core";
 import { PasswordStrength } from "../../utils/password-strength";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
@@ -10,23 +10,8 @@ import { showNotification } from "@mantine/notifications";
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import OAuth from "./OAuth";
 
-const useStyles = createStyles((theme) => ({
-  button: {
-    color: theme.white,
-    backgroundColor: theme.colors.gray[5],
-    border: 0,
-    borderRadius: 5,
-    padding: `10px 10px`,
-    cursor: "pointer",
-
-    "&:hover": {
-      backgroundColor: theme.colors.teal[4],
-    },
-  },
-}));
-
 function SignUp() {
-  const { classes } = useStyles();
+  const theme = useMantineTheme();
 
   const [password, setPassword] = useState("");
   const form = useForm({
@@ -93,7 +78,11 @@ function SignUp() {
         <PasswordStrength password={password} setPassword={setPassword} />
 
         <Group position="center" m="1rem">
-          <Button type="submit" className={classes.button}>
+          <Button
+            type="submit"
+            color={theme.colorScheme === "dark" ? "gray" : "teal"}
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+          >
             Sign Up
           </Button>
           <OAuth></OAuth>

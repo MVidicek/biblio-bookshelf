@@ -2,10 +2,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase.config";
 import { showNotification } from "@mantine/notifications";
 
-const user = auth.currentUser;
-
 const checkIfBookmarked = async (book, setIsBookmarked) => {
   try {
+    const user = auth.currentUser;
     const querySnapshot = await getDocs(
       collection(db, "users", user.uid, "bookmarked")
     );
@@ -17,7 +16,7 @@ const checkIfBookmarked = async (book, setIsBookmarked) => {
   } catch (error) {
     showNotification({
       title: "Error",
-      message: "Could not fetch bookmarked books",
+      message: `Error ${error}`,
       color: "pink",
     });
   }

@@ -2,11 +2,11 @@ import { useRouter } from "next/router";
 import { useForm } from "@mantine/form";
 import {
   Button,
-  createStyles,
   TextInput,
   Box,
   Group,
   PasswordInput,
+  useMantineTheme,
 } from "@mantine/core";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.config";
@@ -14,23 +14,8 @@ import { showNotification } from "@mantine/notifications";
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import OAuth from "./OAuth";
 
-const useStyles = createStyles((theme) => ({
-  button: {
-    color: theme.white,
-    backgroundColor: theme.colors.gray[5],
-    border: 0,
-    borderRadius: 5,
-    padding: `10px 10px`,
-    cursor: "pointer",
-
-    "&:hover": {
-      backgroundColor: theme.colors.teal[4],
-    },
-  },
-}));
-
 function LogIn() {
-  const { classes } = useStyles();
+  const theme = useMantineTheme();
   const router = useRouter();
 
   const form = useForm({
@@ -87,8 +72,12 @@ function LogIn() {
           {...form.getInputProps("password")}
         />
 
-        <Group position="center" m="1rem">
-          <Button type="submit" className={classes.button}>
+        <Group position="center" mt="1.5rem">
+          <Button
+            type="submit"
+            color={theme.colorScheme === "dark" ? "gray" : "teal"}
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+          >
             Log In
           </Button>{" "}
           <OAuth></OAuth>

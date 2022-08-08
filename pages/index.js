@@ -38,34 +38,6 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     justifyContent: "center",
     alignItems: "center",
   },
-
-  button: {
-    color: theme.white,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.gray[7]
-        : theme.colors.teal[3],
-    border: 0,
-    borderRadius: 5,
-    padding: `10px 10px`,
-    cursor: "pointer",
-
-    "&:hover": {
-      backgroundColor: theme.colors.teal[4],
-    },
-
-    "&:not(:first-of-type)": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.gray[7]
-          : theme.colors.cyan[3],
-
-      // pseudo-classes can be nested
-      "&:hover": {
-        backgroundColor: theme.colors.cyan[4],
-      },
-    },
-  },
 }));
 
 export default function Home() {
@@ -125,6 +97,7 @@ export default function Home() {
           opened={opened}
           onClose={() => setOpened(false)}
           centered
+          title={modalType === "login" ? "Log In" : "Sign Up"}
           overlayColor={
             theme.colorScheme === "dark"
               ? theme.colors.dark[9]
@@ -141,20 +114,22 @@ export default function Home() {
 
         <Group position="center">
           <Button
+            color={theme.colorScheme === "dark" ? "gray" : "teal"}
             onClick={() => {
               setOpened(true);
               setModalType("login");
             }}
-            className={classes.button}
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
           >
             Log In
           </Button>
           <Button
+            color={theme.colorScheme === "dark" ? "gray" : "teal"}
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
             onClick={() => {
               setOpened(true);
               setModalType("signup");
             }}
-            className={classes.button}
           >
             Sign Up
           </Button>

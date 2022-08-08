@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   AppShell,
   Header,
@@ -7,8 +7,8 @@ import {
   ActionIcon,
   useMantineColorScheme,
   ThemeIcon,
-} from '@mantine/core';
-import { SunIcon, MoonIcon, BookmarkIcon } from '@radix-ui/react-icons';
+} from "@mantine/core";
+import { SunIcon, MoonIcon, BookmarkIcon } from "@radix-ui/react-icons";
 
 export default function HomeLayout({ children }) {
   const theme = useMantineTheme();
@@ -19,54 +19,54 @@ export default function HomeLayout({ children }) {
       styles={{
         main: {
           background:
-            theme.colorScheme === 'dark'
+            theme.colorScheme === "dark"
               ? theme.colors.dark[8]
               : theme.colors.gray[0],
         },
       }}
-      navbarOffsetBreakpoint='sm'
-      asideOffsetBreakpoint='sm'
+      navbarOffsetBreakpoint="sm"
+      asideOffsetBreakpoint="sm"
       fixed
       header={
-        <Header height={70} p='md'>
+        <Header height={70} p="md">
           <div
-            style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+            style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
             <ThemeIcon
-              mr='xs'
+              mr="xs"
               size={29}
-              color='teal'
-              variant={theme.colorScheme === 'dark' ? 'outline' : 'filled'}
+              color="teal"
+              variant={theme.colorScheme === "dark" ? "outline" : "filled"}
             >
               <BookmarkIcon />
             </ThemeIcon>
             <Text
-              size='lg'
+              size="lg"
               color={
-                theme.colorScheme === 'dark'
+                theme.colorScheme === "dark"
                   ? theme.colors.dark[0]
                   : theme.colors.teal[4]
               }
               weight={500}
               style={{
-                fontFamily: 'Greycliff CF, sans-serif',
-                border: '1px solid',
+                fontFamily: "Greycliff CF, sans-serif",
+                border: "1px solid",
                 borderColor: theme.colors.teal[4],
-                borderRadius: '5px',
-                padding: '5px',
-                paddingBottom: '0px',
-                paddingTop: '0px',
+                borderRadius: "5px",
+                padding: "5px",
+                paddingBottom: "0px",
+                paddingTop: "0px",
               }}
             >
               BIBLIO
             </Text>
             <ActionIcon
-              variant='default'
+              variant="outline"
+              color={colorScheme === "dark" ? "yellow" : "dark"}
               onClick={() => toggleColorScheme()}
-              size={30}
-              style={{ marginLeft: 'auto', marginRight: '0px' }}
+              style={{ marginLeft: "auto", marginRight: "0px" }}
             >
-              {colorScheme === 'dark' ? <SunIcon /> : <MoonIcon />}
+              {colorScheme === "dark" ? <SunIcon /> : <MoonIcon />}
             </ActionIcon>
           </div>
         </Header>
