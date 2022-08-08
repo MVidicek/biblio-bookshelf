@@ -172,9 +172,9 @@ function Layout({ children }) {
               </Transition>
             ) : null}
             <ActionIcon
-              variant="default"
+              variant="outline"
+              color={colorScheme === "dark" ? "yellow" : "dark"}
               onClick={() => toggleColorScheme()}
-              size={30}
               style={{ marginLeft: "auto", marginRight: "0px" }}
             >
               {colorScheme === "dark" ? <SunIcon /> : <MoonIcon />}

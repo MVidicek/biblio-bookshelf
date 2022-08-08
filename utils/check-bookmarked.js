@@ -19,7 +19,6 @@ const checkIfBookmarked = async (book, setIsBookmarked) => {
       title: "Error",
       message: "Could not fetch bookmarked books",
       color: "pink",
-      icon: <Cross1Icon />,
     });
   }
 };
