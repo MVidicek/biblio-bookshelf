@@ -31,7 +31,7 @@ export default function BookItem({ book }) {
 
   // Check if book is bookmarked
   useEffect(() => {
-    checkIfBookmarked(book, setIsBookmarked);
+    checkIfBookmarked(book.id, setIsBookmarked);
   }, [isBookmarked]);
 
   const handleBookmark = () => {

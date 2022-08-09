@@ -2,15 +2,15 @@ import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase.config";
 import { showNotification } from "@mantine/notifications";
 
-const checkIfBookmarked = async (id, setIsBookmarked) => {
+const checkIfReading = async (id, setIsReading) => {
   try {
     const user = auth.currentUser;
     const querySnapshot = await getDocs(
-      collection(db, "users", user.uid, "bookmarked")
+      collection(db, "users", user.uid, "reading")
     );
     querySnapshot.forEach((doc) => {
       if (doc.data().bookId === id) {
-        setIsBookmarked(true);
+        setIsReading(true);
       }
     });
   } catch (error) {
@@ -22,4 +22,4 @@ const checkIfBookmarked = async (id, setIsBookmarked) => {
   }
 };
 
-export default checkIfBookmarked;
+export default checkIfReading;

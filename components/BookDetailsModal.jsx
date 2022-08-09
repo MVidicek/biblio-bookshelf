@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Container,
   SimpleGrid,
@@ -16,6 +17,8 @@ import {
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
 import setBookmark from "../utils/set-bookmark";
+import setReading from "../utils/set-reading";
+import checkIfReading from "../utils/check-reading";
 
 export default function BookDetailsModal({
   book,
@@ -23,6 +26,7 @@ export default function BookDetailsModal({
   setIsBookmarked,
 }) {
   const theme = useMantineTheme();
+  const [isReading, setIsReading] = useState(false);
 
   let categories = ["No Categories"];
   if (book.volumeInfo?.categories) {
@@ -31,8 +35,16 @@ export default function BookDetailsModal({
       .filter((c) => c.length > 2);
   }
 
+  useEffect(() => {
+    checkIfReading(book.id, setIsReading);
+  }, [isReading]);
+
   const handleBookmark = () => {
     setBookmark(book, isBookmarked, setIsBookmarked);
+  };
+
+  const handleReading = () => {
+    setReading(book, isReading, setIsReading);
   };
 
   return (
@@ -131,11 +143,12 @@ export default function BookDetailsModal({
               <Button
                 color="blue"
                 style={{ width: 150 }}
-                variant="outline"
+                variant={isReading ? "light" : "outline"}
                 compact
                 leftIcon={<ReaderIcon size={14} />}
+                onClick={handleReading}
               >
-                Add to Reading
+                {isReading ? "Reading" : "Add to Reading"}
               </Button>
               <Button
                 color="teal"

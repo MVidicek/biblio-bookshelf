@@ -1,34 +1,34 @@
 import { auth, db } from "../firebase.config";
 import { doc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { showNotification } from "@mantine/notifications";
-import { BookmarkIcon } from "@radix-ui/react-icons";
+import { ReaderIcon } from "@radix-ui/react-icons";
 
-const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
+const setReading = async (book, isReading, setIsReading) => {
   try {
     const user = auth.currentUser;
-    if (!isBookmarked) {
-      setIsBookmarked(true);
-      const docRef = doc(db, "users", user.uid, "bookmarked", book.id);
+    if (!isReading) {
+      setIsReading(true);
+      const docRef = doc(db, "users", user.uid, "reading", book.id);
       await setDoc(docRef, {
         bookId: book.id,
         isbn: book.volumeInfo?.industryIdentifiers[0].identifier,
         createdAt: serverTimestamp(),
       });
       showNotification({
-        title: "Bookmarked",
+        title: "Reading",
         message: `${book.volumeInfo?.title}`,
         color: "green",
-        icon: <BookmarkIcon />,
+        icon: <ReaderIcon />,
       });
       console.log(docRef);
     } else {
-      await deleteDoc(doc(db, "users", user.uid, "bookmarked", book.id));
-      setIsBookmarked(false);
+      await deleteDoc(doc(db, "users", user.uid, "reading", book.id));
+      setIsReading(false);
       showNotification({
-        title: "Removed from Bookmarks",
+        title: "Removed from Reading",
         message: `${book.volumeInfo?.title}`,
         color: "pink",
-        icon: <BookmarkIcon />,
+        icon: <ReaderIcon />,
       });
     }
   } catch (error) {
@@ -40,4 +40,4 @@ const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
   }
 };
 
-export default setBookmark;
+export default setReading;
