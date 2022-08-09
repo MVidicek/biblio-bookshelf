@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Container,
   SimpleGrid,
@@ -18,15 +17,18 @@ import {
 } from "@radix-ui/react-icons";
 import setBookmark from "../utils/set-bookmark";
 import setReading from "../utils/set-reading";
-import checkIfReading from "../utils/check-reading";
+import setFinished from "../utils/set-finished";
 
 export default function BookDetailsModal({
   book,
   isBookmarked,
   setIsBookmarked,
+  isReading,
+  setIsReading,
+  isFinished,
+  setIsFinished,
 }) {
   const theme = useMantineTheme();
-  const [isReading, setIsReading] = useState(false);
 
   let categories = ["No Categories"];
   if (book.volumeInfo?.categories) {
@@ -35,16 +37,16 @@ export default function BookDetailsModal({
       .filter((c) => c.length > 2);
   }
 
-  useEffect(() => {
-    checkIfReading(book.id, setIsReading);
-  }, [isReading]);
-
   const handleBookmark = () => {
     setBookmark(book, isBookmarked, setIsBookmarked);
   };
 
   const handleReading = () => {
     setReading(book, isReading, setIsReading);
+  };
+
+  const handleFinished = () => {
+    setFinished(book, isFinished, setIsFinished);
   };
 
   return (
@@ -153,11 +155,12 @@ export default function BookDetailsModal({
               <Button
                 color="teal"
                 style={{ width: 150 }}
-                variant="outline"
+                variant={isFinished ? "light" : "outline"}
                 compact
                 leftIcon={<CheckCircledIcon size={14} />}
+                onClick={handleFinished}
               >
-                Add to Finished
+                {isFinished ? "Finished" : "Add to Finished"}
               </Button>
               <Button
                 color={isBookmarked ? "grape" : "gray"}
