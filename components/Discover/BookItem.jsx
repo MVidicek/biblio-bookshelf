@@ -10,17 +10,17 @@ import {
   Modal,
   SimpleGrid,
 } from "@mantine/core";
-import BookDetailsModal from "../components/BookDetailsModal";
+import BookDetailsModal from "./BookDetailsModal";
 import {
   PersonIcon,
   CalendarIcon,
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
-import setBookmark from "../utils/set-bookmark";
-import checkIfBookmarked from "../utils/check-bookmarked";
-import checkIfReading from "../utils/check-reading";
-import checkIfFinished from "../utils/check-finished";
+import setBookmark from "../../utils/set-bookmark";
+import checkIfBookmarked from "../../utils/check-bookmarked";
+import checkIfReading from "../../utils/check-reading";
+import checkIfFinished from "../../utils/check-finished";
 
 export default function BookItem({ book }) {
   const theme = useMantineTheme();

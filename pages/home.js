@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Stack, SimpleGrid } from "@mantine/core";
 import Profile from "../components/Profile";
-import Discover from "../components/Discover";
+import Discover from "../components/Discover/Discover";
 import Finished from "../components/Finished";
 import Bookmarked from "../components/Bookmarked";
 import Reading from "../components/Reading";

@@ -23,8 +23,8 @@ import {
   BookmarkIcon,
   MagnifyingGlassIcon,
 } from "@radix-ui/react-icons";
-import { MainLinks } from "../MainLinks";
-import { User } from "../Util/User";
+import { MainLinks } from "./MainLinks";
+import { User } from "./User";
 import useGlobalState from "../../hooks/useGlobalState";
 
 function Layout({ children }) {

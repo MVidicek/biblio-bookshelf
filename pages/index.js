@@ -11,8 +11,8 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import LogInLayout from "../components/Layouts/LogInLayout";
-import LogIn from "../components/Util/LogIn";
-import SignUp from "../components/Util/SignUp";
+import LogIn from "../components/Auth/LogIn";
+import SignUp from "../components/Auth/SignUp";
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   main: {
