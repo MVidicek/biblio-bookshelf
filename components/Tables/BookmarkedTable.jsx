@@ -10,8 +10,9 @@ import {
   useMantineTheme,
   Badge,
 } from "@mantine/core";
-import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
+import removeBookmark from "../../utils/remove-bookmark";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {
@@ -22,7 +23,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function BookmarkedTable({ data }) {
+export function BookmarkedTable({ data, setLoading }) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const [selection, setSelection] = useState(["1"]);
@@ -39,6 +40,10 @@ export function BookmarkedTable({ data }) {
 
   const rows = data.map((item) => {
     const selected = selection.includes(item.bookId);
+    const handleRemove = () => {
+      removeBookmark(item);
+      setLoading(true);
+    };
     return (
       <tr key={item.bookId} className={cx({ [classes.rowSelected]: selected })}>
         <td>
@@ -59,15 +64,7 @@ export function BookmarkedTable({ data }) {
           </Badge>
         </td>
         <td>
-          <Text size="sm" weight={500}>
-            {item.authors.join(", ")}
-          </Text>
-        </td>
-        <td>{item.publisher}</td>
-        <td>{item.publishedDate}</td>
-        <td>
           <Badge
-            style={{ marginLeft: 7 }}
             radius="sm"
             color={item.averageRating > 3 ? "green" : "red"}
             variant={theme.colorScheme === "dark" ? "light" : "filled"}
@@ -75,6 +72,13 @@ export function BookmarkedTable({ data }) {
             {item.averageRating}
           </Badge>
         </td>
+        <td>
+          <Text size="sm" weight={500}>
+            {item.authors.join(", ")}
+          </Text>
+        </td>
+        <td>{item.publisher}</td>
+        <td>{item.publishedDate}</td>
         <td>
           <Badge
             radius="sm"
@@ -87,13 +91,14 @@ export function BookmarkedTable({ data }) {
         <td>{format(item.createdAt.toDate(), "dd-MM-yy")}</td>
         <td>
           <Button
-            color="grape"
+            color="pink"
+            redius="sm"
             compact
             variant={theme.colorScheme === "dark" ? "light" : "filled"}
-            style={{ width: 50 }}
             type="button"
+            onClick={handleRemove}
           >
-            <BookmarkFilledIcon />
+            <Cross2Icon />
           </Button>
         </td>
       </tr>
@@ -117,13 +122,13 @@ export function BookmarkedTable({ data }) {
             </th>
             <th></th>
             <th>Title</th>
+            <th></th>
             <th>Authors</th>
             <th>Publisher</th>
             <th>Year</th>
-            <th>Rating</th>
             <th>Categories</th>
             <th>Added</th>
-            <th>Remove</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

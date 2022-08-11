@@ -15,11 +15,9 @@ export default function Bookmarked() {
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [loading]);
 
   if (loading)
     return (
@@ -35,7 +33,7 @@ export default function Bookmarked() {
 
   return (
     <div>
-      <BookmarkedTable data={books} />
+      <BookmarkedTable data={books} setLoading={setLoading} />
     </div>
   );
 }
