@@ -15,7 +15,6 @@ import {
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
-import formatCategories from "../../utils/format-categories";
 import setBookmark from "../../utils/set-bookmark";
 import setReading from "../../utils/set-reading";
 import setFinished from "../../utils/set-finished";
@@ -30,11 +29,6 @@ export default function BookDetailsModal({
   setIsFinished,
 }) {
   const theme = useMantineTheme();
-
-  let categories = ["No Categories"];
-  if (book.volumeInfo?.categories) {
-    categories = formatCategories(book.volumeInfo.categories[0]);
-  }
 
   const handleBookmark = () => {
     setBookmark(book, isBookmarked, setIsBookmarked);
@@ -113,20 +107,14 @@ export default function BookDetailsModal({
           <Badge variant="dot" radius="sm">
             Average Rating : {book.volumeInfo?.averageRating ?? "Unknown"}
           </Badge>
-          <SimpleGrid cols={categories.length}>
-            {categories &&
-              categories.map((category) => {
-                return (
-                  <Badge
-                    key={category}
-                    radius="sm"
-                    color="gray"
-                    variant={theme.colorScheme === "dark" ? "light" : "light"}
-                  >
-                    {category}
-                  </Badge>
-                );
-              })}
+          <SimpleGrid cols={1}>
+            <Badge
+              radius="sm"
+              color="gray"
+              variant={theme.colorScheme === "dark" ? "light" : "light"}
+            >
+              {book.volumeInfo?.categories || "No Categories"}
+            </Badge>
           </SimpleGrid>
           <ScrollArea
             style={{

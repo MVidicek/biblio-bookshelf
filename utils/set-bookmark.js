@@ -2,7 +2,6 @@ import { auth, db } from "../firebase.config";
 import { doc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { showNotification } from "@mantine/notifications";
 import { BookmarkIcon } from "@radix-ui/react-icons";
-import formatCategories from "./format-categories";
 
 const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
   try {
@@ -13,18 +12,19 @@ const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
       await setDoc(docRef, {
         bookId: book.id,
         isbn: book.volumeInfo?.industryIdentifiers[0].identifier,
-        etag: book.etag || 0,
+        etag: book.etag || "",
         title: book.volumeInfo?.title || "/",
         authors: book.volumeInfo?.authors || ["/"],
         publisher: book.volumeInfo?.publisher || "/",
         publishedDate: book.volumeInfo?.publishedDate.slice(0, 4) || "/",
+        language: book.volumeInfo?.language || "/",
         description: book.volumeInfo?.description || "/",
         imageLinks:
           book.volumeInfo?.imageLinks?.thumbnail ||
           `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-S.jpg`,
         pageCount: book.volumeInfo?.pageCount || "/",
         averageRating: book.volumeInfo?.averageRating || "/",
-        categories: formatCategories(book.volumeInfo?.categories[0]) || ["/"],
+        categories: book.volumeInfo?.categories[0] || "/",
         createdAt: serverTimestamp(),
       });
       showNotification({

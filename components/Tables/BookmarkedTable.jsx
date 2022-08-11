@@ -4,13 +4,11 @@ import {
   Table,
   Checkbox,
   ScrollArea,
-  Group,
   Avatar,
   Text,
   Button,
   useMantineTheme,
   Badge,
-  SimpleGrid,
 } from "@mantine/core";
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
@@ -51,28 +49,40 @@ export function BookmarkedTable({ data }) {
           />
         </td>
         <td>
-          <Group spacing="sm">
-            <Avatar size={52} src={item.imageLinks} radius={6} />
-            <Text size="sm" weight={500}>
+          <Avatar size="lg" src={item.imageLinks} radius={6} />
+        </td>
+        <td>
+          <Badge radius="sm" color="blue" variant="dot">
+            <Text size="xs" weight={400}>
               {item.title}
             </Text>
-          </Group>
+          </Badge>
         </td>
-        <td>{item.authors.join(", ")}</td>
+        <td>
+          <Text size="sm" weight={500}>
+            {item.authors.join(", ")}
+          </Text>
+        </td>
         <td>{item.publisher}</td>
         <td>{item.publishedDate}</td>
-        <td>{item.averageRating}</td>
         <td>
-          <SimpleGrid cols={item.categories.length}>
-            {item.categories &&
-              item.categories.map((category) => {
-                return (
-                  <Badge key={category} radius="sm" color="teal" variant="dot">
-                    {category}
-                  </Badge>
-                );
-              })}
-          </SimpleGrid>
+          <Badge
+            style={{ marginLeft: 7 }}
+            radius="sm"
+            color={item.averageRating > 3 ? "green" : "red"}
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+          >
+            {item.averageRating}
+          </Badge>
+        </td>
+        <td>
+          <Badge
+            radius="sm"
+            color="gray"
+            variant={theme.colorScheme === "dark" ? "light" : "outline"}
+          >
+            {item.categories}
+          </Badge>
         </td>
         <td>{format(item.createdAt.toDate(), "dd-MM-yy")}</td>
         <td>
@@ -105,6 +115,7 @@ export function BookmarkedTable({ data }) {
                 transitionDuration={0}
               />
             </th>
+            <th></th>
             <th>Title</th>
             <th>Authors</th>
             <th>Publisher</th>
