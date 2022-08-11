@@ -2,175 +2,82 @@ import { useState } from "react";
 import {
   createStyles,
   Table,
+  Checkbox,
   ScrollArea,
-  UnstyledButton,
   Group,
+  Avatar,
   Text,
-  Center,
-  TextInput,
 } from "@mantine/core";
-import { keys } from "@mantine/utils";
-import {
-  MagnifyingGlassIcon,
-  CaretDownIcon,
-  CaretUpIcon,
-  CaretSortIcon,
-} from "@radix-ui/react-icons";
 
 const useStyles = createStyles((theme) => ({
-  th: {
-    padding: "0 !important",
-  },
-
-  control: {
-    width: "100%",
-    padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
-
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
-  },
-
-  icon: {
-    width: 21,
-    height: 21,
-    borderRadius: 21,
+  rowSelected: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
+        : theme.colors[theme.primaryColor][0],
   },
 }));
 
-function Th({ children, reversed, sorted, onSort }) {
-  const { classes } = useStyles();
-  const Icon = sorted
-    ? reversed
-      ? CaretUpIcon
-      : CaretDownIcon
-    : CaretSortIcon;
-  return (
-    <th className={classes.th}>
-      <UnstyledButton onClick={onSort} className={classes.control}>
-        <Group position="apart">
-          <Text weight={500} size="sm">
-            {children}
-          </Text>
-          <Center className={classes.icon}>
-            <Icon />
-          </Center>
-        </Group>
-      </UnstyledButton>
-    </th>
-  );
-}
-
-function filterData(data, search) {
-  const query = search.toLowerCase().trim();
-  return data.filter((item) =>
-    keys(data[0]).some((key) => item[key].toLowerCase().includes(query))
-  );
-}
-
-function sortData(data, payload) {
-  const { sortBy } = payload;
-
-  if (!sortBy) {
-    return filterData(data, payload.search);
-  }
-
-  return filterData(
-    [...data].sort((a, b) => {
-      if (payload.reversed) {
-        return b[sortBy].localeCompare(a[sortBy]);
-      }
-
-      return a[sortBy].localeCompare(b[sortBy]);
-    }),
-    payload.search
-  );
-}
-
 export function BookmarkedTable({ data }) {
-  const [search, setSearch] = useState("");
-  const [sortedData, setSortedData] = useState(data);
-  const [sortBy, setSortBy] = useState(null);
-  const [reverseSortDirection, setReverseSortDirection] = useState(false);
-
-  const setSorting = (field) => {
-    const reversed = field === sortBy ? !reverseSortDirection : false;
-    setReverseSortDirection(reversed);
-    setSortBy(field);
-    setSortedData(sortData(data, { sortBy: field, reversed, search }));
-  };
-
-  const handleSearchChange = (event) => {
-    const { value } = event.currentTarget;
-    setSearch(value);
-    setSortedData(
-      sortData(data, { sortBy, reversed: reverseSortDirection, search: value })
+  const { classes, cx } = useStyles();
+  const [selection, setSelection] = useState(["1"]);
+  const toggleRow = (id) =>
+    setSelection((current) =>
+      current.includes(id)
+        ? current.filter((item) => item !== id)
+        : [...current, id]
     );
-  };
+  const toggleAll = () =>
+    setSelection((current) =>
+      current.length === data.length ? [] : data.map((item) => item.bookId)
+    );
 
-  const rows = sortedData.map((row) => (
-    <tr key={row.bookId}>
-      <td>{row.bookId}</td>
-      <td>{row.createdAt.toDate().toDateString()}</td>
-      <td>{row.isbn}</td>
-    </tr>
-  ));
+  const rows = data.map((item) => {
+    const selected = selection.includes(item.bookId);
+    return (
+      <tr key={item.bookId} className={cx({ [classes.rowSelected]: selected })}>
+        <td>
+          <Checkbox
+            checked={selection.includes(item.bookId)}
+            onChange={() => toggleRow(item.bookId)}
+            transitionDuration={0}
+          />
+        </td>
+        <td>
+          <Group spacing="sm">
+            <Avatar size={26} src={item.avatar} radius={26} />
+            <Text size="sm" weight={500}>
+              {item.bookId}
+            </Text>
+          </Group>
+        </td>
+        <td>{item.isbn}</td>
+        <td>{item.createdAt.toString()}</td>
+      </tr>
+    );
+  });
 
   return (
     <ScrollArea>
-      <TextInput
-        placeholder="Search by any field"
-        mb="md"
-        icon={<MagnifyingGlassIcon />}
-        value={search}
-        onChange={handleSearchChange}
-      />
-      <Table
-        horizontalSpacing="md"
-        verticalSpacing="xs"
-        sx={{ tableLayout: "fixed", minWidth: 700 }}
-      >
+      <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
         <thead>
           <tr>
-            <Th
-              sorted={sortBy === "bookId"}
-              reversed={reverseSortDirection}
-              onSort={() => setSorting("bookId")}
-            >
-              Book ID
-            </Th>
-            <Th
-              sorted={sortBy === "createdAt"}
-              reversed={reverseSortDirection}
-              onSort={() => setSorting("createdAt")}
-            >
-              Created At
-            </Th>
-            <Th
-              sorted={sortBy === "isbn"}
-              reversed={reverseSortDirection}
-              onSort={() => setSorting("isbn")}
-            >
-              ISBN
-            </Th>
+            <th style={{ width: 40 }}>
+              <Checkbox
+                onChange={toggleAll}
+                checked={selection.length === data.length}
+                indeterminate={
+                  selection.length > 0 && selection.length !== data.length
+                }
+                transitionDuration={0}
+              />
+            </th>
+            <th>Title</th>
+            <th>Email</th>
+            <th>Job</th>
           </tr>
         </thead>
-        <tbody>
-          {rows.length > 0 ? (
-            rows
-          ) : (
-            <tr>
-              <td colSpan={Object.keys(data[0]).length}>
-                <Text weight={500} align="center">
-                  Nothing found
-                </Text>
-              </td>
-            </tr>
-          )}
-        </tbody>
+        <tbody>{rows}</tbody>
       </Table>
     </ScrollArea>
   );

@@ -15,6 +15,7 @@ import {
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
+import formatCategories from "../../utils/format-categories";
 import setBookmark from "../../utils/set-bookmark";
 import setReading from "../../utils/set-reading";
 import setFinished from "../../utils/set-finished";
@@ -32,9 +33,7 @@ export default function BookDetailsModal({
 
   let categories = ["No Categories"];
   if (book.volumeInfo?.categories) {
-    categories = book.volumeInfo?.categories[0]
-      .split(" ")
-      .filter((c) => c.length > 2);
+    categories = formatCategories(book.volumeInfo.categories[0]);
   }
 
   const handleBookmark = () => {
@@ -124,7 +123,7 @@ export default function BookDetailsModal({
                     color="gray"
                     variant={theme.colorScheme === "dark" ? "light" : "light"}
                   >
-                    {category.replace(",", "").replace("(", "")}
+                    {category}
                   </Badge>
                 );
               })}
