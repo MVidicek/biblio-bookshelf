@@ -14,19 +14,17 @@ const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
         bookId: book.id,
         isbn: book.volumeInfo?.industryIdentifiers[0].identifier,
         etag: book.etag || 0,
-        title: book.volumeInfo?.title || "Unknown",
-        authors: book.volumeInfo?.authors || ["Unknown"],
-        publisher: book.volumeInfo?.publisher || "Unknown",
-        publishedDate: book.volumeInfo?.publishedDate || "Unknown",
-        description: book.volumeInfo?.description || "Unknown",
+        title: book.volumeInfo?.title || "/",
+        authors: book.volumeInfo?.authors || ["/"],
+        publisher: book.volumeInfo?.publisher || "/",
+        publishedDate: book.volumeInfo?.publishedDate.slice(0, 4) || "/",
+        description: book.volumeInfo?.description || "/",
         imageLinks:
           book.volumeInfo?.imageLinks?.thumbnail ||
           `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-S.jpg`,
-        pageCount: book.volumeInfo?.pageCount || "Unknown",
-        averageRating: book.volumeInfo?.averageRating || "Unknown",
-        categories: formatCategories(book.volumeInfo?.categories[0]) || [
-          "Unknown",
-        ],
+        pageCount: book.volumeInfo?.pageCount || "/",
+        averageRating: book.volumeInfo?.averageRating || "/",
+        categories: formatCategories(book.volumeInfo?.categories[0]) || ["/"],
         createdAt: serverTimestamp(),
       });
       showNotification({

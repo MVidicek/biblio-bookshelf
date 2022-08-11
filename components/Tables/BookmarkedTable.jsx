@@ -7,7 +7,13 @@ import {
   Group,
   Avatar,
   Text,
+  Button,
+  useMantineTheme,
+  Badge,
+  SimpleGrid,
 } from "@mantine/core";
+import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {
@@ -20,6 +26,7 @@ const useStyles = createStyles((theme) => ({
 
 export function BookmarkedTable({ data }) {
   const { classes, cx } = useStyles();
+  const theme = useMantineTheme();
   const [selection, setSelection] = useState(["1"]);
   const toggleRow = (id) =>
     setSelection((current) =>
@@ -45,14 +52,40 @@ export function BookmarkedTable({ data }) {
         </td>
         <td>
           <Group spacing="sm">
-            <Avatar size={26} src={item.avatar} radius={26} />
+            <Avatar size={52} src={item.imageLinks} radius={6} />
             <Text size="sm" weight={500}>
-              {item.bookId}
+              {item.title}
             </Text>
           </Group>
         </td>
-        <td>{item.isbn}</td>
-        <td>{item.createdAt.toString()}</td>
+        <td>{item.authors.join(", ")}</td>
+        <td>{item.publisher}</td>
+        <td>{item.publishedDate}</td>
+        <td>{item.averageRating}</td>
+        <td>
+          <SimpleGrid cols={item.categories.length}>
+            {item.categories &&
+              item.categories.map((category) => {
+                return (
+                  <Badge key={category} radius="sm" color="teal" variant="dot">
+                    {category}
+                  </Badge>
+                );
+              })}
+          </SimpleGrid>
+        </td>
+        <td>{format(item.createdAt.toDate(), "dd-MM-yy")}</td>
+        <td>
+          <Button
+            color="grape"
+            compact
+            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+            style={{ width: 50 }}
+            type="button"
+          >
+            <BookmarkFilledIcon />
+          </Button>
+        </td>
       </tr>
     );
   });
@@ -73,8 +106,13 @@ export function BookmarkedTable({ data }) {
               />
             </th>
             <th>Title</th>
-            <th>Email</th>
-            <th>Job</th>
+            <th>Authors</th>
+            <th>Publisher</th>
+            <th>Year</th>
+            <th>Rating</th>
+            <th>Categories</th>
+            <th>Added</th>
+            <th>Remove</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
