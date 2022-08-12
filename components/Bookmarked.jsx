@@ -1,6 +1,6 @@
-import { BookmarkedTable } from "./Tables/BookmarkedTable";
-import fetchDocuments from "../utils/fetch-documents";
-import { useEffect, useState } from "react";
+import { BookmarkedTable } from './Tables/BookmarkedTable';
+import fetchDocuments from '../utils/fetch-documents';
+import { useEffect, useState } from 'react';
 import {
   Loader,
   Container,
@@ -9,22 +9,22 @@ import {
   Title,
   Button,
   useMantineTheme,
-} from "@mantine/core";
-import Lottie from "lottie-react";
-import astronautAnimation from "../assets/Lottie/astronaut.json";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+} from '@mantine/core';
+import Lottie from 'lottie-react';
+import astronautAnimation from '../assets/Lottie/astronaut.json';
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
     padding: theme.spacing.xl * 2,
     borderRadius: theme.radius.md,
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
+      theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
     border: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[3]
+      theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[3]
     }`,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   image: {
-    width: "100%",
+    width: '100%',
     marginTop: 256,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
@@ -51,7 +51,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     lineHeight: 1,
     marginBottom: theme.spacing.md,
@@ -70,7 +70,7 @@ export default function Bookmarked({ setPage }) {
   const theme = useMantineTheme();
 
   useEffect(() => {
-    fetchDocuments("bookmarked")
+    fetchDocuments('bookmarked')
       .then((books) => {
         setBooks(books);
         setLoading(false);
@@ -82,7 +82,7 @@ export default function Bookmarked({ setPage }) {
   }, [loading]);
 
   if (loading)
-    return <Loader size="xl" color="teal" style={{ marginTop: "25%" }} />;
+    return <Loader size='xl' color='teal' style={{ marginTop: '25%' }} />;
 
   if (books.length === 0)
     return (
@@ -90,21 +90,21 @@ export default function Bookmarked({ setPage }) {
         <div className={classes.wrapper}>
           <div className={classes.body}>
             <Title className={classes.title}>
-              Hmm... looks like you haven't bookmarked any books yet.
+              Hmm... looks like you haven&apos;t bookmarked anything yet.
             </Title>
-            <Text weight={500} size="lg" mb={5}>
+            <Text weight={500} size='lg' mb={5}>
               Go to the Discover tab and find some books to bookmark.
             </Text>
-            <Text size="sm" color="dimmed">
+            <Text size='sm' color='dimmed'>
               Then come back here.
             </Text>
 
             <div className={classes.controls}>
               <Button
                 leftIcon={<MagnifyingGlassIcon />}
-                color="teal"
-                variant={theme.colorScheme === "dark" ? "light" : "filled"}
-                onClick={() => setPage("discover")}
+                color='teal'
+                variant={theme.colorScheme === 'dark' ? 'light' : 'filled'}
+                onClick={() => setPage('discover')}
               >
                 Search for books
               </Button>
