@@ -28,8 +28,8 @@ export default function Home({ page, setOpened, setPage }) {
         <ReadingChallenge />
         <Stats
           data={[
-            { label: "reading", part: 25, color: "blue" },
             { label: "finished", part: 25, color: "teal" },
+            { label: "reading", part: 25, color: "cyan" },
             { label: "bookmarked", part: 50, color: "gray" },
           ]}
           diff={12}

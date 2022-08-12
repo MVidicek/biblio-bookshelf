@@ -88,7 +88,7 @@ export function BooksTable({ data, setLoading, collection }) {
             {item.categories}
           </Badge>
         </td>
-        <td>{format(item.createdAt.toDate(), "dd-MM-yy")}</td>
+        <td>{format(item.createdAt.toDate(), "MMM do, yy")}</td>
         <td>
           <Button
             color="pink"

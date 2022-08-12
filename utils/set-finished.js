@@ -2,7 +2,6 @@ import { auth, db } from "../firebase.config";
 import { doc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { showNotification } from "@mantine/notifications";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
-import formatCategories from "./format-categories";
 
 const setFinished = async (book, isFinished, setIsFinished) => {
   try {
@@ -13,20 +12,19 @@ const setFinished = async (book, isFinished, setIsFinished) => {
       await setDoc(docRef, {
         bookId: book.id,
         isbn: book.volumeInfo?.industryIdentifiers[0].identifier,
-        etag: book.etag || 0,
-        title: book.volumeInfo?.title || "Unknown",
-        authors: book.volumeInfo?.authors || ["Unknown"],
-        publisher: book.volumeInfo?.publisher || "Unknown",
-        publishedDate: book.volumeInfo?.publishedDate || "Unknown",
-        description: book.volumeInfo?.description || "Unknown",
+        etag: book.etag || "",
+        title: book.volumeInfo?.title || "/",
+        authors: book.volumeInfo?.authors || ["/"],
+        publisher: book.volumeInfo?.publisher || "/",
+        publishedDate: book.volumeInfo?.publishedDate.slice(0, 4) || "/",
+        language: book.volumeInfo?.language || "/",
+        description: book.volumeInfo?.description || "/",
         imageLinks:
           book.volumeInfo?.imageLinks?.thumbnail ||
           `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-S.jpg`,
-        pageCount: book.volumeInfo?.pageCount || "Unknown",
-        averageRating: book.volumeInfo?.averageRating || "Unknown",
-        categories: formatCategories(book.volumeInfo?.categories[0]) || [
-          "Unknown",
-        ],
+        pageCount: book.volumeInfo?.pageCount || "/",
+        averageRating: book.volumeInfo?.averageRating || "/",
+        categories: book.volumeInfo?.categories[0] || "/",
         createdAt: serverTimestamp(),
       });
       showNotification({

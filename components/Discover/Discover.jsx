@@ -22,13 +22,6 @@ export default function Discover() {
     console.log(books);
   }, [books]);
 
-  if (books === null || books === undefined)
-    return (
-      <Container>
-        <Lottie style={{ width: 512 }} animationData={searchAnimation} />
-      </Container>
-    );
-
   if (loading)
     return <Loader size="xl" color="teal" style={{ marginTop: "25%" }} />;
   if (isError)
@@ -38,6 +31,13 @@ export default function Discover() {
       color: "pink",
       icon: <Cross1Icon />,
     });
+
+  if (books === null || books === undefined)
+    return (
+      <Container>
+        <Lottie style={{ width: 512 }} animationData={searchAnimation} />
+      </Container>
+    );
 
   return (
     <div>

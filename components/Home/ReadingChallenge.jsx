@@ -7,7 +7,7 @@ import {
   Badge,
   Paper,
 } from "@mantine/core";
-import { ReaderIcon } from "@radix-ui/react-icons";
+import { CalendarIcon } from "@radix-ui/react-icons";
 
 const ICON_SIZE = 60;
 
@@ -42,7 +42,7 @@ export function ReadingChallenge() {
         size={ICON_SIZE}
         radius={ICON_SIZE}
       >
-        <ReaderIcon />
+        <CalendarIcon />
       </ThemeIcon>
 
       <Text align="center" weight={700} className={classes.title}>
@@ -57,14 +57,14 @@ export function ReadingChallenge() {
           Progress
         </Text>
         <Text size="sm" color="dimmed">
-          62%
+          50%
         </Text>
       </Group>
 
-      <Progress value={62} mt={5} color="teal" />
+      <Progress value={50} mt={5} color="teal" />
 
       <Group position="apart" mt="md">
-        <Text size="sm">2 / 12 Books</Text>
+        <Text size="sm">6 / 12 Books</Text>
         <Badge color="teal" size="sm">
           214 days left
         </Badge>

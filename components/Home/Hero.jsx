@@ -8,9 +8,9 @@ import {
 } from "@mantine/core";
 import {
   MagnifyingGlassIcon,
-  ReaderIcon,
-  CheckCircledIcon,
-  BookmarkIcon,
+  ArchiveIcon,
+  CalendarIcon,
+  BarChartIcon,
 } from "@radix-ui/react-icons";
 
 const useStyles = createStyles((theme) => ({
@@ -36,21 +36,20 @@ const features = [
       "Google Books API is used to search for books that you want to read.",
   },
   {
-    icon: ReaderIcon,
-    title: "Manage your Reading Progress",
+    icon: ArchiveIcon,
+    title: "Manage your Books",
     description:
-      "Keep track of your reading progress and organize the books you are reading.",
+      "Keep track of the books you are reading, finished, or want to read.",
   },
   {
-    icon: CheckCircledIcon,
-    title: "Organize the Books you have Read",
-    description: "Keep track of your finished books and organize them.",
+    icon: CalendarIcon,
+    title: "Challenge yourself",
+    description: "Create challenges to keep yourself motivated.",
   },
   {
-    icon: BookmarkIcon,
-    title: "Bookmark the Books you wish to read",
-    description:
-      "Keep track of the books you wish to read and easily access them later.",
+    icon: BarChartIcon,
+    title: "Progress Tracking",
+    description: "See how you are doing over time and other useful insights.",
   },
 ];
 

@@ -8,7 +8,7 @@ import {
   SimpleGrid,
   ThemeIcon,
 } from "@mantine/core";
-import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import { ArrowTopRightIcon, BarChartIcon } from "@radix-ui/react-icons";
 
 const useStyles = createStyles((theme) => ({
   progressLabel: {
@@ -77,7 +77,7 @@ export function Stats({ total, diff, data }) {
         size={ICON_SIZE}
         radius={ICON_SIZE}
       >
-        <ArrowTopRightIcon />
+        <BarChartIcon />
       </ThemeIcon>
       <Group position="apart" mt="1rem">
         <Group align="flex-end" spacing="xs">

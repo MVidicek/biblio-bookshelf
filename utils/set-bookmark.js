@@ -24,7 +24,9 @@ const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
           `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-S.jpg`,
         pageCount: book.volumeInfo?.pageCount || "/",
         averageRating: book.volumeInfo?.averageRating || "/",
-        categories: book.volumeInfo?.categories[0] || "/",
+        categories: book.volumeInfo?.categories
+          ? book.volumeInfo?.categories[0]
+          : "/",
         createdAt: serverTimestamp(),
       });
       showNotification({
