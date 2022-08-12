@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useFetchBooks from "../../hooks/useFetchBooks";
 import useGlobalState from "../../hooks/useGlobalState";
-import { SimpleGrid, Pagination, Loader, Container } from "@mantine/core";
+import { SimpleGrid, Pagination, Container } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import BookItem from "./BookItem";
@@ -22,8 +22,15 @@ export default function Discover() {
     console.log(books);
   }, [books]);
 
-  if (loading)
-    return <Loader size="xl" color="teal" style={{ marginTop: "25%" }} />;
+  if (loading || books === null || books === undefined)
+    return (
+      <Container>
+        <Lottie
+          style={{ height: "35vh", marginTop: "20vh" }}
+          animationData={searchAnimation}
+        />
+      </Container>
+    );
   if (isError)
     return showNotification({
       title: "Error",
@@ -31,13 +38,6 @@ export default function Discover() {
       color: "pink",
       icon: <Cross1Icon />,
     });
-
-  if (books === null || books === undefined)
-    return (
-      <Container>
-        <Lottie style={{ height: "35vh" }} animationData={searchAnimation} />
-      </Container>
-    );
 
   return (
     <div>

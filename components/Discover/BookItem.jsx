@@ -52,7 +52,7 @@ export default function BookItem({ book }) {
         margin: "auto",
       }}
     >
-      <Card shadow="sm" p="md" withBorder>
+      <Card shadow="sm" p="md" withBorder radius="md">
         <Card.Section>
           <a
             href={book.volumeInfo?.previewLink}
@@ -61,7 +61,7 @@ export default function BookItem({ book }) {
           >
             <Image
               p="md"
-              fit="contain"
+              fit="cover"
               radius="sm"
               withPlaceholder
               src={
