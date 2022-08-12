@@ -1,8 +1,8 @@
-import { BooksTable } from "./Tables/BooksTable";
-import fetchDocuments from "../utils/fetch-documents";
+import { BooksTable } from "../../Shared/BooksTable";
+import fetchDocuments from "../../../functions/helpers/fetch-documents";
 import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
-import NoBooksAdded from "./NoBooksAdded";
+import NoBooksAdded from "../../Shared/NoBooksAdded";
 
 export default function Finished({ setPage }) {
   const [loading, setLoading] = useState(true);

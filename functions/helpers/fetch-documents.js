@@ -1,5 +1,5 @@
 import { collection, query, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase.config";
+import { auth, db } from "../../firebase.config";
 
 export default async function fetchDocuments(collectionName = "") {
   const user = auth.currentUser;

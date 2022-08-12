@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import useFetchBooks from "../../hooks/useFetchBooks";
-import useGlobalState from "../../hooks/useGlobalState";
+import useFetchBooks from "../../../functions/hooks/useFetchBooks";
+import useGlobalState from "../../../functions/hooks/useGlobalState";
 import { SimpleGrid, Pagination, Container } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import BookItem from "./BookItem";
 import Lottie from "lottie-react";
-import searchAnimation from "../../assets/Lottie/search.json";
+import searchAnimation from "../../../assets/Lottie/search.json";
 
 export default function Discover() {
   const [pageIndex, setPageIndex] = useState(1);

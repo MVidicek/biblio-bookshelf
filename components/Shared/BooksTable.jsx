@@ -12,7 +12,7 @@ import {
 } from "@mantine/core";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
-import removeDocument from "../../utils/remove-document";
+import removeDocument from "../../functions/helpers/remove-document";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {

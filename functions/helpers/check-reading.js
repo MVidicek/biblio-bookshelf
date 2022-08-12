@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase.config";
+import { auth, db } from "../../firebase.config";
 import { showNotification } from "@mantine/notifications";
 
 const checkIfReading = async (id, setIsReading) => {

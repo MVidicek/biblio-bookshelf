@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "@mantine/form";
 import { Button, TextInput, Box, Group, useMantineTheme } from "@mantine/core";
-import { PasswordStrength } from "../../utils/password-strength";
+import { PasswordStrength } from "../../functions/helpers/password-strength";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../firebase.config";

@@ -1,14 +1,14 @@
-import { auth, db } from "../firebase.config";
+import { auth, db } from "../../firebase.config";
 import { doc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { showNotification } from "@mantine/notifications";
-import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { BookmarkIcon } from "@radix-ui/react-icons";
 
-const setFinished = async (book, isFinished, setIsFinished) => {
+const setBookmark = async (book, isBookmarked, setIsBookmarked) => {
   try {
     const user = auth.currentUser;
-    if (!isFinished) {
-      setIsFinished(true);
-      const docRef = doc(db, "users", user.uid, "finished", book.id);
+    if (!isBookmarked) {
+      setIsBookmarked(true);
+      const docRef = doc(db, "users", user.uid, "bookmarked", book.id);
       await setDoc(docRef, {
         bookId: book.id,
         isbn: book.volumeInfo?.industryIdentifiers[0].identifier,
@@ -24,24 +24,26 @@ const setFinished = async (book, isFinished, setIsFinished) => {
           `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-S.jpg`,
         pageCount: book.volumeInfo?.pageCount || "/",
         averageRating: book.volumeInfo?.averageRating || "/",
-        categories: book.volumeInfo?.categories[0] || "/",
+        categories: book.volumeInfo?.categories
+          ? book.volumeInfo?.categories[0]
+          : "/",
         createdAt: serverTimestamp(),
       });
       showNotification({
-        title: "Finished",
+        title: "Bookmarked",
         message: `${book.volumeInfo?.title}`,
         color: "green",
-        icon: <CheckCircledIcon />,
+        icon: <BookmarkIcon />,
       });
       console.log(docRef);
     } else {
-      await deleteDoc(doc(db, "users", user.uid, "finished", book.id));
-      setIsFinished(false);
+      await deleteDoc(doc(db, "users", user.uid, "bookmarked", book.id));
+      setIsBookmarked(false);
       showNotification({
-        title: "Removed from Finished",
+        title: "Removed from Bookmarks",
         message: `${book.volumeInfo?.title}`,
         color: "pink",
-        icon: <CheckCircledIcon />,
+        icon: <BookmarkIcon />,
       });
     }
   } catch (error) {
@@ -53,4 +55,4 @@ const setFinished = async (book, isFinished, setIsFinished) => {
   }
 };
 
-export default setFinished;
+export default setBookmark;

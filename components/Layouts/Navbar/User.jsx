@@ -11,7 +11,7 @@ import {
   Box,
   useMantineTheme,
 } from "@mantine/core";
-import { auth } from "../../firebase.config";
+import { auth } from "../../../firebase.config";
 
 export function User({ setPage }) {
   const theme = useMantineTheme();

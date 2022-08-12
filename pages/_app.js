@@ -3,7 +3,7 @@ import Head from "next/head";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
-import { RouteGuard } from "../components/Auth/RouteGuard";
+// import { RouteGuard } from "../components/Security/RouteGuard";
 
 export default function App(props) {
   const { Component, pageProps } = props;

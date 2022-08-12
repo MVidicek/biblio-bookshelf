@@ -17,10 +17,10 @@ import {
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
-import setBookmark from "../../utils/set-bookmark";
-import checkIfBookmarked from "../../utils/check-bookmarked";
-import checkIfReading from "../../utils/check-reading";
-import checkIfFinished from "../../utils/check-finished";
+import setBookmark from "../../../functions/helpers/set-bookmark";
+import checkIfBookmarked from "../../../functions/helpers/check-bookmarked";
+import checkIfReading from "../../../functions/helpers/check-reading";
+import checkIfFinished from "../../../functions/helpers/check-finished";
 
 export default function BookItem({ book }) {
   const theme = useMantineTheme();

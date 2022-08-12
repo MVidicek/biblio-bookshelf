@@ -1,4 +1,4 @@
-import { auth, db } from "../firebase.config";
+import { auth, db } from "../../firebase.config";
 import { doc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { showNotification } from "@mantine/notifications";
 import { ReaderIcon } from "@radix-ui/react-icons";

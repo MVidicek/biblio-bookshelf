@@ -1,5 +1,5 @@
 import { deleteDoc, doc } from "firebase/firestore";
-import { auth, db } from "../firebase.config";
+import { auth, db } from "../../firebase.config";
 import { showNotification } from "@mantine/notifications";
 import { Cross2Icon } from "@radix-ui/react-icons";
 

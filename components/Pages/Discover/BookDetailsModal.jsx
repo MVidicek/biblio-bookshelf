@@ -15,9 +15,9 @@ import {
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
-import setBookmark from "../../utils/set-bookmark";
-import setReading from "../../utils/set-reading";
-import setFinished from "../../utils/set-finished";
+import setBookmark from "../../../functions/helpers/set-bookmark";
+import setReading from "../../../functions/helpers/set-reading";
+import setFinished from "../../../functions/helpers/set-finished";
 
 export default function BookDetailsModal({
   book,

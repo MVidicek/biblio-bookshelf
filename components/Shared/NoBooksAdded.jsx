@@ -7,7 +7,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import Lottie from "lottie-react";
-import astronautAnimation from "../assets/Lottie/astronaut.json";
+import astronautAnimation from "../../assets/Lottie/astronaut.json";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 const useStyles = createStyles((theme) => ({

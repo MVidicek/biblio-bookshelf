@@ -1,20 +1,15 @@
-import { useEffect } from "react";
 import { Stack, SimpleGrid } from "@mantine/core";
-import Profile from "../components/Profile";
-import Discover from "../components/Discover/Discover";
-import Finished from "../components/Finished";
-import Bookmarked from "../components/Bookmarked";
-import Reading from "../components/Reading";
+import Profile from "../components/Pages/Profile/Profile";
+import Discover from "../components/Pages/Discover/Discover";
+import Finished from "../components/Pages/Finished/Finished";
+import Bookmarked from "../components/Pages/Bookmarked/Bookmarked";
+import Reading from "../components/Pages/Reading/Reading";
 import { getLayout } from "../components/Layouts/Layout";
 import { ReadingChallenge } from "../components/Home/ReadingChallenge";
 import { Stats } from "../components/Home/Stats";
 import { Hero } from "../components/Home/Hero";
 
-export default function Home({ page, setOpened, setPage }) {
-  useEffect(() => {
-    setOpened(false);
-  }, [page, setOpened]);
-
+export default function Home({ page, setPage }) {
   if (page === "profile") return <Profile />;
   if (page === "discover") return <Discover />;
   if (page === "finished") return <Finished />;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import {
   Button,
@@ -10,16 +9,12 @@ import {
   Container,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { updateDoc } from "firebase/firestore";
-import { updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase.config";
+import { auth } from "../../../firebase.config";
 import { showNotification } from "@mantine/notifications";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { PersonIcon, EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 export default function Profile() {
-  const [changeDetails, setChangeDetails] = useState(false);
-
   const theme = useMantineTheme();
   const router = useRouter();
 

@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import {
-  AppShell,
-  Navbar,
-  Aside,
-  Text,
-  MediaQuery,
-  useMantineTheme,
-  Center,
-} from "@mantine/core";
-import { MainLinks } from "./MainLinks";
-import { User } from "./User";
+import { AppShell, useMantineTheme, Center } from "@mantine/core";
 import LayoutHeader from "./Header/LayoutHeader";
+import LayoutNavbar from "./Navbar/LayoutNavbar";
+import LayoutAside from "./Aside/LayoutAside";
 
 function Layout({ children }) {
   const [page, setPage] = useState("home");
-  const [opened, setOpened] = useState(false);
 
   const theme = useMantineTheme();
 
@@ -31,35 +22,11 @@ function Layout({ children }) {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       fixed
-      navbar={
-        <Navbar
-          p="md"
-          hiddenBreakpoint="sm"
-          hidden={!opened}
-          width={{ sm: 200, lg: 300 }}
-        >
-          <Navbar.Section grow mt="md">
-            <MainLinks setPage={setPage} />
-          </Navbar.Section>
-          <Navbar.Section>
-            {page !== "profile" ? <User setPage={setPage} /> : null}
-          </Navbar.Section>
-        </Navbar>
-      }
-      aside={
-        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-            <Text></Text>
-          </Aside>
-        </MediaQuery>
-      }
-      header={
-        <LayoutHeader setOpened={setOpened} page={page} opened={opened} />
-      }
+      navbar={<LayoutNavbar page={page} setPage={setPage} />}
+      aside={<LayoutAside />}
+      header={<LayoutHeader page={page} />}
     >
-      <Center>
-        {React.cloneElement(children, { page, setOpened, setPage })}
-      </Center>
+      <Center>{React.cloneElement(children, { page, setPage })}</Center>
     </AppShell>
   );
 }
