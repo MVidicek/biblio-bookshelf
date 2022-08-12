@@ -31,7 +31,7 @@ export default function SearchForm({ discoverOpened }) {
           style={
             isMobile
               ? { marginLeft: "auto", marginRight: "30px" }
-              : { marginLeft: "auto", marginRight: "80px" }
+              : { marginLeft: "auto", marginRight: "60px" }
           }
         >
           <div style={styles}>
@@ -42,7 +42,7 @@ export default function SearchForm({ discoverOpened }) {
                 type="search"
                 {...form.getInputProps("searchText")}
                 size="sm"
-                style={isMobile ? { width: "241px" } : { width: "341px" }}
+                style={isMobile ? { width: "201px" } : { width: "341px" }}
               />
             </form>
           </div>

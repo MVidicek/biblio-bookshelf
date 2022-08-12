@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { CheckIcon, Cross1Icon } from '@radix-ui/react-icons';
-import { PasswordInput, Progress, Text, Popover, Box } from '@mantine/core';
+import { useState } from "react";
+import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { PasswordInput, Progress, Text, Popover, Box } from "@mantine/core";
 
 function PasswordRequirement({ meets, label }) {
   return (
     <Text
-      color={meets ? 'teal' : 'red'}
-      sx={{ display: 'flex', alignItems: 'center' }}
+      color={meets ? "teal" : "red"}
+      sx={{ display: "flex", alignItems: "center" }}
       mt={7}
-      size='sm'
+      size="sm"
     >
       {meets ? <CheckIcon /> : <Cross1Icon />} <Box ml={10}>{label}</Box>
     </Text>
@@ -16,10 +16,10 @@ function PasswordRequirement({ meets, label }) {
 }
 
 const requirements = [
-  { re: /[0-9]/, label: 'Includes number' },
-  { re: /[a-z]/, label: 'Includes lowercase letter' },
-  { re: /[A-Z]/, label: 'Includes uppercase letter' },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Includes special symbol' },
+  { re: /[0-9]/, label: "Includes number" },
+  { re: /[a-z]/, label: "Includes lowercase letter" },
+  { re: /[A-Z]/, label: "Includes uppercase letter" },
+  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: "Includes special symbol" },
 ];
 
 function getStrength(password) {
@@ -36,7 +36,6 @@ function getStrength(password) {
 
 export function PasswordStrength({ password, setPassword }) {
   const [popoverOpened, setPopoverOpened] = useState(false);
-  const [value, setValue] = useState('');
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement
       key={index}
@@ -46,25 +45,25 @@ export function PasswordStrength({ password, setPassword }) {
   ));
 
   const strength = getStrength(password);
-  const color = strength === 100 ? 'teal' : strength > 50 ? 'yellow' : 'red';
+  const color = strength === 100 ? "teal" : strength > 50 ? "yellow" : "red";
 
   return (
     <Popover
       opened={popoverOpened}
-      position='bottom'
-      placement='start'
+      position="bottom"
+      placement="start"
       withArrow
-      styles={{ popover: { width: '100%' } }}
+      styles={{ popover: { width: "100%" } }}
       trapFocus={false}
-      transition='pop-top-left'
+      transition="pop-top-left"
       onFocusCapture={() => setPopoverOpened(true)}
       onBlurCapture={() => setPopoverOpened(false)}
       target={
         <PasswordInput
           required
-          label='Your password'
-          placeholder='Your password'
-          description='Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol'
+          label="Your password"
+          placeholder="Your password"
+          description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
           value={password}
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
@@ -77,7 +76,7 @@ export function PasswordStrength({ password, setPassword }) {
         style={{ marginBottom: 10 }}
       />
       <PasswordRequirement
-        label='Includes at least 6 characters'
+        label="Includes at least 6 characters"
         meets={password.length > 5}
       />
       {checks}

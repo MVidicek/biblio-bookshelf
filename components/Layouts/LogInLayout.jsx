@@ -4,15 +4,13 @@ import {
   Header,
   Text,
   useMantineTheme,
-  ActionIcon,
-  useMantineColorScheme,
   ThemeIcon,
 } from "@mantine/core";
-import { SunIcon, MoonIcon, BookmarkIcon } from "@radix-ui/react-icons";
+import { BookmarkIcon } from "@radix-ui/react-icons";
+import ThemeSwitch from "./Header/ThemeSwitch";
 
 export default function HomeLayout({ children }) {
   const theme = useMantineTheme();
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
     <AppShell
@@ -51,14 +49,7 @@ export default function HomeLayout({ children }) {
             >
               BIBLIO
             </Text>
-            <ActionIcon
-              variant="outline"
-              color={colorScheme === "dark" ? "yellow" : "dark"}
-              onClick={() => toggleColorScheme()}
-              style={{ marginLeft: "auto", marginRight: "0px" }}
-            >
-              {colorScheme === "dark" ? <SunIcon /> : <MoonIcon />}
-            </ActionIcon>
+            <ThemeSwitch />
           </div>
         </Header>
       }

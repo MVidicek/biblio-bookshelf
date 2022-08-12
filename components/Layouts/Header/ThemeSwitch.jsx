@@ -9,7 +9,7 @@ export default function ThemeSwitch() {
       variant="outline"
       color={colorScheme === "dark" ? "yellow" : "dark"}
       onClick={() => toggleColorScheme()}
-      style={{ marginLeft: "auto", marginRight: "0px" }}
+      style={{ marginLeft: "auto" }}
     >
       {colorScheme === "dark" ? <SunIcon /> : <MoonIcon />}
     </ActionIcon>
