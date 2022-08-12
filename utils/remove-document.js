@@ -1,7 +1,7 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase.config";
 import { showNotification } from "@mantine/notifications";
-import { BookmarkIcon } from "@radix-ui/react-icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 const removeDocument = async (book, collection) => {
   try {
@@ -11,7 +11,7 @@ const removeDocument = async (book, collection) => {
       title: "Removed",
       message: `${book.title}`,
       color: "pink",
-      icon: <BookmarkIcon />,
+      icon: <Cross2Icon />,
     });
   } catch (error) {
     showNotification({

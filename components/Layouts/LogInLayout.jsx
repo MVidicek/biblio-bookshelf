@@ -47,16 +47,7 @@ export default function HomeLayout({ children }) {
                   ? theme.colors.dark[0]
                   : theme.colors.teal[4]
               }
-              weight={500}
-              style={{
-                fontFamily: "Greycliff CF, sans-serif",
-                border: "1px solid",
-                borderColor: theme.colors.teal[4],
-                borderRadius: "5px",
-                padding: "5px",
-                paddingBottom: "0px",
-                paddingTop: "0px",
-              }}
+              weight={400}
             >
               BIBLIO
             </Text>
