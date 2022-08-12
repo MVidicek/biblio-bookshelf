@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import useFetchBooks from "../../hooks/useFetchBooks";
 import useGlobalState from "../../hooks/useGlobalState";
-import { SimpleGrid, Pagination, Loader } from "@mantine/core";
+import { SimpleGrid, Pagination, Loader, Container } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import BookItem from "./BookItem";
+import Lottie from "lottie-react";
+import searchAnimation from "../../assets/Lottie/search.json";
 
 export default function Discover() {
   const [pageIndex, setPageIndex] = useState(1);
@@ -20,15 +22,15 @@ export default function Discover() {
     console.log(books);
   }, [books]);
 
-  if (loading)
+  if (books === null || books === undefined)
     return (
-      <Loader
-        size="xl"
-        color="teal"
-        variant="bars"
-        style={{ marginTop: "25%" }}
-      />
+      <Container>
+        <Lottie style={{ width: "100%" }} animationData={searchAnimation} />
+      </Container>
     );
+
+  if (loading)
+    return <Loader size="xl" color="teal" style={{ marginTop: "25%" }} />;
   if (isError)
     return showNotification({
       title: "Error",
@@ -36,15 +38,6 @@ export default function Discover() {
       color: "pink",
       icon: <Cross1Icon />,
     });
-  if (books === null || books === undefined)
-    return (
-      <Loader
-        size="xl"
-        color="teal"
-        variant="bars"
-        style={{ marginTop: "25%" }}
-      />
-    );
 
   return (
     <div>

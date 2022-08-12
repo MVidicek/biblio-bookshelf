@@ -183,7 +183,9 @@ function Layout({ children }) {
         </Header>
       }
     >
-      <Center>{React.cloneElement(children, { page, setOpened })}</Center>
+      <Center>
+        {React.cloneElement(children, { page, setOpened, setPage })}
+      </Center>
     </AppShell>
   );
 }

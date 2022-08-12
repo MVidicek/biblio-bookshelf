@@ -10,7 +10,7 @@ import { ReadingChallenge } from "../components/Home/ReadingChallenge";
 import { Stats } from "../components/Home/Stats";
 import { Hero } from "../components/Home/Hero";
 
-export default function Home({ page, setOpened }) {
+export default function Home({ page, setOpened, setPage }) {
   useEffect(() => {
     setOpened(false);
   }, [page, setOpened]);
@@ -18,7 +18,7 @@ export default function Home({ page, setOpened }) {
   if (page === "profile") return <Profile />;
   if (page === "discover") return <Discover />;
   if (page === "finished") return <Finished />;
-  if (page === "bookmarked") return <Bookmarked />;
+  if (page === "bookmarked") return <Bookmarked setPage={setPage} />;
   if (page === "reading") return <Reading />;
 
   return (

@@ -7,8 +7,11 @@ export default function useFetchBooks(
   maxResults = 8,
   searchText = ""
 ) {
+  let shouldFetch = searchText.length > 0;
   const { data, error } = useSWR(
-    `https://www.googleapis.com/books/v1/volumes?q=${searchText}&startIndex=${startIndex}&maxResults=${maxResults}&fields=items`,
+    shouldFetch
+      ? `https://www.googleapis.com/books/v1/volumes?q=${searchText}&startIndex=${startIndex}&maxResults=${maxResults}&fields=items`
+      : null,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -16,7 +19,6 @@ export default function useFetchBooks(
       revalidateIfStale: false,
     }
   );
-
   return {
     books: data?.items,
     isError: error,
