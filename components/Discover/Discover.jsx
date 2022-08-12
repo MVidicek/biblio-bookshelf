@@ -25,7 +25,7 @@ export default function Discover() {
   if (books === null || books === undefined)
     return (
       <Container>
-        <Lottie style={{ width: "100%" }} animationData={searchAnimation} />
+        <Lottie style={{ width: 512 }} animationData={searchAnimation} />
       </Container>
     );
 

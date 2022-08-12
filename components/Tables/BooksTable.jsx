@@ -12,7 +12,7 @@ import {
 } from "@mantine/core";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
-import removeBookmark from "../../utils/remove-bookmark";
+import removeDocument from "../../utils/remove-document";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {
@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function BookmarkedTable({ data, setLoading }) {
+export function BooksTable({ data, setLoading, collection }) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const [selection, setSelection] = useState(["1"]);
@@ -41,7 +41,7 @@ export function BookmarkedTable({ data, setLoading }) {
   const rows = data.map((item) => {
     const selected = selection.includes(item.bookId);
     const handleRemove = () => {
-      removeBookmark(item);
+      removeDocument(item, collection);
       setLoading(true);
     };
     return (
