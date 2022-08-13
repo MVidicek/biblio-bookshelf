@@ -69,14 +69,14 @@ export default function BookItem({ book }) {
                   ? book.volumeInfo?.imageLinks?.thumbnail
                   : `https://covers.openlibrary.org/b/isbn/${book.volumeInfo?.industryIdentifiers[0].identifier}-M.jpg`
               }
-              height={318}
+              height={328}
               alt={book.volumeInfo?.title}
             />
           </a>
         </Card.Section>
         <Text
-          color="teal"
           style={{
+            marginTop: 25,
             marginBottom: 5,
             textAlign: "center",
             overflow: "hidden",
@@ -94,7 +94,7 @@ export default function BookItem({ book }) {
           <Badge
             color="blue"
             sx={{ paddingLeft: 3, maxWidth: "50%" }}
-            variant=""
+            variant="default"
             leftSection={<PersonIcon style={{ paddingTop: 4 }} />}
           >
             {book.volumeInfo?.authors[0]}
@@ -102,7 +102,7 @@ export default function BookItem({ book }) {
           <Badge
             color="blue"
             sx={{ paddingLeft: 3 }}
-            variant=""
+            variant="default"
             leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
           >
             {book.volumeInfo?.publishedDate?.slice(0, 4)}

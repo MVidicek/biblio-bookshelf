@@ -87,19 +87,19 @@ export default function BookDetailsModal({
           <Text transform="uppercase" size="xl" weight={700} color="teal">
             {book.volumeInfo?.title}
           </Text>
-          <Text size="lg" weight={600} color="blue">
+          <Text size="lg" weight={600}>
             {book.volumeInfo?.authors[0]}
             {book.volumeInfo?.authors.length > 1 ? " | " : ""}
             {book.volumeInfo?.authors[1]}
           </Text>
-          <Text size="md" weight={200} color="gray">
+          <Text size="md" weight={200}>
             {book.volumeInfo?.publisher}
             {book.volumeInfo?.publishedDate && book.volumeInfo?.publisher
               ? " | "
               : ""}
             {book.volumeInfo?.publishedDate?.slice(0, 4)}
           </Text>
-          <Text size="sm" weight={200} color="gray">
+          <Text size="sm" weight={200}>
             Pages: {book.volumeInfo?.pageCount}
             {book.volumeInfo?.ratingsCount ? " | Ratings: " : ""}
             {book.volumeInfo?.ratingsCount}

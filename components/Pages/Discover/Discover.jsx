@@ -49,6 +49,7 @@ export default function Discover() {
           { minWidth: 1800, cols: 3 },
           { minWidth: 2200, cols: 4 },
         ]}
+        style={{ marginTop: "1rem" }}
       >
         {books.map((book) => {
           if (Object.hasOwn(book.volumeInfo, "authors")) {
@@ -59,7 +60,7 @@ export default function Discover() {
       <Pagination
         page={pageIndex}
         onChange={setPageIndex}
-        mt="5rem"
+        mt="3rem"
         total={5}
         color="teal"
         position="center"
