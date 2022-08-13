@@ -19,7 +19,7 @@ export default function Dashboard({ page, setPage }) {
   return (
     <Stack>
       <Hero />
-      <SimpleGrid cols={2} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
+      <SimpleGrid cols={2} breakpoints={[{ maxWidth: 1100, cols: 1 }]}>
         <ReadingChallenge />
         <Stats
           data={[

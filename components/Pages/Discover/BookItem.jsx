@@ -156,18 +156,18 @@ export default function BookItem({ book }) {
         <SimpleGrid cols={2}>
           <Button
             compact
-            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+            variant={theme.colorScheme === "dark" ? "default" : "filled"}
             color="teal"
             style={{ marginTop: 15, marginLeft: -20, marginRight: 75 }}
             onClick={() => setOpened(true)}
           >
-            Details
+            <Text color="gray.0">Details</Text>
           </Button>
 
           <Button
             color={isBookmarked ? "grape" : "gray"}
             style={{ width: 50, marginTop: 15, marginLeft: 103 }}
-            variant={isBookmarked ? "filled" : "outline"}
+            variant="light"
             compact
             type="button"
             leftIcon={isBookmarked ? <BookmarkFilledIcon /> : <BookmarkIcon />}

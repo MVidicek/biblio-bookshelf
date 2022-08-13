@@ -1,14 +1,10 @@
 import React from "react";
 import {
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from "@radix-ui/react-icons";
-import {
   UnstyledButton,
   Group,
-  Avatar,
   Text,
   Box,
+  Badge,
   useMantineTheme,
 } from "@mantine/core";
 import { auth } from "../../../firebase.config";
@@ -46,11 +42,17 @@ export function User({ setPage }) {
         onClick={() => setPage("profile")}
       >
         <Group>
-          <Avatar
-            src="https://cdn-icons-png.flaticon.com/512/560/560216.png"
-            radius="sm"
-          />
           <Box sx={{ flex: 1 }}>
+            <Badge
+              mb="md"
+              radius="sm"
+              variant="dot"
+              compact
+              size="md"
+              color="teal"
+            >
+              Logged In
+            </Badge>
             <Text size="sm" weight={500}>
               {auth?.currentUser?.displayName}
             </Text>
@@ -58,12 +60,6 @@ export function User({ setPage }) {
               {auth?.currentUser?.email}
             </Text>
           </Box>
-
-          {theme.dir === "ltr" ? (
-            <DoubleArrowRightIcon />
-          ) : (
-            <DoubleArrowLeftIcon />
-          )}
         </Group>
       </UnstyledButton>
     </Box>

@@ -10,6 +10,7 @@ import {
   useMantineTheme,
   Badge,
 } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import removeDocument from "../../functions/helpers/remove-document";
@@ -35,15 +36,21 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function BooksTable({ data, setLoading, collection }) {
+  const [selection, setSelection] = useState(["1"]);
+
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
-  const [selection, setSelection] = useState(["1"]);
+
+  const matchesMedium = useMediaQuery("(min-width: 1600px)");
+  const matchesSmall = useMediaQuery("(min-width: 1500px)");
+
   const toggleRow = (id) =>
     setSelection((current) =>
       current.includes(id)
         ? current.filter((item) => item !== id)
         : [...current, id]
     );
+
   const toggleAll = () =>
     setSelection((current) =>
       current.length === data.length ? [] : data.map((item) => item.bookId)
@@ -68,7 +75,7 @@ export function BooksTable({ data, setLoading, collection }) {
           <Avatar size="lg" src={item.imageLinks} radius={6} />
         </td>
         <td>
-          <Badge radius="sm" color="blue" variant="dot">
+          <Badge radius="sm" color="blue" variant="default">
             <Text size="xs" weight={400}>
               {item.title}
             </Text>
@@ -77,7 +84,7 @@ export function BooksTable({ data, setLoading, collection }) {
         <td>
           <Badge
             radius="sm"
-            color={item.averageRating > 3 ? "green" : "red"}
+            color={item.averageRating > 3 ? "green" : "gray"}
             variant={theme.colorScheme === "dark" ? "light" : "filled"}
           >
             {item.averageRating}
@@ -88,17 +95,19 @@ export function BooksTable({ data, setLoading, collection }) {
             {item.authors.join(", ")}
           </Text>
         </td>
-        <td>{item.publisher}</td>
+        {matchesMedium && <td> {item.publisher}</td>}
         <td>{item.publishedDate}</td>
-        <td>
-          <Badge
-            radius="sm"
-            color="gray"
-            variant={theme.colorScheme === "dark" ? "light" : "outline"}
-          >
-            {item.categories}
-          </Badge>
-        </td>
+        {matchesSmall && (
+          <td>
+            <Badge
+              radius="sm"
+              color="gray"
+              variant={theme.colorScheme === "dark" ? "light" : "outline"}
+            >
+              {item.categories}
+            </Badge>
+          </td>
+        )}
         <td>{format(item.createdAt.toDate(), "MMM do, yy")}</td>
         <td>
           <Button
@@ -139,9 +148,9 @@ export function BooksTable({ data, setLoading, collection }) {
             <th>Title</th>
             <th></th>
             <th>Authors</th>
-            <th>Publisher</th>
+            {matchesMedium && <th> Publisher</th>}
             <th>Year</th>
-            <th>Categories</th>
+            {matchesSmall && <th>Categories</th>}
             <th>Added</th>
             <th></th>
           </tr>

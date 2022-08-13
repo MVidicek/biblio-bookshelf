@@ -16,13 +16,13 @@ export default function LayoutNavbar({ page, setPage }) {
       p="md"
       hiddenBreakpoint="sm"
       hidden={!opened}
-      width={{ sm: 200, lg: 300 }}
+      width={{ sm: 200, lg: 200 }}
     >
       <Navbar.Section grow mt="md">
         <MainLinks setPage={setPage} />
       </Navbar.Section>
       <Navbar.Section>
-        {page !== "profile" ? <User setPage={setPage} /> : null}
+        <User setPage={setPage} />
       </Navbar.Section>
     </Navbar>
   );

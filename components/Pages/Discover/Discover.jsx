@@ -13,7 +13,11 @@ export default function Discover() {
   const [loading, setLoading] = useState(true);
   const [searchText] = useGlobalState("search", "");
 
-  const { books, isError } = useFetchBooks((pageIndex - 1) * 8, 8, searchText);
+  const { books, isError } = useFetchBooks(
+    (pageIndex - 1) * 10,
+    10,
+    searchText
+  );
 
   useEffect(() => {
     if (books) {
@@ -40,14 +44,15 @@ export default function Discover() {
     });
 
   return (
-    <div>
+    <div style={{ width: "-webkit-fill-available" }}>
       <SimpleGrid
         spacing="xl"
         breakpoints={[
-          { minWidth: 1200, cols: 1 },
-          { minWidth: 1400, cols: 2 },
-          { minWidth: 1800, cols: 3 },
-          { minWidth: 2200, cols: 4 },
+          { minWidth: 0, cols: 1 },
+          { minWidth: 1050, cols: 2 },
+          { minWidth: 1450, cols: 3 },
+          { minWidth: 1750, cols: 4 },
+          { minWidth: 2150, cols: 5 },
         ]}
         style={{ marginTop: "1rem" }}
       >
@@ -61,7 +66,7 @@ export default function Discover() {
         page={pageIndex}
         onChange={setPageIndex}
         mt="3rem"
-        total={5}
+        total={4}
         color="teal"
         position="center"
         radius="sm"
