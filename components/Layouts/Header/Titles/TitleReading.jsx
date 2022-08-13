@@ -30,7 +30,7 @@ export default function TitleReading({ readingOpened }) {
           }
         >
           <div style={styles}>
-            <Badge color="blue" radius="sm" size="xl" variant="outline">
+            <Badge color="cyan" radius="sm" size="xl" variant="outline">
               <Text
                 size="xl"
                 weight={params.font_weight}

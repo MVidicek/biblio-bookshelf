@@ -30,7 +30,7 @@ export default function TitleHome({ homeOpened }) {
           }
         >
           <div style={styles}>
-            <Badge color="teal" radius="sm" size="xl" variant="outline">
+            <Badge color="gray" radius="sm" size="xl" variant="outline">
               <Text
                 size="xl"
                 weight={params.font_weight}

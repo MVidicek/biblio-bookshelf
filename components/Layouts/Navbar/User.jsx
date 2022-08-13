@@ -48,7 +48,7 @@ export function User({ setPage }) {
         <Group>
           <Avatar
             src="https://cdn-icons-png.flaticon.com/512/560/560216.png"
-            radius="xl"
+            radius="sm"
           />
           <Box sx={{ flex: 1 }}>
             <Text size="sm" weight={500}>

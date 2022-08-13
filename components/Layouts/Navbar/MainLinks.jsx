@@ -40,10 +40,10 @@ function MainLink({ icon, color, label, setPage }) {
 }
 
 const data = [
-  { icon: <HomeIcon />, color: "teal", label: "Home" },
-  { icon: <MagnifyingGlassIcon />, color: "cyan", label: "Discover" },
-  { icon: <ReaderIcon />, color: "blue", label: "Reading" },
-  { icon: <CheckCircledIcon />, color: "green", label: "Finished" },
+  { icon: <HomeIcon />, color: "gray", label: "Home" },
+  { icon: <MagnifyingGlassIcon />, color: "gray", label: "Discover" },
+  { icon: <ReaderIcon />, color: "cyan", label: "Reading" },
+  { icon: <CheckCircledIcon />, color: "teal", label: "Finished" },
   { icon: <BookmarkIcon />, color: "grape", label: "Bookmarked" },
 ];
 

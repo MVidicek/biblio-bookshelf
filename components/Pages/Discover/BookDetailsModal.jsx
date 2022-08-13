@@ -121,7 +121,7 @@ export default function BookDetailsModal({
           <Container p={0}>
             <Stack>
               <Button
-                color="blue"
+                color="cyan"
                 style={{ width: 150, fontWeight: 400 }}
                 variant={isReading ? "light" : "outline"}
                 compact
@@ -131,7 +131,7 @@ export default function BookDetailsModal({
                 {isReading ? "Reading" : "Add to Reading"}
               </Button>
               <Button
-                color="green"
+                color="teal"
                 style={{ width: 150, fontWeight: 400 }}
                 variant={isFinished ? "light" : "outline"}
                 compact

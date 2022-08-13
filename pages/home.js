@@ -5,9 +5,9 @@ import Finished from "../components/Pages/Finished/Finished";
 import Bookmarked from "../components/Pages/Bookmarked/Bookmarked";
 import Reading from "../components/Pages/Reading/Reading";
 import { getLayout } from "../components/Layouts/Layout";
-import { ReadingChallenge } from "../components/Home/ReadingChallenge";
-import { Stats } from "../components/Home/Stats";
-import { Hero } from "../components/Home/Hero";
+import { ReadingChallenge } from "../components/Pages/Home/ReadingChallenge";
+import { Stats } from "../components/Pages/Home/Stats";
+import { Hero } from "../components/Pages/Home/Hero";
 
 export default function Home({ page, setPage }) {
   if (page === "profile") return <Profile />;
