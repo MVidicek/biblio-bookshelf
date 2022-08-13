@@ -16,15 +16,11 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     padding: theme.spacing.xl * 2,
-    borderRadius: theme.radius.md,
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
-    border: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[3]
-    }`,
+    paddingTop: 0,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
       padding: theme.spacing.xl,
+      paddingTop: 0,
     },
   },
 
@@ -38,10 +34,14 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    paddingRight: theme.spacing.xl * 4,
+    padding: theme.spacing.xl,
+    backgroundColor: theme.colorScheme === "dark" ? "" : theme.white,
+    border: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[3]
+    }`,
+    borderRadius: theme.spacing.sm,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      paddingRight: 0,
       marginTop: theme.spacing.xl,
     },
   },

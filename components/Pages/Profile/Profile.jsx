@@ -7,6 +7,7 @@ import {
   Avatar,
   useMantineTheme,
   Container,
+  createStyles,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { auth } from "../../../firebase.config";
@@ -14,7 +15,20 @@ import { showNotification } from "@mantine/notifications";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { PersonIcon, EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
+const useStyles = createStyles((theme) => ({
+  wrapper: {
+    marginTop: "10vh",
+    borderRadius: theme.spacing.sm,
+    backgroundColor: theme.colorScheme === "dark" ? "" : theme.white,
+    border: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[3]
+    }`,
+    padding: theme.spacing.lg,
+  },
+}));
+
 export default function Profile() {
+  const { classes } = useStyles();
   const theme = useMantineTheme();
   const router = useRouter();
 
@@ -47,29 +61,18 @@ export default function Profile() {
   };
 
   return (
-    <Container size={500} pt="md">
+    <Container className={classes.wrapper}>
       <Badge
-        sx={{ paddingLeft: 0 }}
+        sx={{ paddingLeft: 0, fontWeight: 600, marginBottom: "1rem" }}
         size="lg"
         radius="sm"
         leftSection={avatar}
         variant="default"
         color="gray"
-        mb="1rem"
-        style={{ fontWeight: 600 }}
       >
         {form.values.name}
       </Badge>
-      <Stack
-        spacing="md"
-        sx={(theme) => ({
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        })}
-        mb="1rem"
-      >
+      <Stack spacing="md" mb="1rem">
         <TextInput
           icon={<PersonIcon />}
           placeholder={form.values.name}

@@ -28,11 +28,13 @@ export default function SearchForm({ discoverOpened }) {
     >
       {(styles) => (
         <div
-          style={
-            isMobile
-              ? { marginLeft: "auto", marginRight: "30px" }
-              : { marginLeft: "auto", marginRight: "60px" }
-          }
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+          }}
         >
           <div style={styles}>
             <form onSubmit={form.onSubmit(handleSearch)}>

@@ -15,6 +15,11 @@ import {
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
+    borderRadius: theme.spacing.sm,
+    backgroundColor: theme.colorScheme === "dark" ? "" : theme.white,
+    border: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[3]
+    }`,
     padding: `${theme.spacing.xl * 2}px ${theme.spacing.xl}px`,
   },
 

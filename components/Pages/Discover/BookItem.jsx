@@ -52,7 +52,16 @@ export default function BookItem({ book }) {
         margin: "auto",
       }}
     >
-      <Card shadow="sm" p="md" withBorder radius="md">
+      <Card
+        shadow="sm"
+        p="md"
+        withBorder
+        radius="md"
+        style={{
+          backgroundColor:
+            theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+        }}
+      >
         <Card.Section>
           <a
             href={book.volumeInfo?.previewLink}

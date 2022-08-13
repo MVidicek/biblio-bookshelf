@@ -21,6 +21,17 @@ const useStyles = createStyles((theme) => ({
         ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
         : theme.colors[theme.primaryColor][0],
   },
+  wrapper: {
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+  },
+
+  scrollArea: {
+    border: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
+    borderRadius: theme.spacing.sm,
+  },
 }));
 
 export function BooksTable({ data, setLoading, collection }) {
@@ -106,8 +117,12 @@ export function BooksTable({ data, setLoading, collection }) {
   });
 
   return (
-    <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
+    <ScrollArea className={classes.scrollArea}>
+      <Table
+        sx={{ minWidth: 800 }}
+        verticalSpacing="sm"
+        className={classes.wrapper}
+      >
         <thead>
           <tr>
             <th style={{ width: 40 }}>
