@@ -5,16 +5,17 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
-import React from "react";
 import { useMediaQuery } from "@mantine/hooks";
 
-export default function BookmarksTitle({ bookmarksOpened }) {
+export default function TitleFinished({ finishedOpened }) {
   const { colorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
+
   const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <Transition
-      mounted={bookmarksOpened}
+      mounted={finishedOpened}
       transition="slide-up"
       duration={400}
       timingFunction="ease"
@@ -28,7 +29,7 @@ export default function BookmarksTitle({ bookmarksOpened }) {
           }
         >
           <div style={styles}>
-            <Badge color="grape" radius="sm" size="xl" variant="outline">
+            <Badge color="teal" radius="sm" size="xl" variant="outline">
               <Text
                 size="xl"
                 weight={200}
@@ -38,7 +39,7 @@ export default function BookmarksTitle({ bookmarksOpened }) {
                     : theme.colors.gray[8]
                 }
               >
-                Bookmarks
+                Finished
               </Text>
             </Badge>
           </div>

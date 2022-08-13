@@ -33,7 +33,7 @@ export default function Logo() {
             ? theme.colors.dark[0]
             : theme.colors.teal[4]
         }
-        weight={400}
+        weight={500}
       >
         BIBLIO
       </Text>
