@@ -9,7 +9,7 @@ import { ReadingChallenge } from "../components/Pages/Home/ReadingChallenge";
 import { Stats } from "../components/Pages/Home/Stats";
 import { Hero } from "../components/Pages/Home/Hero";
 
-export default function Home({ page, setPage }) {
+export default function Dashboard({ page, setPage }) {
   if (page === "profile") return <Profile />;
   if (page === "discover") return <Discover />;
   if (page === "finished") return <Finished />;
@@ -35,4 +35,4 @@ export default function Home({ page, setPage }) {
   );
 }
 
-Home.getLayout = getLayout;
+Dashboard.getLayout = getLayout;

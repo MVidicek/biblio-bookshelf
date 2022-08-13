@@ -35,7 +35,7 @@ function LogIn() {
       );
 
       if (userCredential.user) {
-        router.push("/home");
+        router.push("/dashboard");
         showNotification({
           title: "Welcome",
           message: "You have successfully logged in",
