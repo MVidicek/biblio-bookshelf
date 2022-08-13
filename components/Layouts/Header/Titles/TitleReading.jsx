@@ -6,6 +6,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import params from "./params";
 
 export default function TitleReading({ readingOpened }) {
   const { colorScheme } = useMantineColorScheme();
@@ -16,8 +17,8 @@ export default function TitleReading({ readingOpened }) {
   return (
     <Transition
       mounted={readingOpened}
-      transition="slide-up"
-      duration={400}
+      transition={params.transition}
+      duration={params.duration}
       timingFunction="ease"
     >
       {(styles) => (
@@ -32,7 +33,7 @@ export default function TitleReading({ readingOpened }) {
             <Badge color="blue" radius="sm" size="xl" variant="outline">
               <Text
                 size="xl"
-                weight={200}
+                weight={params.font_weight}
                 color={
                   colorScheme === "dark"
                     ? theme.colors.gray[0]
