@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross1Icon, LockClosedIcon } from "@radix-ui/react-icons";
 import { PasswordInput, Progress, Text, Popover, Box } from "@mantine/core";
 
 function PasswordRequirement({ meets, label }) {
@@ -34,7 +34,7 @@ function getStrength(password) {
   return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
 }
 
-export function PasswordStrength({ password, setPassword }) {
+export default function PasswordStrength({ password, setPassword }) {
   const [popoverOpened, setPopoverOpened] = useState(false);
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement
@@ -51,35 +51,38 @@ export function PasswordStrength({ password, setPassword }) {
     <Popover
       opened={popoverOpened}
       position="bottom"
-      placement="start"
       withArrow
       styles={{ popover: { width: "100%" } }}
       trapFocus={false}
       transition="pop-top-left"
       onFocusCapture={() => setPopoverOpened(true)}
       onBlurCapture={() => setPopoverOpened(false)}
-      target={
+    >
+      <Popover.Target>
         <PasswordInput
           required
           label="Your password"
           placeholder="Your password"
           description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
           value={password}
+          icon={<LockClosedIcon />}
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
-      }
-    >
-      <Progress
-        color={color}
-        value={strength}
-        size={5}
-        style={{ marginBottom: 10 }}
-      />
-      <PasswordRequirement
-        label="Includes at least 6 characters"
-        meets={password.length > 5}
-      />
-      {checks}
+      </Popover.Target>
+      <Popover.Dropdown>
+        <Progress
+          color={color}
+          value={strength}
+          size={5}
+          style={{ marginBottom: 10 }}
+        />
+
+        <PasswordRequirement
+          label="Includes at least 6 characters"
+          meets={password.length > 5}
+        />
+        {checks}
+      </Popover.Dropdown>
     </Popover>
   );
 }

@@ -43,7 +43,7 @@ export default function OAuth() {
 
   return (
     <div>
-      <Button leftIcon={<PersonIcon />} onClick={onGoogleClick}>
+      <Button variant="light" leftIcon={<PersonIcon />} onClick={onGoogleClick}>
         Google
       </Button>
     </div>

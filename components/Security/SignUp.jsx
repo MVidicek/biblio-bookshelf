@@ -2,13 +2,18 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "@mantine/form";
 import { Button, TextInput, Box, Group, useMantineTheme } from "@mantine/core";
-import { PasswordStrength } from "../../functions/helpers/password-strength";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../firebase.config";
 import { showNotification } from "@mantine/notifications";
-import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import {
+  CheckIcon,
+  Cross1Icon,
+  EnvelopeClosedIcon,
+  PersonIcon,
+} from "@radix-ui/react-icons";
 import OAuth from "./OAuth";
+import PasswordStrength from "./PasswordStrength";
 
 function SignUp() {
   const theme = useMantineTheme();
@@ -58,13 +63,13 @@ function SignUp() {
   };
 
   return (
-    <Box sx={{ maxWidth: 300 }} mx="auto">
+    <Box sx={{ maxWidth: 350 }} mx="auto">
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Group mb="1rem">
           <TextInput
             {...form.getInputProps("name")}
-            placeholder="Full Name"
-            label="Name"
+            placeholder="Username"
+            icon={<PersonIcon />}
             required
           />
         </Group>
@@ -72,12 +77,14 @@ function SignUp() {
           {...form.getInputProps("email")}
           mb="1rem"
           placeholder="Email"
+          description="Your Email address wont be shared with anyone (You can even use a fake one but you won't be able to reset your password)"
           label="Email"
+          icon={<EnvelopeClosedIcon />}
           required
         />
         <PasswordStrength password={password} setPassword={setPassword} />
 
-        <Group position="center" m="1rem">
+        <Group position="center" mt="1.5rem">
           <Button
             type="submit"
             color={theme.colorScheme === "dark" ? "gray" : "teal"}

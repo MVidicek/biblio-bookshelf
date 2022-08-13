@@ -37,6 +37,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     borderTop: "1px solid #eaeaea",
     justifyContent: "center",
     alignItems: "center",
+    fontWeight: "lighter",
   },
 }));
 
@@ -65,8 +66,8 @@ export default function Home() {
             backgroundColor:
               theme.colorScheme === "dark"
                 ? theme.colors.dark[8]
-                : theme.colors.gray[1],
-            border: "2px solid",
+                : theme.colors.gray[0],
+            border: "1px solid",
             borderColor: theme.colors.teal[4],
             borderRadius: "50px",
           }}
@@ -94,6 +95,7 @@ export default function Home() {
           BIBLIO
         </Text>
         <Modal
+          size="sm"
           opened={opened}
           onClose={() => setOpened(false)}
           centered
@@ -137,7 +139,7 @@ export default function Home() {
       </main>
 
       <footer className={classes.footer}>
-        <p id="bottom">Created by Marko Vidiček</p>
+        <p id="bottom">Copyright &copy; 2022, Marko Vidiček</p>
       </footer>
     </div>
   );

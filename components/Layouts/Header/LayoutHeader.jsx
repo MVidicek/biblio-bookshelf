@@ -37,7 +37,7 @@ export default function LayoutHeader({ page }) {
       <div
         style={{
           display: "flex",
-          alignItems: "justify-between",
+          alignItems: "center",
           height: "100%",
         }}
       >

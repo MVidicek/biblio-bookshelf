@@ -16,10 +16,13 @@ export default function HomeLayout({ children }) {
     <AppShell
       styles={{
         main: {
-          background:
+          backgroundColor:
+            theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
+          backgroundSize: "27px 27px",
+          backgroundImage:
             theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
+              ? "radial-gradient(#343A4080 1.35px, #141517 1.35px)"
+              : "radial-gradient(#cdcdcd 1.35px, #F8F9FA 1.35px)",
         },
       }}
       navbarOffsetBreakpoint="sm"

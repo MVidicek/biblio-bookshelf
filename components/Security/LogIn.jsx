@@ -11,7 +11,12 @@ import {
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import { showNotification } from "@mantine/notifications";
-import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import {
+  CheckIcon,
+  Cross1Icon,
+  LockClosedIcon,
+  EnvelopeClosedIcon,
+} from "@radix-ui/react-icons";
 import OAuth from "./OAuth";
 
 function LogIn() {
@@ -54,7 +59,7 @@ function LogIn() {
   };
 
   return (
-    <Box sx={{ maxWidth: 300 }} mx="auto">
+    <Box sx={{ maxWidth: 350 }} mx="auto">
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput
           mb="1rem"
@@ -62,6 +67,7 @@ function LogIn() {
           label="Email"
           required
           {...form.getInputProps("email")}
+          icon={<EnvelopeClosedIcon />}
         />
 
         <PasswordInput
@@ -70,6 +76,7 @@ function LogIn() {
           description="Password must include at least one letter, number and special character"
           required
           {...form.getInputProps("password")}
+          icon={<LockClosedIcon />}
         />
 
         <Group position="center" mt="1.5rem">
