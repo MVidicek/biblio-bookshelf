@@ -30,7 +30,7 @@ export default function TitleFinished({ finishedOpened }) {
           }
         >
           <div style={styles}>
-            <Badge color="teal" radius="sm" size="xl" variant="outline">
+            <Badge color="green" radius="sm" size="xl" variant="outline">
               <Text
                 size="xl"
                 weight={params.font_weight}

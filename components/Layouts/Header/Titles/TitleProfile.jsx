@@ -8,7 +8,7 @@ import {
 import { useMediaQuery } from "@mantine/hooks";
 import params from "./params";
 
-export default function TitleHome({ homeOpened }) {
+export default function TitleProfile({ profileOpened }) {
   const { colorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
 
@@ -16,7 +16,7 @@ export default function TitleHome({ homeOpened }) {
 
   return (
     <Transition
-      mounted={homeOpened}
+      mounted={profileOpened}
       transition={params.transition}
       duration={params.duration}
       timingFunction="ease"
@@ -30,7 +30,7 @@ export default function TitleHome({ homeOpened }) {
           }
         >
           <div style={styles}>
-            <Badge color="teal" radius="sm" size="xl" variant="outline">
+            <Badge color="teal" radius="sm" size="xl" variant="dot">
               <Text
                 size="xl"
                 weight={params.font_weight}
@@ -40,7 +40,7 @@ export default function TitleHome({ homeOpened }) {
                     : theme.colors.gray[8]
                 }
               >
-                Home
+                Account
               </Text>
             </Badge>
           </div>

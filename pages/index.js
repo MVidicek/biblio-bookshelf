@@ -77,8 +77,8 @@ export default function Home() {
           gradient={
             theme.colorScheme === "dark"
               ? {
-                  from: theme.colors.gray[2],
-                  to: theme.colors.gray[2],
+                  from: theme.colors.gray[0],
+                  to: theme.colors.gray[4],
                   deg: 45,
                 }
               : {

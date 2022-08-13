@@ -1,7 +1,6 @@
 import {
   Container,
   SimpleGrid,
-  useMantineTheme,
   Image,
   Text,
   Stack,
@@ -28,8 +27,6 @@ export default function BookDetailsModal({
   isFinished,
   setIsFinished,
 }) {
-  const theme = useMantineTheme();
-
   const handleBookmark = () => {
     setBookmark(book, isBookmarked, setIsBookmarked);
   };
@@ -84,10 +81,10 @@ export default function BookDetailsModal({
           alt={book.volumeInfo?.title}
         />
         <Stack spacing="md" height={520}>
-          <Text transform="uppercase" size="xl" weight={700} color="teal">
+          <Text transform="uppercase" size="xl" weight={600}>
             {book.volumeInfo?.title}
           </Text>
-          <Text size="lg" weight={600}>
+          <Text size="lg" weight={400}>
             {book.volumeInfo?.authors[0]}
             {book.volumeInfo?.authors.length > 1 ? " | " : ""}
             {book.volumeInfo?.authors[1]}
@@ -107,15 +104,9 @@ export default function BookDetailsModal({
           <Badge variant="dot" radius="sm">
             Average Rating : {book.volumeInfo?.averageRating ?? "Unknown"}
           </Badge>
-          <SimpleGrid cols={1}>
-            <Badge
-              radius="sm"
-              color="gray"
-              variant={theme.colorScheme === "dark" ? "light" : "light"}
-            >
-              {book.volumeInfo?.categories || "No Categories"}
-            </Badge>
-          </SimpleGrid>
+          <Badge radius="sm" variant="default">
+            {book.volumeInfo?.categories || "No Categories"}
+          </Badge>
           <ScrollArea
             style={{
               height: 150,
@@ -131,7 +122,7 @@ export default function BookDetailsModal({
             <Stack>
               <Button
                 color="blue"
-                style={{ width: 150 }}
+                style={{ width: 150, fontWeight: 400 }}
                 variant={isReading ? "light" : "outline"}
                 compact
                 leftIcon={<ReaderIcon size={14} />}
@@ -140,8 +131,8 @@ export default function BookDetailsModal({
                 {isReading ? "Reading" : "Add to Reading"}
               </Button>
               <Button
-                color="teal"
-                style={{ width: 150 }}
+                color="green"
+                style={{ width: 150, fontWeight: 400 }}
                 variant={isFinished ? "light" : "outline"}
                 compact
                 leftIcon={<CheckCircledIcon size={14} />}
@@ -151,7 +142,7 @@ export default function BookDetailsModal({
               </Button>
               <Button
                 color={isBookmarked ? "grape" : "gray"}
-                style={{ width: 150 }}
+                style={{ width: 150, fontWeight: 400 }}
                 variant={isBookmarked ? "light" : "outline"}
                 compact
                 leftIcon={
