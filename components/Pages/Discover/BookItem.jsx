@@ -101,18 +101,18 @@ export default function BookItem({ book }) {
           style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
         >
           <Badge
-            color="blue"
             sx={{ paddingLeft: 3, maxWidth: "50%" }}
             variant="default"
             leftSection={<PersonIcon style={{ paddingTop: 4 }} />}
+            radius="sm"
           >
             {book.volumeInfo?.authors[0]}
           </Badge>
           <Badge
-            color="blue"
             sx={{ paddingLeft: 3 }}
             variant="default"
             leftSection={<CalendarIcon style={{ paddingTop: 4 }} />}
+            radius="sm"
           >
             {book.volumeInfo?.publishedDate?.slice(0, 4)}
           </Badge>

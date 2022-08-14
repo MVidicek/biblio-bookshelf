@@ -17,10 +17,7 @@ import removeDocument from "../../functions/helpers/remove-document";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
-        : theme.colors[theme.primaryColor][0],
+    backgroundColor: theme.fn.rgba(theme.colors.teal[9], 0.2),
   },
   wrapper: {
     backgroundColor:
@@ -69,13 +66,14 @@ export function BooksTable({ data, setLoading, collection }) {
             checked={selection.includes(item.bookId)}
             onChange={() => toggleRow(item.bookId)}
             transitionDuration={0}
+            color="teal"
           />
         </td>
         <td>
           <Avatar size="lg" src={item.imageLinks} radius={6} />
         </td>
         <td>
-          <Badge radius="sm" color="blue" variant="default">
+          <Badge radius="sm" color="teal" variant="dot">
             <Text size="xs" weight={400}>
               {item.title}
             </Text>
@@ -84,8 +82,8 @@ export function BooksTable({ data, setLoading, collection }) {
         <td>
           <Badge
             radius="sm"
-            color={item.averageRating > 3 ? "green" : "gray"}
-            variant={theme.colorScheme === "dark" ? "light" : "filled"}
+            color={item.averageRating > 3 ? "teal" : "red"}
+            variant="light"
           >
             {item.averageRating}
           </Badge>
@@ -99,11 +97,7 @@ export function BooksTable({ data, setLoading, collection }) {
         <td>{item.publishedDate}</td>
         {matchesSmall && (
           <td>
-            <Badge
-              radius="sm"
-              color="gray"
-              variant={theme.colorScheme === "dark" ? "light" : "outline"}
-            >
+            <Badge radius="sm" color="gray" variant="light">
               {item.categories}
             </Badge>
           </td>
@@ -142,6 +136,7 @@ export function BooksTable({ data, setLoading, collection }) {
                   selection.length > 0 && selection.length !== data.length
                 }
                 transitionDuration={0}
+                color="teal"
               />
             </th>
             <th></th>
