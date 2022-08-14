@@ -11,7 +11,7 @@ import {
   Badge,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import { TrashIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import removeDocument from "../../functions/helpers/remove-document";
 
@@ -112,7 +112,7 @@ export function BooksTable({ data, setLoading, collection }) {
             type="button"
             onClick={handleRemove}
           >
-            <Cross2Icon />
+            <TrashIcon />
           </Button>
         </td>
       </tr>
