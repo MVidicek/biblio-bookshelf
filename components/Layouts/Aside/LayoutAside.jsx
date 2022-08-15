@@ -4,8 +4,6 @@ import {
   MediaQuery,
   useMantineTheme,
   SegmentedControl,
-  Switch,
-  Stack,
   Tooltip,
   Divider,
   Radio,
@@ -13,14 +11,25 @@ import {
   Accordion,
   Text,
 } from "@mantine/core";
-import React from "react";
+import {
+  MagnifyingGlassIcon,
+  BarChartIcon,
+  StackIcon,
+  GlobeIcon,
+} from "@radix-ui/react-icons";
+import ReactFlagsSelect from "react-flags-select";
+import React, { useState } from "react";
 
 export default function LayoutAside() {
+  const [language, setLanguage] = useState("en");
   const theme = useMantineTheme();
   return (
     <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
       <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 200 }}>
         <Aside.Section>
+          <Badge mb="md" fullWidth variant="light" radius="sm" color="gray">
+            SEARCH SETTINGS
+          </Badge>
           <Divider mb="md" labelPosition="center" label="API" />
           <SegmentedControl
             transitionDuration={300}
@@ -37,7 +46,7 @@ export default function LayoutAside() {
           <Divider mb="md" labelPosition="center" label="QUERY PARAMETERS" />
           <Accordion multiple radius="sm" variant="filled">
             <Accordion.Item value="filter">
-              <Accordion.Control>
+              <Accordion.Control icon={<MagnifyingGlassIcon />}>
                 <Text size="xs">FILTER</Text>
               </Accordion.Control>
               <Accordion.Panel>
@@ -103,8 +112,8 @@ export default function LayoutAside() {
             </Accordion.Item>
 
             <Accordion.Item value="max-results">
-              <Accordion.Control>
-                <Text size="xs">MAX RESULTS</Text>
+              <Accordion.Control icon={<BarChartIcon />}>
+                <Text size="xs">RESULTS</Text>
               </Accordion.Control>
               <Accordion.Panel>
                 <Text size="xs">
@@ -129,7 +138,7 @@ export default function LayoutAside() {
             </Accordion.Item>
 
             <Accordion.Item value="order-by">
-              <Accordion.Control>
+              <Accordion.Control icon={<StackIcon />}>
                 <Text size="xs">ORDER BY</Text>
               </Accordion.Control>
               <Accordion.Panel>
@@ -139,6 +148,7 @@ export default function LayoutAside() {
                   spacing="sm"
                   offset="md"
                   size="sm"
+                  defaultValue="relevance"
                 >
                   <Tooltip
                     transition="pop"
@@ -159,6 +169,25 @@ export default function LayoutAside() {
                     <Radio color="teal" value="newest" label="Newest" />
                   </Tooltip>
                 </Radio.Group>
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="language">
+              <Accordion.Control icon={<GlobeIcon />}>
+                <Text size="xs">LANGUAGE</Text>
+              </Accordion.Control>
+              <Accordion.Panel>
+                <Text mb="md" size="xs">
+                  Restricts the volumes returned to those that are tagged with
+                  the specified language.
+                </Text>
+                <ReactFlagsSelect
+                  selectedSize={12}
+                  optionsSize={14}
+                  searchable
+                  selected={language}
+                  onSelect={(code) => setLanguage(code)}
+                />
               </Accordion.Panel>
             </Accordion.Item>
           </Accordion>
