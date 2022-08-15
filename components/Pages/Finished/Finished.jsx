@@ -18,7 +18,7 @@ export default function Finished({ setPage }) {
         console.log(err);
         setLoading(false);
       });
-  }, [loading]);
+  }, []);
 
   if (loading)
     return <Loader size="xl" color="teal" style={{ marginTop: "25%" }} />;

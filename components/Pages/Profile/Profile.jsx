@@ -4,7 +4,6 @@ import {
   TextInput,
   Badge,
   Stack,
-  Avatar,
   useMantineTheme,
   Container,
   createStyles,
@@ -39,15 +38,6 @@ export default function Profile() {
     },
   });
 
-  const avatar = (
-    <Avatar
-      alt="Avatar for badge"
-      size={24}
-      mr={5}
-      src="https://cdn-icons-png.flaticon.com/512/560/560216.png"
-    />
-  );
-
   const onLogout = () => {
     auth.signOut();
 
@@ -62,15 +52,8 @@ export default function Profile() {
 
   return (
     <Container className={classes.wrapper}>
-      <Badge
-        sx={{ paddingLeft: 0, fontWeight: 600, marginBottom: "1rem" }}
-        size="lg"
-        radius="sm"
-        leftSection={avatar}
-        variant="default"
-        color="gray"
-      >
-        {form.values.name}
+      <Badge mb="md" radius="sm" variant="light" color="gray">
+        Account Details
       </Badge>
       <Stack spacing="md" mb="1rem">
         <TextInput

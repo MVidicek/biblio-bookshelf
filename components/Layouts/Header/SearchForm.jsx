@@ -16,7 +16,7 @@ export default function SearchForm({ discoverOpened }) {
 
   const handleSearch = async (values) => {
     const { searchText } = values;
-    setSearch(searchText);
+    await setSearch(searchText);
   };
 
   return (

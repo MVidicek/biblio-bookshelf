@@ -44,7 +44,7 @@ const data = [
   { icon: <MagnifyingGlassIcon />, color: "gray", label: "Discover" },
   { icon: <ReaderIcon />, color: "cyan", label: "Reading" },
   { icon: <CheckCircledIcon />, color: "teal", label: "Finished" },
-  { icon: <BookmarkIcon />, color: "grape", label: "Bookmarked" },
+  { icon: <BookmarkIcon />, color: "grape", label: "Bookmarks" },
 ];
 
 export function MainLinks({ setPage }) {

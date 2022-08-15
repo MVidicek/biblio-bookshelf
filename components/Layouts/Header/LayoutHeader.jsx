@@ -3,12 +3,7 @@ import React, { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 
 // TItles
-import TitleHome from "./Titles/TitleHome";
-import TitleFinished from "./Titles/TitleFinished";
-import TitleReading from "./Titles/TitleReading";
-import TitleBookmarks from "./Titles/TitleBookmarks";
-import TitleProfile from "./Titles/TitleProfile";
-
+import HeaderTitle from "./HeaderTitle";
 import ThemeSwitch from "./ThemeSwitch";
 import Logo from "./Logo";
 import BurgerMenu from "./BurgerMenu";
@@ -26,9 +21,7 @@ export default function LayoutHeader({ page }) {
     page === "discover" ? setDiscoverOpened(true) : setDiscoverOpened(false);
     page === "reading" ? setReadingOpened(true) : setReadingOpened(false);
     page === "finished" ? setFinishedOpened(true) : setFinishedOpened(false);
-    page === "bookmarked"
-      ? setBookmarksOpened(true)
-      : setBookmarksOpened(false);
+    page === "bookmarks" ? setBookmarksOpened(true) : setBookmarksOpened(false);
     page === "profile" ? setProfileOpened(true) : setProfileOpened(false);
   }, [page]);
 
@@ -43,16 +36,22 @@ export default function LayoutHeader({ page }) {
       >
         <BurgerMenu />
         <Logo />
-        {page === "home" && <TitleHome homeOpened={homeOpened} />}
+        {page === "home" && (
+          <HeaderTitle transitionOpened={homeOpened} page={page} />
+        )}
         {page === "discover" && <SearchForm discoverOpened={discoverOpened} />}
-        {page === "reading" && <TitleReading readingOpened={readingOpened} />}
+        {page === "reading" && (
+          <HeaderTitle transitionOpened={readingOpened} page={page} />
+        )}
         {page === "finished" && (
-          <TitleFinished finishedOpened={finishedOpened} />
+          <HeaderTitle transitionOpened={finishedOpened} page={page} />
         )}
-        {page === "bookmarked" && (
-          <TitleBookmarks bookmarksOpened={bookmarksOpened} />
+        {page === "bookmarks" && (
+          <HeaderTitle transitionOpened={bookmarksOpened} page={page} />
         )}
-        {page === "profile" && <TitleProfile profileOpened={profileOpened} />}
+        {page === "profile" && (
+          <HeaderTitle transitionOpened={profileOpened} page={page} />
+        )}
         <ThemeSwitch />
       </div>
     </Header>

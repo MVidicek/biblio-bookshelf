@@ -12,9 +12,9 @@ import { Hero } from "../components/Pages/Home/Hero";
 export default function Dashboard({ page, setPage }) {
   if (page === "profile") return <Profile />;
   if (page === "discover") return <Discover />;
-  if (page === "finished") return <Finished />;
-  if (page === "bookmarked") return <Bookmarked setPage={setPage} />;
-  if (page === "reading") return <Reading />;
+  if (page === "finished") return <Finished setPage={setPage} />;
+  if (page === "bookmarks") return <Bookmarked setPage={setPage} />;
+  if (page === "reading") return <Reading setPage={setPage} />;
 
   return (
     <Stack>
