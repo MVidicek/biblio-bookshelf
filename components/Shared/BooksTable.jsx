@@ -38,8 +38,9 @@ export function BooksTable({ data, setLoading, collection }) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
 
-  const matchesMedium = useMediaQuery("(min-width: 1600px)");
-  const matchesSmall = useMediaQuery("(min-width: 1500px)");
+  const mediaMd = useMediaQuery("(min-width: 1400px)");
+  const mediaSm = useMediaQuery("(min-width: 1200px)");
+  const mediaXs = useMediaQuery("(min-width: 950px)");
 
   const toggleRow = (id) =>
     setSelection((current) =>
@@ -73,36 +74,41 @@ export function BooksTable({ data, setLoading, collection }) {
           <Avatar size="lg" src={item.imageLinks} radius={6} />
         </td>
         <td>
-          <Badge radius="sm" color="teal" variant="dot">
-            <Text size="xs" weight={400}>
-              {item.title}
-            </Text>
-          </Badge>
-        </td>
-        <td>
-          <Badge
-            radius="sm"
-            color={item.averageRating > 3 ? "teal" : "red"}
-            variant="light"
+          <Text
+            color={theme.colorScheme === "dark" ? "white" : "dark"}
+            size="sm"
+            weight={400}
+            inline
           >
-            {item.averageRating}
-          </Badge>
+            {item.title}
+          </Text>
         </td>
+        {mediaXs && (
+          <td>
+            <Badge
+              radius="sm"
+              color={item.averageRating > 3 ? "teal" : "red"}
+              variant="light"
+            >
+              {item.averageRating}
+            </Badge>
+          </td>
+        )}
         <td>
-          <Text size="sm" weight={500}>
+          <Text size="xs" weight={600}>
             {item.authors.join(", ")}
           </Text>
         </td>
-        {matchesMedium && <td> {item.publisher}</td>}
-        <td>{item.publishedDate}</td>
-        {matchesSmall && (
+        {mediaMd && <td> {item.publisher}</td>}
+        {mediaXs && <td>{item.publishedDate}</td>}
+        {mediaSm && (
           <td>
             <Badge radius="sm" color="gray" variant="light">
               {item.categories}
             </Badge>
           </td>
         )}
-        <td>{format(item.createdAt.toDate(), "MMM do, yy")}</td>
+        {mediaXs && <td>{format(item.createdAt.toDate(), "MMM do, yy")}</td>}
         <td>
           <Button
             color="pink"
@@ -121,11 +127,7 @@ export function BooksTable({ data, setLoading, collection }) {
 
   return (
     <ScrollArea className={classes.scrollArea}>
-      <Table
-        sx={{ minWidth: 800 }}
-        verticalSpacing="sm"
-        className={classes.wrapper}
-      >
+      <Table horizontalSpacing="xs" className={classes.wrapper} fontSize="xs">
         <thead>
           <tr>
             <th style={{ width: 40 }}>
@@ -141,12 +143,12 @@ export function BooksTable({ data, setLoading, collection }) {
             </th>
             <th></th>
             <th>Title</th>
-            <th></th>
+            {mediaXs && <th></th>}
             <th>Authors</th>
-            {matchesMedium && <th> Publisher</th>}
-            <th>Year</th>
-            {matchesSmall && <th>Categories</th>}
-            <th>Added</th>
+            {mediaMd && <th> Publisher</th>}
+            {mediaXs && <th>Year</th>}
+            {mediaSm && <th>Categories</th>}
+            {mediaXs && <th>Added</th>}
             <th></th>
           </tr>
         </thead>
