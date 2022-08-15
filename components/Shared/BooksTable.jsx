@@ -17,7 +17,7 @@ import removeDocument from "../../functions/helpers/remove-document";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {
-    backgroundColor: theme.fn.rgba(theme.colors.teal[9], 0.2),
+    backgroundColor: theme.fn.rgba(theme.colors.gray[7], 0.1),
   },
   wrapper: {
     backgroundColor:
@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function BooksTable({ data, setLoading, collection }) {
-  const [selection, setSelection] = useState(["1"]);
+  const [selection, setSelection] = useState([]);
 
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
@@ -53,6 +53,13 @@ export function BooksTable({ data, setLoading, collection }) {
     setSelection((current) =>
       current.length === data.length ? [] : data.map((item) => item.bookId)
     );
+
+  const removeSelected = async () => {
+    console.log(selection);
+    setLoading(true);
+    await removeDocument(selection, collection);
+    setLoading(false);
+  };
 
   const rows = data.map((item) => {
     const selected = selection.includes(item.bookId);
@@ -154,6 +161,16 @@ export function BooksTable({ data, setLoading, collection }) {
         </thead>
         <tbody>{rows}</tbody>
       </Table>
+      <Button
+        disabled={selection.length === 0}
+        radius={0}
+        fullWidth
+        color="teal"
+        variant={theme.colorScheme === "dark" ? "light" : "filled"}
+        onClick={removeSelected}
+      >
+        Remove Selected
+      </Button>
     </ScrollArea>
   );
 }
