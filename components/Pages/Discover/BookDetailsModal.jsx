@@ -14,9 +14,7 @@ import {
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
-import setBookmark from "../../../functions/helpers/set-bookmark";
-import setReading from "../../../functions/helpers/set-reading";
-import setFinished from "../../../functions/helpers/set-finished";
+import setBookCollection from "../../../functions/helpers/set-book-collection";
 
 export default function BookDetailsModal({
   book,
@@ -28,15 +26,15 @@ export default function BookDetailsModal({
   setIsFinished,
 }) {
   const handleBookmark = () => {
-    setBookmark(book, isBookmarked, setIsBookmarked);
+    setBookCollection(book, isBookmarked, setIsBookmarked, "bookmarked");
   };
 
   const handleReading = () => {
-    setReading(book, isReading, setIsReading);
+    setBookCollection(book, isReading, setIsReading, "reading");
   };
 
   const handleFinished = () => {
-    setFinished(book, isFinished, setIsFinished);
+    setBookCollection(book, isFinished, setIsFinished, "finished");
   };
 
   return (

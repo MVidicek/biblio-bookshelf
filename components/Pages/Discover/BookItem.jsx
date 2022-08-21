@@ -17,8 +17,8 @@ import {
   BookmarkIcon,
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
-import setBookmark from "../../../functions/helpers/set-bookmark";
 import checkBookCollection from "../../../functions/helpers/check-book-collection";
+import setBookCollection from "../../../functions/helpers/set-book-collection";
 
 export default function BookItem({ book }) {
   const theme = useMantineTheme();
@@ -38,7 +38,7 @@ export default function BookItem({ book }) {
   }, [isBookmarked, isReading, isFinished]);
 
   const handleBookmark = () => {
-    setBookmark(book, isBookmarked, setIsBookmarked);
+    setBookCollection(book, isBookmarked, setIsBookmarked, "bookmarked");
   };
 
   return (
