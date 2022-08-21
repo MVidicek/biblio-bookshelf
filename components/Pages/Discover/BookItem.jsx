@@ -18,9 +18,7 @@ import {
   BookmarkFilledIcon,
 } from "@radix-ui/react-icons";
 import setBookmark from "../../../functions/helpers/set-bookmark";
-import checkIfBookmarked from "../../../functions/helpers/check-bookmarked";
-import checkIfReading from "../../../functions/helpers/check-reading";
-import checkIfFinished from "../../../functions/helpers/check-finished";
+import checkBookCollection from "../../../functions/helpers/check-book-collection";
 
 export default function BookItem({ book }) {
   const theme = useMantineTheme();
@@ -33,11 +31,10 @@ export default function BookItem({ book }) {
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
-  // Check if book is bookmarked
   useEffect(() => {
-    checkIfBookmarked(book.id, setIsBookmarked);
-    checkIfReading(book.id, setIsReading);
-    checkIfFinished(book.id, setIsFinished);
+    checkBookCollection(book.id, setIsBookmarked, "bookmarked");
+    checkBookCollection(book.id, setIsReading, "reading");
+    checkBookCollection(book.id, setIsFinished, "finished");
   }, [isBookmarked, isReading, isFinished]);
 
   const handleBookmark = () => {

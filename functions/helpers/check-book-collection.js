@@ -2,15 +2,15 @@ import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "../../firebase.config";
 import { showNotification } from "@mantine/notifications";
 
-const checkIfReading = async (id, setIsReading) => {
+const checkBookCollection = async (id, setCollection, colName) => {
   try {
     const user = auth.currentUser;
     const querySnapshot = await getDocs(
-      collection(db, "users", user.uid, "reading")
+      collection(db, "users", user.uid, colName)
     );
     querySnapshot.forEach((doc) => {
       if (doc.data().bookId === id) {
-        setIsReading(true);
+        setCollection(true);
       }
     });
   } catch (error) {
@@ -22,4 +22,4 @@ const checkIfReading = async (id, setIsReading) => {
   }
 };
 
-export default checkIfReading;
+export default checkBookCollection;
