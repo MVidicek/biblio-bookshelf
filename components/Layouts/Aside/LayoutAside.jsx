@@ -16,6 +16,7 @@ import {
   BarChartIcon,
   StackIcon,
   GlobeIcon,
+  FileIcon,
 } from "@radix-ui/react-icons";
 import ReactFlagsSelect from "react-flags-select";
 import React, { useState } from "react";
@@ -188,6 +189,54 @@ export default function LayoutAside() {
                   selected={language}
                   onSelect={(code) => setLanguage(code)}
                 />
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="printType">
+              <Accordion.Control icon={<FileIcon />}>
+                <Text size="xs">PRINT TYPE</Text>
+              </Accordion.Control>
+              <Accordion.Panel>
+                <Text size="xs">Restrict to books or magazines.</Text>
+                <Radio.Group
+                  orientation="vertical"
+                  spacing="sm"
+                  offset="md"
+                  size="sm"
+                  defaultValue="type-all"
+                >
+                  <Tooltip
+                    transition="pop"
+                    transitionDuration={300}
+                    multiline
+                    width={220}
+                    label="Return all volume content types (no restriction). This is the default."
+                  >
+                    <Radio color="teal" value="type-all" label="All" />
+                  </Tooltip>
+                  <Tooltip
+                    transition="pop"
+                    transitionDuration={300}
+                    multiline
+                    width={220}
+                    label="Return just books."
+                  >
+                    <Radio color="teal" value="type-books" label="Books" />
+                  </Tooltip>
+                  <Tooltip
+                    transition="pop"
+                    transitionDuration={300}
+                    multiline
+                    width={220}
+                    label="Return just magazines."
+                  >
+                    <Radio
+                      color="teal"
+                      value="type-magazines"
+                      label="Magazines"
+                    />
+                  </Tooltip>
+                </Radio.Group>
               </Accordion.Panel>
             </Accordion.Item>
           </Accordion>
