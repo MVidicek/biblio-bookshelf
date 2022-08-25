@@ -12,9 +12,8 @@
 </div>
 
 <p align="center">
-    <img alt="Showcase" src="https://i.imgur.com/iSDLhOd.jpeg" width="300" height="400">
-    <img alt="Showcase" src="https://i.imgur.com/uWuYsMX.jpeg" width="300" height="400">
-    <img alt="Showcase" src="https://i.imgur.com/D2p30r8.jpeg" width="300" height="400">
+    <img alt="Showcase" src="https://i.imgur.com/1wUfmJR.jpeg" width="600">
+    <img alt="Showcase" src="https://i.imgur.com/1wUfmJR.jpeg" width="600">
 </p>
 
 [![Build Status](https://badges.netlify.com/api/biblio-bookshelf.netlify.app.svg?branch=main)](https://app.netlify.com/sites/biblio-bookshelf.netlify.app/deploys)
