@@ -6,7 +6,7 @@
   <h3 align="center">BIBLIO</h3>
 
   <p align="center">
-    An Open Source book organizing web application.
+    An Open Source web application for searching and organizing your digital book collection.
     <br />
   </p>
 </div>
