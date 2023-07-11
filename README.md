@@ -16,11 +16,7 @@
     <img alt="Showcase" src="https://i.imgur.com/1wUfmJR.jpeg" width="700">
 </p>
 
-[![Build Status](https://badges.netlify.com/api/biblio-bookshelf.netlify.app.svg?branch=main)](https://app.netlify.com/sites/biblio-bookshelf.netlify.app/deploys)
-
-
 ### Built With
-* [![React][React.js]][React-url]
 * [![Next][Next.js]][Next-url]
 
 
